@@ -8,11 +8,20 @@
 
 #import "FTWMAppDelegate.h"
 
+#import "FTWMViewController.h"
+
 @implementation FTWMAppDelegate
+
+@synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    // Out main view controller for now it is just a table view
+    FTWMViewController *mainViewController = [[FTWMViewController alloc] init];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 							

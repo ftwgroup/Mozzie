@@ -1,5 +1,5 @@
 //
-//  FTWMViewController.h
+//  ContactsViewController.h
 //  Mozzie
 //
 //  Created by Julian Threatt on 9/25/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FTWMViewController : UITableViewController
+@interface ContactsViewController : UITableViewController
 
 @end
