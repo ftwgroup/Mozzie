@@ -47,6 +47,9 @@
 		B9160E9416126A8500CA206E /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160E8B16126A8500CA206E /* NITableViewModel.m */; };
 		B9160E9A1612706800CA206E /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160E981612706800CA206E /* ContactsViewController.m */; };
 		B9160E9B1612706800CA206E /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9160E991612706800CA206E /* ContactsViewController.xib */; };
+		B9160EA31612800D00CA206E /* NIAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160E9E1612800D00CA206E /* NIAttributedLabel.m */; };
+		B9160EA41612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EA21612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.m */; };
+		B9160EA616128A4000CA206E /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160EA516128A4000CA206E /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +134,13 @@
 		B9160E971612706800CA206E /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		B9160E981612706800CA206E /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 		B9160E991612706800CA206E /* ContactsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsViewController.xib; sourceTree = "<group>"; };
+		B9160E9D1612800D00CA206E /* NIAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIAttributedLabel.h; path = ../../src/nimbus/src/attributedlabel/src/NIAttributedLabel.h; sourceTree = "<group>"; };
+		B9160E9E1612800D00CA206E /* NIAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIAttributedLabel.m; path = ../../src/nimbus/src/attributedlabel/src/NIAttributedLabel.m; sourceTree = "<group>"; };
+		B9160E9F1612800D00CA206E /* NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusAttributedLabel.h; path = ../../src/nimbus/src/attributedlabel/src/NimbusAttributedLabel.h; sourceTree = "<group>"; };
+		B9160EA01612800D00CA206E /* NimbusAttributedLabel+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusAttributedLabel+Namespace.h"; path = "../../src/nimbus/src/attributedlabel/src/NimbusAttributedLabel+Namespace.h"; sourceTree = "<group>"; };
+		B9160EA11612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+NimbusAttributedLabel.h"; path = "../../src/nimbus/src/attributedlabel/src/NSMutableAttributedString+NimbusAttributedLabel.h"; sourceTree = "<group>"; };
+		B9160EA21612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+NimbusAttributedLabel.m"; path = "../../src/nimbus/src/attributedlabel/src/NSMutableAttributedString+NimbusAttributedLabel.m"; sourceTree = "<group>"; };
+		B9160EA516128A4000CA206E /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9160EA616128A4000CA206E /* CoreText.framework in Frameworks */,
 				B9160E171612658800CA206E /* UIKit.framework in Frameworks */,
 				B9160E191612658800CA206E /* Foundation.framework in Frameworks */,
 				B9160E1B1612658800CA206E /* CoreGraphics.framework in Frameworks */,
@@ -168,6 +179,7 @@
 		B9160E151612658800CA206E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B9160EA516128A4000CA206E /* CoreText.framework */,
 				B9160E161612658800CA206E /* UIKit.framework */,
 				B9160E181612658800CA206E /* Foundation.framework */,
 				B9160E1A1612658800CA206E /* CoreGraphics.framework */,
@@ -206,6 +218,7 @@
 		B9160E39161265D900CA206E /* Nimbus */ = {
 			isa = PBXGroup;
 			children = (
+				B9160E9C16127FE800CA206E /* Attributed Label */,
 				B9160E7916126A4600CA206E /* Models */,
 				B9160E3A161265F800CA206E /* Core */,
 			);
@@ -296,6 +309,19 @@
 				B9160E991612706800CA206E /* ContactsViewController.xib */,
 			);
 			name = Contacts;
+			sourceTree = "<group>";
+		};
+		B9160E9C16127FE800CA206E /* Attributed Label */ = {
+			isa = PBXGroup;
+			children = (
+				B9160E9D1612800D00CA206E /* NIAttributedLabel.h */,
+				B9160E9E1612800D00CA206E /* NIAttributedLabel.m */,
+				B9160E9F1612800D00CA206E /* NimbusAttributedLabel.h */,
+				B9160EA01612800D00CA206E /* NimbusAttributedLabel+Namespace.h */,
+				B9160EA11612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.h */,
+				B9160EA21612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.m */,
+			);
+			name = "Attributed Label";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,6 +423,8 @@
 				B9160E9316126A8500CA206E /* NITableViewActions.m in Sources */,
 				B9160E9416126A8500CA206E /* NITableViewModel.m in Sources */,
 				B9160E9A1612706800CA206E /* ContactsViewController.m in Sources */,
+				B9160EA31612800D00CA206E /* NIAttributedLabel.m in Sources */,
+				B9160EA41612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
