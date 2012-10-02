@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B90B696F161B7F2B000997AA /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90B696E161B7F2B000997AA /* FacebookSDK.framework */; };
+		B90B6973161B7F43000997AA /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B90B6971161B7F43000997AA /* FacebookSDKResources.bundle */; };
+		B90B6974161B7F43000997AA /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B90B6972161B7F43000997AA /* FBUserSettingsViewResources.bundle */; };
+		B90B6976161B7F62000997AA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90B6975161B7F62000997AA /* Social.framework */; };
+		B90B6979161B7F6E000997AA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90B6977161B7F6E000997AA /* Accounts.framework */; };
+		B90B697A161B7F6E000997AA /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90B6978161B7F6E000997AA /* AdSupport.framework */; };
+		B90B697E161B83F2000997AA /* FTWMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90B697C161B83F2000997AA /* FTWMLoginViewController.m */; };
+		B90B697F161B83F2000997AA /* FTWMLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B90B697D161B83F2000997AA /* FTWMLoginViewController.xib */; };
 		B9160E171612658800CA206E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160E161612658800CA206E /* UIKit.framework */; };
 		B9160E191612658800CA206E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160E181612658800CA206E /* Foundation.framework */; };
 		B9160E1B1612658800CA206E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160E1A1612658800CA206E /* CoreGraphics.framework */; };
@@ -53,6 +61,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B90B696E161B7F2B000997AA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		B90B6971161B7F43000997AA /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		B90B6972161B7F43000997AA /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
+		B90B6975161B7F62000997AA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		B90B6977161B7F6E000997AA /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		B90B6978161B7F6E000997AA /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		B90B697B161B83F2000997AA /* FTWMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTWMLoginViewController.h; sourceTree = "<group>"; };
+		B90B697C161B83F2000997AA /* FTWMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTWMLoginViewController.m; sourceTree = "<group>"; };
+		B90B697D161B83F2000997AA /* FTWMLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FTWMLoginViewController.xib; sourceTree = "<group>"; };
 		B9160E121612658800CA206E /* Mozzie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mozzie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9160E161612658800CA206E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B9160E181612658800CA206E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -148,10 +165,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B90B6979161B7F6E000997AA /* Accounts.framework in Frameworks */,
+				B90B697A161B7F6E000997AA /* AdSupport.framework in Frameworks */,
+				B90B6976161B7F62000997AA /* Social.framework in Frameworks */,
 				B9160EA616128A4000CA206E /* CoreText.framework in Frameworks */,
 				B9160E171612658800CA206E /* UIKit.framework in Frameworks */,
 				B9160E191612658800CA206E /* Foundation.framework in Frameworks */,
 				B9160E1B1612658800CA206E /* CoreGraphics.framework in Frameworks */,
+				B90B696F161B7F2B000997AA /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +200,12 @@
 		B9160E151612658800CA206E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B90B6977161B7F6E000997AA /* Accounts.framework */,
+				B90B6978161B7F6E000997AA /* AdSupport.framework */,
+				B90B6975161B7F62000997AA /* Social.framework */,
+				B90B6971161B7F43000997AA /* FacebookSDKResources.bundle */,
+				B90B6972161B7F43000997AA /* FBUserSettingsViewResources.bundle */,
+				B90B696E161B7F2B000997AA /* FacebookSDK.framework */,
 				B9160EA516128A4000CA206E /* CoreText.framework */,
 				B9160E161612658800CA206E /* UIKit.framework */,
 				B9160E181612658800CA206E /* Foundation.framework */,
@@ -193,6 +220,9 @@
 				B9160E961612700B00CA206E /* Contacts */,
 				B9160E251612658900CA206E /* FTWMAppDelegate.h */,
 				B9160E261612658900CA206E /* FTWMAppDelegate.m */,
+				B90B697B161B83F2000997AA /* FTWMLoginViewController.h */,
+				B90B697C161B83F2000997AA /* FTWMLoginViewController.m */,
+				B90B697D161B83F2000997AA /* FTWMLoginViewController.xib */,
 				B9160E2E1612658900CA206E /* MainStoryboard.storyboard */,
 				B9160E311612658900CA206E /* FTWMViewController.h */,
 				B9160E321612658900CA206E /* FTWMViewController.m */,
@@ -382,6 +412,9 @@
 				B9160E2D1612658900CA206E /* Default-568h@2x.png in Resources */,
 				B9160E301612658900CA206E /* MainStoryboard.storyboard in Resources */,
 				B9160E9B1612706800CA206E /* ContactsViewController.xib in Resources */,
+				B90B6973161B7F43000997AA /* FacebookSDKResources.bundle in Resources */,
+				B90B6974161B7F43000997AA /* FBUserSettingsViewResources.bundle in Resources */,
+				B90B697F161B83F2000997AA /* FTWMLoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +458,7 @@
 				B9160E9A1612706800CA206E /* ContactsViewController.m in Sources */,
 				B9160EA31612800D00CA206E /* NIAttributedLabel.m in Sources */,
 				B9160EA41612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */,
+				B90B697E161B83F2000997AA /* FTWMLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,10 +536,15 @@
 		B9160E371612658900CA206E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Documents/FacebookSDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mozzie/Mozzie-Prefix.pch";
 				INFOPLIST_FILE = "Mozzie/Mozzie-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -515,10 +554,15 @@
 		B9160E381612658900CA206E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Documents/FacebookSDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mozzie/Mozzie-Prefix.pch";
 				INFOPLIST_FILE = "Mozzie/Mozzie-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -544,6 +588,7 @@
 				B9160E381612658900CA206E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
