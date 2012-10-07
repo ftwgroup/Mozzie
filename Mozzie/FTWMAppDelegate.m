@@ -1,4 +1,4 @@
-//
+ //
 //  FTWMAppDelegate.m
 //  Mozzie
 //
@@ -11,8 +11,9 @@
 
 #import "FTWMViewController.h"
 #import "FTWMLoginViewController.h"
+#import "UIColor+FTWColors.h"
 
-NSString *const FTWMSessionStateChangedNotification = @"com.mozzie.Mozzie:FTWMSessionStateChangedNotification";
+NSString *const FBSessionStateChangedNotification = @"FTW-Group.Mozzie:FBSessionStateChangedNotification";
 
 @interface FTWMAppDelegate ()
 
@@ -104,7 +105,7 @@ NSString *const FTWMSessionStateChangedNotification = @"com.mozzie.Mozzie:FTWMSe
             break;
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:FTWMSessionStateChangedNotification object:session];
+    [[NSNotificationCenter defaultCenter] postNotificationName:FBSessionStateChangedNotification object:session];
     
     if (error) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -122,15 +123,16 @@ NSString *const FTWMSessionStateChangedNotification = @"com.mozzie.Mozzie:FTWMSe
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor backgroundColor];
     // Out main view controller for now it is just a table view
     self.mainViewController = [[FTWMViewController alloc] init];
     self.navController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+    self.navController.navigationBar.tintColor = [UIColor headerColor];
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     
-    // See if we have a vlid token for the current state.
-    if (![self openSessionWithAllowLoginUI:NO]) {
+    // See if we have a valid token for the current state.
+    if (![self openSessionWithAllowLoginUI:YES]) {
         [self showLoginView];
     }
     return YES;

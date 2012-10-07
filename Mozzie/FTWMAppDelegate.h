@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString *const FTWMSessionStateChangedNotification;
+extern NSString *const FBSessionStateChangedNotification;
 
 @interface FTWMAppDelegate : UIResponder <UIApplicationDelegate>
 

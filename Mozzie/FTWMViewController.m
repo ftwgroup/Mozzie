@@ -7,6 +7,7 @@
 //
 
 #import "FTWMViewController.h"
+#import "UIColor+FTWColors.h"
 
 #import "ContactsViewController.h"
 
@@ -55,6 +56,10 @@
           // pushes it onto the current view controller's navigation stack.
           NIPushControllerAction([ContactsViewController class])
             toObject:[NISubtitleCellObject objectWithTitle:@"Basic instantiation" subtitle:@"How to create a table view model"]],
+         @"Feeds",
+         [_actions attachNavigationAction:NIPushControllerAction([ContactsViewController class]) toObject:[NISubtitleCellObject objectWithTitle:@"Social Feeds" subtitle:@"Facebook, twitter, etc."]],
+         @"Calendars",
+         [_actions attachNavigationAction:NIPushControllerAction([ContactsViewController class]) toObject:[NISubtitleCellObject objectWithTitle:@"Calnedars" subtitle:@"interact with them"]],
          
          nil];
         
@@ -87,6 +92,8 @@
     // Cool, eh? That this functionality is all provided to you in one line should make you
     // heel-click.
     self.tableView.delegate = [self.actions forwardingTo:self];
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
+    self.tableView.backgroundView.backgroundColor = [UIColor backgroundColor];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {

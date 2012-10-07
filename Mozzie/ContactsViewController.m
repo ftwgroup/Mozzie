@@ -12,8 +12,12 @@
 #import "NimbusModels.h"
 #import "NimbusCore.h"
 
+#import <FacebookSDK/FacebookSDK.h>
+
 @interface ContactsViewController () <NIAttributedLabelDelegate>
 @property (nonatomic, readwrite, retain) NITableViewModel *model;
+
+- (void)postAction:(NSString *)actionPath tryReauthIfNeeded:(BOOL)tryReauthIfNeeded;
 @end
 
 @implementation ContactsViewController
@@ -66,7 +70,7 @@
             label.linksHaveUnderlines = YES;
             
             label.text = @"A screen on the dash flickers";
-            
+            label.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]];
             NSRange linkRange = [label.text rangeOfString:@"screen"];
             
             // Explicitly adds a link at a given range.
@@ -127,7 +131,38 @@
         _model = [[NITableViewModel alloc] initWithListArray:tableContents
                                                     delegate:(id)[NICellFactory class]];
     }
+    [self postAction:nil tryReauthIfNeeded:YES];
     return self;
+}
+
+- (void)postAction:(NSString *)actionPath tryReauthIfNeeded:(BOOL)tryReauthIfNeeded
+{
+    // if we have a valid session, then we get the action, else noop
+    if (FBSession.activeSession.isOpen) {
+        
+        // if we don't have permissions, then address that first
+        if ([FBSession.activeSession.permissions indexOfObject:@"read_stream"] == NSNotFound) {
+            [FBSession.activeSession reauthorizeWithReadPermissions:[NSArray arrayWithObject:@"read_stream"] completionHandler:^(FBSession *session, NSError *error) {
+                if (!error) {
+                    // re-call assuming we now have the permission
+                    [self postAction:actionPath tryReauthIfNeeded:YES];
+                }
+            }];
+        }
+        // post the action using a lightweight static start method
+        [FBRequestConnection startWithGraphPath:@"me/home" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            if (!error) {
+                for (NSMutableDictionary *update in [result objectForKey:@"data"]) {
+                    NSLog(@"result: %@", update);
+                }
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+            }
+        }];
+    } else {
+
+    }
 }
 
 - (void)viewDidLoad
