@@ -7,17 +7,18 @@
 //
 
 #import "ContactsViewController.h"
+#import "FaceViewController.h"
+#import "UIColor+FTWColors.h"
 
 #import "NimbusAttributedLabel.h"
 #import "NimbusModels.h"
 #import "NimbusCore.h"
 
-#import <FacebookSDK/FacebookSDK.h>
 
 @interface ContactsViewController () <NIAttributedLabelDelegate>
 @property (nonatomic, readwrite, retain) NITableViewModel *model;
 
-- (void)postAction:(NSString *)actionPath tryReauthIfNeeded:(BOOL)tryReauthIfNeeded;
+- (void)setupTableHeaderView;
 @end
 
 @implementation ContactsViewController
@@ -131,39 +132,10 @@
         _model = [[NITableViewModel alloc] initWithListArray:tableContents
                                                     delegate:(id)[NICellFactory class]];
     }
-    [self postAction:nil tryReauthIfNeeded:YES];
     return self;
 }
 
-- (void)postAction:(NSString *)actionPath tryReauthIfNeeded:(BOOL)tryReauthIfNeeded
-{
-    // if we have a valid session, then we get the action, else noop
-    if (FBSession.activeSession.isOpen) {
-        
-        // if we don't have permissions, then address that first
-        if ([FBSession.activeSession.permissions indexOfObject:@"read_stream"] == NSNotFound) {
-            [FBSession.activeSession reauthorizeWithReadPermissions:[NSArray arrayWithObject:@"read_stream"] completionHandler:^(FBSession *session, NSError *error) {
-                if (!error) {
-                    // re-call assuming we now have the permission
-                    [self postAction:actionPath tryReauthIfNeeded:YES];
-                }
-            }];
-        }
-        // post the action using a lightweight static start method
-        [FBRequestConnection startWithGraphPath:@"me/home" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-            if (!error) {
-                for (NSMutableDictionary *update in [result objectForKey:@"data"]) {
-                    NSLog(@"result: %@", update);
-                }
-            } else {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alertView show];
-            }
-        }];
-    } else {
 
-    }
-}
 
 - (void)viewDidLoad
 {
@@ -175,6 +147,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.dataSource = _model;
+    [self setupTableHeaderView];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -190,6 +163,7 @@
 {
     return NIIsSupportedOrientation(toInterfaceOrientation);
 }
+
 //- (void)didReceiveMemoryWarning
 //{
 //    [super didReceiveMemoryWarning];
@@ -276,6 +250,7 @@
 //     [self.navigationController pushViewController:detailViewController animated:YES];
 //     */
 //}
+
 - (void)attributedLabel:(NIAttributedLabel*)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point {
     NSLog(@"tap");
     // In a later example we will show how to push a Nimbus web controller onto the navigation stack
@@ -283,4 +258,17 @@
     [[UIApplication sharedApplication] openURL:result.URL];
 }
 
+# pragma mark - Methods for rendering the user profile
+- (void) setupTableHeaderView
+{
+    FaceViewController *faceView = [[FaceViewController alloc] initWithNibName:nil bundle:nil];
+    faceView.view.backgroundColor = [UIColor backgroundColor];
+    if (ABRecordGetRecordType(self.person) == kABPersonType && ABPersonHasImageData(self.person)) {
+        UIImage *image = [UIImage imageWithData:(__bridge NSData *)(ABPersonCopyImageData(self.person))];
+        [faceView addContactImage:image];
+        CFStringRef name = ABRecordCopyCompositeName(self.person);
+        [faceView addContactName:(__bridge NSString *)(name)];
+    }
+    self.tableView.tableHeaderView = faceView.view;
+}
 @end

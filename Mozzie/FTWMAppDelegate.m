@@ -8,6 +8,7 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 #import "FTWMAppDelegate.h"
+#import "KCCalendarStore.h"
 
 #import "FTWMViewController.h"
 #import "FTWMLoginViewController.h"
@@ -130,6 +131,11 @@ NSString *const FBSessionStateChangedNotification = @"FTW-Group.Mozzie:FBSession
     self.navController.navigationBar.tintColor = [UIColor headerColor];
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
+    
+    // Ask for calendar permissions
+    [[KCCalendarStore sharedStore].EKEvents requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+        NSLog(@"Permission granted: %s", granted ? "true" : "false");
+    }];
     
     // See if we have a valid token for the current state.
     if (![self openSessionWithAllowLoginUI:YES]) {

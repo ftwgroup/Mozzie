@@ -58,6 +58,29 @@
 		B9160EA31612800D00CA206E /* NIAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160E9E1612800D00CA206E /* NIAttributedLabel.m */; };
 		B9160EA41612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EA21612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.m */; };
 		B9160EA616128A4000CA206E /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160EA516128A4000CA206E /* CoreText.framework */; };
+		B9A1AC111623B52300B37F3D /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A1AC0F1623B52300B37F3D /* EventKit.framework */; };
+		B9A1AC121623B52300B37F3D /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A1AC101623B52300B37F3D /* EventKitUI.framework */; };
+		B9A1AC131623B77000B37F3D /* KCConstants.h in Sources */ = {isa = PBXBuildFile; fileRef = B9A1AC041623B36C00B37F3D /* KCConstants.h */; };
+		B9A1AC141623B77000B37F3D /* KCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1AC051623B36C00B37F3D /* KCConstants.m */; };
+		B9A1AC151623B77000B37F3D /* NSDate+KalAdditions.h in Sources */ = {isa = PBXBuildFile; fileRef = B9A1ABFF1623B34700B37F3D /* NSDate+KalAdditions.h */; };
+		B9A1AC161623B77000B37F3D /* NSDate+KalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1AC001623B34700B37F3D /* NSDate+KalAdditions.m */; };
+		B9A1AC171623B77000B37F3D /* KalLogic.h in Sources */ = {isa = PBXBuildFile; fileRef = B9A1AC011623B34700B37F3D /* KalLogic.h */; };
+		B9A1AC181623B77000B37F3D /* KalLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1AC021623B34700B37F3D /* KalLogic.m */; };
+		B9A1AC191623B7AA00B37F3D /* KalDate.h in Sources */ = {isa = PBXBuildFile; fileRef = B9A1AC071623B40400B37F3D /* KalDate.h */; };
+		B9A1AC1A1623B7AA00B37F3D /* KalDate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1AC081623B40400B37F3D /* KalDate.m */; };
+		B9A1AC1B1623B7AA00B37F3D /* KCCalendarViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = B9A1AC091623B40400B37F3D /* KCCalendarViewController.h */; };
+		B9A1AC1C1623B7AA00B37F3D /* KCCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1AC0A1623B40400B37F3D /* KCCalendarViewController.m */; };
+		B9A1AC1D1623B7AA00B37F3D /* KCCalendarEventListTableView.h in Sources */ = {isa = PBXBuildFile; fileRef = B9A1AC0B1623B40400B37F3D /* KCCalendarEventListTableView.h */; };
+		B9A1AC1E1623B7AA00B37F3D /* KCCalendarEventListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1AC0C1623B40400B37F3D /* KCCalendarEventListTableView.m */; };
+		B9A1AC1F1623B7AA00B37F3D /* KCCalendarStore.h in Sources */ = {isa = PBXBuildFile; fileRef = B9A1AC0D1623B40400B37F3D /* KCCalendarStore.h */; };
+		B9A1AC201623B7AA00B37F3D /* KCCalendarStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1AC0E1623B40400B37F3D /* KCCalendarStore.m */; };
+		B9BD13C7161E41E900319E3C /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BD13C6161E41E900319E3C /* bg.png */; };
+		B9BD13CB161E495600319E3C /* UIColor+FTWColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BD13CA161E495600319E3C /* UIColor+FTWColors.m */; };
+		B9DAFD4C16222635004A4007 /* ContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DAFD4B16222635004A4007 /* ContactsTableViewController.m */; };
+		B9DAFD4F16222D2E004A4007 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DAFD4D16222D2E004A4007 /* AddressBook.framework */; };
+		B9DAFD5016222D2E004A4007 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DAFD4E16222D2E004A4007 /* AddressBookUI.framework */; };
+		B9DAFD5816223542004A4007 /* FaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DAFD5616223542004A4007 /* FaceViewController.m */; };
+		B9DAFD5916223542004A4007 /* FaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9DAFD5716223542004A4007 /* FaceViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +181,32 @@
 		B9160EA11612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+NimbusAttributedLabel.h"; path = "../../src/nimbus/src/attributedlabel/src/NSMutableAttributedString+NimbusAttributedLabel.h"; sourceTree = "<group>"; };
 		B9160EA21612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+NimbusAttributedLabel.m"; path = "../../src/nimbus/src/attributedlabel/src/NSMutableAttributedString+NimbusAttributedLabel.m"; sourceTree = "<group>"; };
 		B9160EA516128A4000CA206E /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		B9A1ABFF1623B34700B37F3D /* NSDate+KalAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+KalAdditions.h"; sourceTree = "<group>"; };
+		B9A1AC001623B34700B37F3D /* NSDate+KalAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+KalAdditions.m"; sourceTree = "<group>"; };
+		B9A1AC011623B34700B37F3D /* KalLogic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KalLogic.h; sourceTree = "<group>"; };
+		B9A1AC021623B34700B37F3D /* KalLogic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KalLogic.m; sourceTree = "<group>"; };
+		B9A1AC041623B36C00B37F3D /* KCConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCConstants.h; sourceTree = "<group>"; };
+		B9A1AC051623B36C00B37F3D /* KCConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCConstants.m; sourceTree = "<group>"; };
+		B9A1AC071623B40400B37F3D /* KalDate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KalDate.h; sourceTree = "<group>"; };
+		B9A1AC081623B40400B37F3D /* KalDate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KalDate.m; sourceTree = "<group>"; };
+		B9A1AC091623B40400B37F3D /* KCCalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCCalendarViewController.h; sourceTree = "<group>"; };
+		B9A1AC0A1623B40400B37F3D /* KCCalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCCalendarViewController.m; sourceTree = "<group>"; };
+		B9A1AC0B1623B40400B37F3D /* KCCalendarEventListTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCCalendarEventListTableView.h; sourceTree = "<group>"; };
+		B9A1AC0C1623B40400B37F3D /* KCCalendarEventListTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCCalendarEventListTableView.m; sourceTree = "<group>"; };
+		B9A1AC0D1623B40400B37F3D /* KCCalendarStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCCalendarStore.h; sourceTree = "<group>"; };
+		B9A1AC0E1623B40400B37F3D /* KCCalendarStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCCalendarStore.m; sourceTree = "<group>"; };
+		B9A1AC0F1623B52300B37F3D /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		B9A1AC101623B52300B37F3D /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		B9BD13C6161E41E900319E3C /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		B9BD13C9161E495600319E3C /* UIColor+FTWColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FTWColors.h"; sourceTree = "<group>"; };
+		B9BD13CA161E495600319E3C /* UIColor+FTWColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FTWColors.m"; sourceTree = "<group>"; };
+		B9DAFD4A16222635004A4007 /* ContactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewController.h; sourceTree = "<group>"; };
+		B9DAFD4B16222635004A4007 /* ContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewController.m; sourceTree = "<group>"; };
+		B9DAFD4D16222D2E004A4007 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		B9DAFD4E16222D2E004A4007 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		B9DAFD5516223542004A4007 /* FaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceViewController.h; sourceTree = "<group>"; };
+		B9DAFD5616223542004A4007 /* FaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceViewController.m; sourceTree = "<group>"; };
+		B9DAFD5716223542004A4007 /* FaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FaceViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +214,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9A1AC111623B52300B37F3D /* EventKit.framework in Frameworks */,
+				B9A1AC121623B52300B37F3D /* EventKitUI.framework in Frameworks */,
+				B9DAFD4F16222D2E004A4007 /* AddressBook.framework in Frameworks */,
+				B9DAFD5016222D2E004A4007 /* AddressBookUI.framework in Frameworks */,
 				B90B6979161B7F6E000997AA /* Accounts.framework in Frameworks */,
 				B90B697A161B7F6E000997AA /* AdSupport.framework in Frameworks */,
 				B90B6976161B7F62000997AA /* Social.framework in Frameworks */,
@@ -200,6 +253,10 @@
 		B9160E151612658800CA206E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B9A1AC0F1623B52300B37F3D /* EventKit.framework */,
+				B9A1AC101623B52300B37F3D /* EventKitUI.framework */,
+				B9DAFD4D16222D2E004A4007 /* AddressBook.framework */,
+				B9DAFD4E16222D2E004A4007 /* AddressBookUI.framework */,
 				B90B6977161B7F6E000997AA /* Accounts.framework */,
 				B90B6978161B7F6E000997AA /* AdSupport.framework */,
 				B90B6975161B7F62000997AA /* Social.framework */,
@@ -217,6 +274,13 @@
 		B9160E1C1612658800CA206E /* Mozzie */ = {
 			isa = PBXGroup;
 			children = (
+				B9A1AC061623B3DD00B37F3D /* calendar */,
+				B9A1AC041623B36C00B37F3D /* KCConstants.h */,
+				B9A1AC051623B36C00B37F3D /* KCConstants.m */,
+				B9A1ABFF1623B34700B37F3D /* NSDate+KalAdditions.h */,
+				B9A1AC001623B34700B37F3D /* NSDate+KalAdditions.m */,
+				B9A1AC011623B34700B37F3D /* KalLogic.h */,
+				B9A1AC021623B34700B37F3D /* KalLogic.m */,
 				B9160E961612700B00CA206E /* Contacts */,
 				B9160E251612658900CA206E /* FTWMAppDelegate.h */,
 				B9160E261612658900CA206E /* FTWMAppDelegate.m */,
@@ -227,6 +291,8 @@
 				B9160E311612658900CA206E /* FTWMViewController.h */,
 				B9160E321612658900CA206E /* FTWMViewController.m */,
 				B9160E1D1612658900CA206E /* Supporting Files */,
+				B9BD13C9161E495600319E3C /* UIColor+FTWColors.h */,
+				B9BD13CA161E495600319E3C /* UIColor+FTWColors.m */,
 			);
 			path = Mozzie;
 			sourceTree = "<group>";
@@ -234,6 +300,7 @@
 		B9160E1D1612658900CA206E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B9BD13C6161E41E900319E3C /* bg.png */,
 				B9160E1E1612658900CA206E /* Mozzie-Info.plist */,
 				B9160E1F1612658900CA206E /* InfoPlist.strings */,
 				B9160E221612658900CA206E /* main.m */,
@@ -337,6 +404,11 @@
 				B9160E971612706800CA206E /* ContactsViewController.h */,
 				B9160E981612706800CA206E /* ContactsViewController.m */,
 				B9160E991612706800CA206E /* ContactsViewController.xib */,
+				B9DAFD4A16222635004A4007 /* ContactsTableViewController.h */,
+				B9DAFD4B16222635004A4007 /* ContactsTableViewController.m */,
+				B9DAFD5516223542004A4007 /* FaceViewController.h */,
+				B9DAFD5616223542004A4007 /* FaceViewController.m */,
+				B9DAFD5716223542004A4007 /* FaceViewController.xib */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -352,6 +424,21 @@
 				B9160EA21612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.m */,
 			);
 			name = "Attributed Label";
+			sourceTree = "<group>";
+		};
+		B9A1AC061623B3DD00B37F3D /* calendar */ = {
+			isa = PBXGroup;
+			children = (
+				B9A1AC071623B40400B37F3D /* KalDate.h */,
+				B9A1AC081623B40400B37F3D /* KalDate.m */,
+				B9A1AC091623B40400B37F3D /* KCCalendarViewController.h */,
+				B9A1AC0A1623B40400B37F3D /* KCCalendarViewController.m */,
+				B9A1AC0B1623B40400B37F3D /* KCCalendarEventListTableView.h */,
+				B9A1AC0C1623B40400B37F3D /* KCCalendarEventListTableView.m */,
+				B9A1AC0D1623B40400B37F3D /* KCCalendarStore.h */,
+				B9A1AC0E1623B40400B37F3D /* KCCalendarStore.m */,
+			);
+			name = calendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,6 +502,8 @@
 				B90B6973161B7F43000997AA /* FacebookSDKResources.bundle in Resources */,
 				B90B6974161B7F43000997AA /* FBUserSettingsViewResources.bundle in Resources */,
 				B90B697F161B83F2000997AA /* FTWMLoginViewController.xib in Resources */,
+				B9BD13C7161E41E900319E3C /* bg.png in Resources */,
+				B9DAFD5916223542004A4007 /* FaceViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +514,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9A1AC191623B7AA00B37F3D /* KalDate.h in Sources */,
+				B9A1AC1A1623B7AA00B37F3D /* KalDate.m in Sources */,
+				B9A1AC1B1623B7AA00B37F3D /* KCCalendarViewController.h in Sources */,
+				B9A1AC1C1623B7AA00B37F3D /* KCCalendarViewController.m in Sources */,
+				B9A1AC1D1623B7AA00B37F3D /* KCCalendarEventListTableView.h in Sources */,
+				B9A1AC1E1623B7AA00B37F3D /* KCCalendarEventListTableView.m in Sources */,
+				B9A1AC1F1623B7AA00B37F3D /* KCCalendarStore.h in Sources */,
+				B9A1AC201623B7AA00B37F3D /* KCCalendarStore.m in Sources */,
+				B9A1AC131623B77000B37F3D /* KCConstants.h in Sources */,
+				B9A1AC141623B77000B37F3D /* KCConstants.m in Sources */,
+				B9A1AC151623B77000B37F3D /* NSDate+KalAdditions.h in Sources */,
+				B9A1AC161623B77000B37F3D /* NSDate+KalAdditions.m in Sources */,
+				B9A1AC171623B77000B37F3D /* KalLogic.h in Sources */,
+				B9A1AC181623B77000B37F3D /* KalLogic.m in Sources */,
 				B9160E231612658900CA206E /* main.m in Sources */,
 				B9160E271612658900CA206E /* FTWMAppDelegate.m in Sources */,
 				B9160E331612658900CA206E /* FTWMViewController.m in Sources */,
@@ -459,6 +562,9 @@
 				B9160EA31612800D00CA206E /* NIAttributedLabel.m in Sources */,
 				B9160EA41612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */,
 				B90B697E161B83F2000997AA /* FTWMLoginViewController.m in Sources */,
+				B9BD13CB161E495600319E3C /* UIColor+FTWColors.m in Sources */,
+				B9DAFD4C16222635004A4007 /* ContactsTableViewController.m in Sources */,
+				B9DAFD5816223542004A4007 /* FaceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

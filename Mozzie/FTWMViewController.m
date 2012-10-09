@@ -9,7 +9,9 @@
 #import "FTWMViewController.h"
 #import "UIColor+FTWColors.h"
 
+#import "KCCalendarViewController.h"
 #import "ContactsViewController.h"
+#import "ContactsTableViewController.h"
 
 #import "NimbusModels.h"
 
@@ -54,12 +56,12 @@
           
           // NIPushControllerAction is a helper method that instantiates the controller class and then
           // pushes it onto the current view controller's navigation stack.
-          NIPushControllerAction([ContactsViewController class])
+          NIPushControllerAction([ContactsTableViewController class])
             toObject:[NISubtitleCellObject objectWithTitle:@"Basic instantiation" subtitle:@"How to create a table view model"]],
          @"Feeds",
          [_actions attachNavigationAction:NIPushControllerAction([ContactsViewController class]) toObject:[NISubtitleCellObject objectWithTitle:@"Social Feeds" subtitle:@"Facebook, twitter, etc."]],
          @"Calendars",
-         [_actions attachNavigationAction:NIPushControllerAction([ContactsViewController class]) toObject:[NISubtitleCellObject objectWithTitle:@"Calnedars" subtitle:@"interact with them"]],
+         [_actions attachNavigationAction:NIPushControllerAction([KCCalendarViewController class]) toObject:[NISubtitleCellObject objectWithTitle:@"Calnedars" subtitle:@"interact with them"]],
          
          nil];
         
