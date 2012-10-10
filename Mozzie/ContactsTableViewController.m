@@ -71,6 +71,7 @@
     
     CFStringRef firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty);
     CFStringRef lastName = ABRecordCopyValue(person, kABPersonLastNameProperty);
+    
     NSString *NSfirstName = (__bridge NSString*)(firstName);
     NSString *NSlastName = (__bridge NSString*)(lastName);
     
@@ -81,13 +82,31 @@
         NSArray* friends = [result objectForKey:@"data"];
         NSLog(@"Found: %i friends", friends.count);
         NSLog(@"friend is %@",newName);
-        
+                
         for (NSDictionary<FBGraphUser>* friend in friends) {
             NSString *testFirstName = [friend valueForKey:@"first_name"];
             NSString *testLastName = [friend valueForKey:@"last_name"];
             if ([NSfirstName isEqualToString:testFirstName] && [NSlastName isEqualToString:testLastName]) {
                 NSLog(@"we found %@",friend.first_name);
-                // TODO (julian) still need to save and cache what we download
+                // Setup and save facebook data
+//                ABAddressBookRef addressBook = ABAddressBookCreate();
+//                
+//                ABMutableMultiValueRef facebook = ABMultiValueCreateMutable(kABDictionaryPropertyType);
+//                CFStringRef keys[4];
+//                CFStringRef values[4];
+//                keys[0] = kABPersonSocialProfileServiceKey;
+//                keys[1] = kABPersonSocialProfileUsernameKey;
+//                keys[2] = kABPersonSocialProfileUserIdentifierKey;
+//                values[0] = kABPersonSocialProfileServiceFacebook;
+//                values[1] = (__bridge CFStringRef)friend.username;
+//                values[2] = (__bridge CFStringRef)friend.id;
+//                
+//                CFDictionaryRef facebookDict = CFDictionaryCreate(kCFAllocatorDefault, (void *)keys, (void *)values, 3, &kCFCopyStringDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+//                
+//                ABMultiValueIdentifier identifier;
+//                bool didAdd = ABMultiValueAddValueAndLabel(facebook, facebookDict, (__bridge CFStringRef)@"testbook", &identifier);
+//                bool didSave = ABRecordSetValue(person, kABPersonSocialProfileProperty, facebook, nil);
+//                didSave = ABAddressBookSave(addressBook, NULL);
             }
         }
     }];
