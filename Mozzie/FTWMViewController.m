@@ -47,7 +47,7 @@
          // section header.
          @"Contacts",
          
-         // Any objevcts following an NSString will be a part of the same group until another NSSTring is encountered
+         // Any objects following an NSString will be a part of the same group until another NSSTring is encountered
          
          // We attach actions to objects using the chaining pattern. The "attach" methods of
          // NITableViewActions will return the object we pass to them, allowing us to create an object,
@@ -57,11 +57,11 @@
           // NIPushControllerAction is a helper method that instantiates the controller class and then
           // pushes it onto the current view controller's navigation stack.
           NIPushControllerAction([ContactsTableViewController class])
-            toObject:[NISubtitleCellObject objectWithTitle:@"Basic instantiation" subtitle:@"How to create a table view model"]],
+            toObject:[NISubtitleCellObject objectWithTitle:@"Contacts" subtitle:@"View profiles"]],
          @"Feeds",
          [_actions attachNavigationAction:NIPushControllerAction([ContactsViewController class]) toObject:[NISubtitleCellObject objectWithTitle:@"Social Feeds" subtitle:@"Facebook, twitter, etc."]],
          @"Calendars",
-         [_actions attachNavigationAction:NIPushControllerAction([KCCalendarViewController class]) toObject:[NISubtitleCellObject objectWithTitle:@"Calnedars" subtitle:@"interact with them"]],
+         [_actions attachNavigationAction:NIPushControllerAction([KCCalendarViewController class]) toObject:[NISubtitleCellObject objectWithTitle:@"Calendars" subtitle:@"interact with them"]],
          
          nil];
         

@@ -136,6 +136,8 @@ NSString *const FBSessionStateChangedNotification = @"FTW-Group.Mozzie:FBSession
     [[KCCalendarStore sharedStore].EKEvents requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
         NSLog(@"Permission granted: %s", granted ? "true" : "false");
     }];
+    // Ask for contacts permissions
+    
     
     // See if we have a valid token for the current state.
     if (![self openSessionWithAllowLoginUI:YES]) {

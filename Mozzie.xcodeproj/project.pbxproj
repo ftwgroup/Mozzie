@@ -54,7 +54,6 @@
 		B9160E9316126A8500CA206E /* NITableViewActions.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160E8916126A8500CA206E /* NITableViewActions.m */; };
 		B9160E9416126A8500CA206E /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160E8B16126A8500CA206E /* NITableViewModel.m */; };
 		B9160E9A1612706800CA206E /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160E981612706800CA206E /* ContactsViewController.m */; };
-		B9160E9B1612706800CA206E /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9160E991612706800CA206E /* ContactsViewController.xib */; };
 		B9160EA31612800D00CA206E /* NIAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160E9E1612800D00CA206E /* NIAttributedLabel.m */; };
 		B9160EA41612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EA21612800D00CA206E /* NSMutableAttributedString+NimbusAttributedLabel.m */; };
 		B9160EA616128A4000CA206E /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160EA516128A4000CA206E /* CoreText.framework */; };
@@ -173,7 +172,6 @@
 		B9160E8C16126A8500CA206E /* NITableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NITableViewModel+Private.h"; path = "../../src/nimbus/src/models/src/NITableViewModel+Private.h"; sourceTree = "<group>"; };
 		B9160E971612706800CA206E /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		B9160E981612706800CA206E /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
-		B9160E991612706800CA206E /* ContactsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsViewController.xib; sourceTree = "<group>"; };
 		B9160E9D1612800D00CA206E /* NIAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIAttributedLabel.h; path = ../../src/nimbus/src/attributedlabel/src/NIAttributedLabel.h; sourceTree = "<group>"; };
 		B9160E9E1612800D00CA206E /* NIAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIAttributedLabel.m; path = ../../src/nimbus/src/attributedlabel/src/NIAttributedLabel.m; sourceTree = "<group>"; };
 		B9160E9F1612800D00CA206E /* NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusAttributedLabel.h; path = ../../src/nimbus/src/attributedlabel/src/NimbusAttributedLabel.h; sourceTree = "<group>"; };
@@ -403,7 +401,6 @@
 			children = (
 				B9160E971612706800CA206E /* ContactsViewController.h */,
 				B9160E981612706800CA206E /* ContactsViewController.m */,
-				B9160E991612706800CA206E /* ContactsViewController.xib */,
 				B9DAFD4A16222635004A4007 /* ContactsTableViewController.h */,
 				B9DAFD4B16222635004A4007 /* ContactsTableViewController.m */,
 				B9DAFD5516223542004A4007 /* FaceViewController.h */,
@@ -498,7 +495,6 @@
 				B9160E2B1612658900CA206E /* Default@2x.png in Resources */,
 				B9160E2D1612658900CA206E /* Default-568h@2x.png in Resources */,
 				B9160E301612658900CA206E /* MainStoryboard.storyboard in Resources */,
-				B9160E9B1612706800CA206E /* ContactsViewController.xib in Resources */,
 				B90B6973161B7F43000997AA /* FacebookSDKResources.bundle in Resources */,
 				B90B6974161B7F43000997AA /* FBUserSettingsViewResources.bundle in Resources */,
 				B90B697F161B83F2000997AA /* FTWMLoginViewController.xib in Resources */,

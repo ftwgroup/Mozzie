@@ -11,4 +11,5 @@
 
 @interface ContactsViewController : UITableViewController
 @property (nonatomic) ABRecordRef person;
+@property (nonatomic) NSArray *updates;
 @end
