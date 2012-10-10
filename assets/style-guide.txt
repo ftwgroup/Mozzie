@@ -1,0 +1,15 @@
+Header color : #f37f4c
+Image size: 90px x 90px
+Name Font size: 25pt #424242
+Address: 25pt #9a9999
+
+Blue buttons : #6acee0
+
+Each post bg: #e0dcd0 (opacity 40%)
+stroke: #5e5e5e
+Font: [HelveticaNeueLT] or [Myriad Pro]
+Facebook Heading: 18pt #3b5998 
+Twitter Heading: 18pt #5fc2d7
+Content: 20pt #525253
+Facebook link: 6283bfv
+Content Text: 20pt #525253
