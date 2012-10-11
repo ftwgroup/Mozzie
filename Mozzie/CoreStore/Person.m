@@ -7,18 +7,25 @@
 //
 
 #import "Person.h"
+#import "EmailAddresses.h"
+#import "Event.h"
+#import "Group.h"
+#import "PhoneNumbers.h"
 
 
 @implementation Person
 
-@dynamic email;
 @dynamic facebookID;
 @dynamic firstName;
 @dynamic lastName;
 @dynamic linkedinID;
 @dynamic photoData;
-@dynamic phoneNum;
 @dynamic title;
 @dynamic twitterHandle;
+@dynamic nickName;
+@dynamic manyGroups;
+@dynamic manyEvents;
+@dynamic phoneNumbers;
+@dynamic emailAddresses;
 
 @end

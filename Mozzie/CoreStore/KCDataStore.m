@@ -54,8 +54,10 @@ NSManagedObjectModel *dataModel;
 
 + (void)save {
     NSError *err;
-    if (![[DiaryStore context] save:&err]) {
+    if (![[KCDataStore context] save:&err]) {
         [NSException raise:@"Save Failed!!" format:@"Reason: %@", [err localizedDescription]];
     }
 }
+
+
 @end

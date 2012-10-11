@@ -1,5 +1,5 @@
 //
-//  Events.m
+//  Event.m
 //  Mozzie
 //
 //  Created by JJ Weber on 10/11/12.
@@ -7,6 +7,8 @@
 //
 
 #import "Event.h"
+#import "Group.h"
+#import "Person.h"
 
 
 @implementation Event
@@ -15,5 +17,7 @@
 @dynamic date;
 @dynamic ekEventsID;
 @dynamic endTime;
+@dynamic manyPeople;
+@dynamic manyGroups;
 
 @end

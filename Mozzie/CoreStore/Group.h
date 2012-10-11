@@ -9,11 +9,25 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Person;
+@class Event, Person;
 
 @interface Group : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) Person *people;
+@property (nonatomic, retain) NSSet *manyPeople;
+@property (nonatomic, retain) NSSet *manyEvents;
+@end
+
+@interface Group (CoreDataGeneratedAccessors)
+
+- (void)addManyPeopleObject:(Person *)value;
+- (void)removeManyPeopleObject:(Person *)value;
+- (void)addManyPeople:(NSSet *)values;
+- (void)removeManyPeople:(NSSet *)values;
+
+- (void)addManyEventsObject:(Event *)value;
+- (void)removeManyEventsObject:(Event *)value;
+- (void)addManyEvents:(NSSet *)values;
+- (void)removeManyEvents:(NSSet *)values;
 
 @end

@@ -364,6 +364,7 @@
 
 //hide calendar options
 - (void)viewWillDisappear:(BOOL)animated {
+    [self.calendarTable removeFromParentViewController];
     [self.navigationController setToolbarHidden:YES];
 }
 
