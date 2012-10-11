@@ -29,7 +29,7 @@
     self = [super initWithStyle:UITableViewStyleGrouped];
     
     if (self) {
-        // Set the title hear because we never change it
+        // Set the title here because we never change it
         self.title = @"Mozzie";
         
         // When we instantiate the actions object we must provide it with a weak reference to the parent

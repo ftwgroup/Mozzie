@@ -11,4 +11,5 @@
 @implementation KCConstants
 NSString* const kCalendarPermissionsNotification = @"user has set calendar permissions";
 NSString* const kCalendarPermissionsBoolKey = @"permissions y/n";
+NSString* const FBSessionStateChangedNotification = @"FTW-Group.Mozzie:FBSessionStateChangedNotification";
 @end

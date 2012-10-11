@@ -217,6 +217,8 @@
     [self addChildViewController:self.calendarTable];
     
     //iOS 6 requires permissions, not sure how this plays out?
+    //why is this commented out?
+    
 //    if([[KCCalendarStore sharedStore].EKEvents respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
 //        [[KCCalendarStore sharedStore].EKEvents requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
 //            if (granted) {
@@ -354,9 +356,15 @@
 
 }
 
+//show calendar options
 - (void)viewWillAppear:(BOOL)animated {
     [self.calendarTable.tableView reloadData];
     [self setupActionsToolbar];
+}
+
+//hide calendar options
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setToolbarHidden:YES];
 }
 
 @end
