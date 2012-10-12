@@ -39,52 +39,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //check for calendar permissions
-    if([[KCCalendarStore sharedStore].EKEvents respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
-        [[KCCalendarStore sharedStore].EKEvents requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-            if (granted) {
-                //great
-            } else {
-                [self permissionsCalendarAlert];
-            };
-        }];
-        
-    }
-    
-    //check for twitter permissions
-    //Twitter app name: Mozzie
-    //Website: currently filler
-    //Made under MozzieApp' account
-    //MozzieApp's password keychainslashmozzie
-    
-    //  Obtain the user's permission to access the store
-    ACAccountStore* accountStore = [[ACAccountStore alloc] init];
-    ACAccountType* twitterAccountType =
-    [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    
-    if ([accountStore respondsToSelector:@selector(requestAccessToAccountsWithType:options:completion:)]) {
-        [accountStore requestAccessToAccountsWithType:twitterAccountType options:nil completion:^(BOOL granted, NSError *error) {
-            //this whole bit is not really needed beyond testing purposes
-            if (granted) {
-                //                ACAccount* twitterAccount = [[accountStore accountsWithAccountType:twitterAccountType] objectAtIndex:0];
-                //                NSURL* verifyCred = [[NSURL alloc] initWithString:@"https://api.twitter.com/1/account/verify_credentials.json"];
-                //                SLRequest* verify = [SLRequest requestForServiceType:SLServiceTypeTwitter
-                //                                                       requestMethod:SLRequestMethodGET
-                //                                                                 URL:verifyCred
-                //                                                          parameters:nil];
-                //                verify.account = twitterAccount;
-                //                [verify performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                //                    if ([urlResponse statusCode] == 200) {
-                //                        NSLog(@"Twitter authenticated");
-                //                    } else {
-                //                        NSLog(@"%d", [urlResponse statusCode]);
-                //                    }
-                //                }];
-            } else {
-                [self permissionsTwitterAlert];
-            }
-        }];
-    }       
     
     //temporarily just the first one
     // BUG WORKAROUND:
@@ -92,7 +46,8 @@
     // wireup successfully.
     // http://stackoverflow.com/questions/1725881/unknown-class-myclass-in-interface-builder-file-error-at-runtime
     [FBProfilePictureView class];
-    
+    [self permissionsCalendar];
+    [self permissionsTwitter];
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -147,6 +102,20 @@
 
 #pragma mark Permissions
 
+- (void)permissionsCalendar {
+    //check for calendar permissions
+    if([[KCCalendarStore sharedStore].EKEvents respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
+        [[KCCalendarStore sharedStore].EKEvents requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            if (granted) {
+                //great
+            } else {
+                [self permissionsCalendarAlert];
+            };
+        }];
+        
+    }
+}
+
 - (void)permissionsCalendarAlert {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"You can always enable calendar synching in system settings."
                                                     message:nil
@@ -156,6 +125,43 @@
     dispatch_sync(dispatch_get_main_queue(), ^{
         [alert show];
     });
+}
+
+- (void)permissionsTwitter {
+    //check for twitter permissions
+    //Twitter app name: Mozzie
+    //Website: currently filler
+    //Made under MozzieApp' account
+    //MozzieApp's password keychainslashmozzie
+    
+    //  Obtain the user's permission to access the store
+    ACAccountStore* accountStore = [[ACAccountStore alloc] init];
+    ACAccountType* twitterAccountType =
+    [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    
+    if ([accountStore respondsToSelector:@selector(requestAccessToAccountsWithType:options:completion:)]) {
+        [accountStore requestAccessToAccountsWithType:twitterAccountType options:nil completion:^(BOOL granted, NSError *error) {
+            //this whole bit is not really needed beyond testing purposes
+            if (granted) {
+                //                ACAccount* twitterAccount = [[accountStore accountsWithAccountType:twitterAccountType] objectAtIndex:0];
+                //                NSURL* verifyCred = [[NSURL alloc] initWithString:@"https://api.twitter.com/1/account/verify_credentials.json"];
+                //                SLRequest* verify = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                //                                                       requestMethod:SLRequestMethodGET
+                //                                                                 URL:verifyCred
+                //                                                          parameters:nil];
+                //                verify.account = twitterAccount;
+                //                [verify performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                //                    if ([urlResponse statusCode] == 200) {
+                //                        NSLog(@"Twitter authenticated");
+                //                    } else {
+                //                        NSLog(@"%d", [urlResponse statusCode]);
+                //                    }
+                //                }];
+            } else {
+                [self permissionsTwitterAlert];
+            }
+        }];
+    }
 }
 
 - (void)permissionsTwitterAlert {

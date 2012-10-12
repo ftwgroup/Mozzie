@@ -12,20 +12,16 @@
 #import "KCConstants.h"
 
 static KCCalendarStore* sharedStore = nil;
+static dispatch_once_t pred;
 
 @implementation KCCalendarStore
 
 + (KCCalendarStore* )sharedStore
 {
-    if (sharedStore == nil) {
-        sharedStore = [[super allocWithZone:NULL] init];
-    }
-    
-    if (!sharedStore.EKEvents) {
+    dispatch_once(&pred, ^{
+        sharedStore = [[KCCalendarStore alloc] init];
         sharedStore.EKEvents = [[EKEventStore alloc] init];
-    }
-    
-    
+    });
     return sharedStore;
 }
 
@@ -132,6 +128,7 @@ static KCCalendarStore* sharedStore = nil;
                 }
                 break;
             case NSMonthCalendarUnit:
+
                 if (day == section) {
                     calendarSectionCount++;
                 }
@@ -143,16 +140,5 @@ static KCCalendarStore* sharedStore = nil;
     }
     return calendarSectionCount;
 }
-
-+ (id)allocWithZone:(NSZone *)zone
-{
-    return [self sharedStore];
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-    return self;
-}
-
 
 @end
