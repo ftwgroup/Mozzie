@@ -66,18 +66,6 @@
     [self.calendarTable.tableView reloadData];
 }
 
-
-- (void)calendarPermissionsAlert {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Change the system calendar privacy settings to see your calendars."
-                                                    message:nil
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:nil, nil];
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        [alert show];
-    });
-}
-
 - (void)calendarSelect {
     EKCalendarChooser* calendarChooser = [[EKCalendarChooser alloc] initWithSelectionStyle:EKCalendarChooserSelectionStyleMultiple
                                                                               displayStyle:EKCalendarChooserDisplayAllCalendars
@@ -218,22 +206,6 @@
     
     //iOS 6 requires permissions, not sure how this plays out?
     //why is this commented out?
-    
-//    if([[KCCalendarStore sharedStore].EKEvents respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
-//        [[KCCalendarStore sharedStore].EKEvents requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-//            if (granted) {
-//                [self tabToDay];
-//                self.calendarTable = [[KCCalendarEventListTableView alloc] initWithStyle:UITableViewStyleGrouped];
-//                self.calendarTable.tableView.frame = CGRectMake(0, TOOL_BAR_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - TOOL_BAR_HEIGHT);
-//                
-//                [self.view addSubview:self.calendarTable.tableView];
-//                [self addChildViewController:self.calendarTable];
-//            } else {
-//                [self calendarPermissionsAlert];
-//            };
-//        }];
-//        
-//    }
     
 }
 

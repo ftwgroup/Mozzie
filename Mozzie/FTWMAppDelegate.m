@@ -6,14 +6,15 @@
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
-#import <FacebookSDK/FacebookSDK.h>
 #import "FTWMAppDelegate.h"
 #import "KCCalendarStore.h"
-
 #import "FTWMViewController.h"
 #import "FTWMLoginViewController.h"
 #import "UIColor+FTWColors.h"
 #import "KCConstants.h"
+#import <Accounts/Accounts.h>
+#import <Social/Social.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface FTWMAppDelegate ()
 
@@ -38,11 +39,60 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //check for calendar permissions
+    if([[KCCalendarStore sharedStore].EKEvents respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
+        [[KCCalendarStore sharedStore].EKEvents requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            if (granted) {
+                //great
+            } else {
+                [self permissionsCalendarAlert];
+            };
+        }];
+        
+    }
+    
+    //check for twitter permissions
+    //Twitter app name: Mozzie
+    //Website: currently filler
+    //Made under MozzieApp' account
+    //MozzieApp's password keychainslashmozzie
+    
+    //  Obtain the user's permission to access the store
+    ACAccountStore* accountStore = [[ACAccountStore alloc] init];
+    ACAccountType* twitterAccountType =
+    [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    
+    if ([accountStore respondsToSelector:@selector(requestAccessToAccountsWithType:options:completion:)]) {
+        [accountStore requestAccessToAccountsWithType:twitterAccountType options:nil completion:^(BOOL granted, NSError *error) {
+            //this whole bit is not really needed beyond testing purposes
+            if (granted) {
+                //                ACAccount* twitterAccount = [[accountStore accountsWithAccountType:twitterAccountType] objectAtIndex:0];
+                //                NSURL* verifyCred = [[NSURL alloc] initWithString:@"https://api.twitter.com/1/account/verify_credentials.json"];
+                //                SLRequest* verify = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                //                                                       requestMethod:SLRequestMethodGET
+                //                                                                 URL:verifyCred
+                //                                                          parameters:nil];
+                //                verify.account = twitterAccount;
+                //                [verify performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                //                    if ([urlResponse statusCode] == 200) {
+                //                        NSLog(@"Twitter authenticated");
+                //                    } else {
+                //                        NSLog(@"%d", [urlResponse statusCode]);
+                //                    }
+                //                }];
+            } else {
+                [self permissionsTwitterAlert];
+            }
+        }];
+    }       
+    
+    //temporarily just the first one
     // BUG WORKAROUND:
     // Nib files require the type to have been loaded before they can do the
     // wireup successfully.
     // http://stackoverflow.com/questions/1725881/unknown-class-myclass-in-interface-builder-file-error-at-runtime
     [FBProfilePictureView class];
+    
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -82,6 +132,8 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
+
+    
     // We need to properly handle activation of the application with regards to SSO
     [FBSession.activeSession handleDidBecomeActive];
 }
@@ -91,6 +143,30 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
     [FBSession.activeSession close];
+}
+
+#pragma mark Permissions
+
+- (void)permissionsCalendarAlert {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"You can always enable calendar synching in system settings."
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:@"Back"
+                                          otherButtonTitles:nil, nil];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [alert show];
+    });
+}
+
+- (void)permissionsTwitterAlert {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"You can always enable twitter in system settings."
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:@"Back"
+                                          otherButtonTitles:nil, nil];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [alert show];
+    });
 }
 
 #pragma mark Facebook Login Code
