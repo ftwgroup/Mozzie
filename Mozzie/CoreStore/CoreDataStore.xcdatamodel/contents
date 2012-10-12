@@ -37,13 +37,13 @@
         <attribute name="cell" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="home" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="work" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
+        <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="phoneNumbers" inverseEntity="Person" syncable="YES"/>
     </entity>
     <elements>
+        <element name="EmailAddresses" positionX="-198" positionY="27" width="128" height="105"/>
         <element name="Event" positionX="106" positionY="-81" width="128" height="135"/>
         <element name="Group" positionX="-54" positionY="-342" width="128" height="90"/>
         <element name="Person" positionX="-344" positionY="-264" width="128" height="225"/>
         <element name="PhoneNumbers" positionX="-396" positionY="27" width="128" height="105"/>
-        <element name="EmailAddresses" positionX="-198" positionY="27" width="128" height="105"/>
     </elements>
 </model>
