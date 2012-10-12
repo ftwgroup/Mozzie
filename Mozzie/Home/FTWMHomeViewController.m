@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
-#import "FTWMViewController.h"
+#import "FTWMHomeViewController.h"
 #import "UIColor+FTWColors.h"
 
 #import "KCCalendarViewController.h"
@@ -15,13 +15,13 @@
 
 #import "NimbusModels.h"
 
-@interface FTWMViewController ()
+@interface FTWMHomeViewController ()
 @property (nonatomic, readwrite, retain) NITableViewModel *model;
 @property (nonatomic, readwrite, retain) NITableViewActions *actions;
 
 @end
 
-@implementation FTWMViewController
+@implementation FTWMHomeViewController
 
 -(id)initWithStyle:(UITableViewStyle)style {
     // We explicitly set the table view style in this controller's implementation because we want this
@@ -57,11 +57,16 @@
           // NIPushControllerAction is a helper method that instantiates the controller class and then
           // pushes it onto the current view controller's navigation stack.
           NIPushControllerAction([ContactsTableViewController class])
-            toObject:[NISubtitleCellObject objectWithTitle:@"Contacts" subtitle:@"View profiles"]],
+            toObject:[NISubtitleCellObject objectWithTitle:@"Contacts"
+                                                  subtitle:@"View profiles"]],
          @"Feeds",
-         [_actions attachNavigationAction:NIPushControllerAction([ContactsViewController class]) toObject:[NISubtitleCellObject objectWithTitle:@"Social Feeds" subtitle:@"Facebook, twitter, etc."]],
+         [_actions attachNavigationAction:NIPushControllerAction([ContactsViewController class])
+                                 toObject:[NISubtitleCellObject objectWithTitle:@"Social Feeds"
+                                                                       subtitle:@"Facebook, twitter, etc."]],
          @"Calendars",
-         [_actions attachNavigationAction:NIPushControllerAction([KCCalendarViewController class]) toObject:[NISubtitleCellObject objectWithTitle:@"Calendars" subtitle:@"interact with them"]],
+         [_actions attachNavigationAction:NIPushControllerAction([KCCalendarViewController class])
+                                 toObject:[NISubtitleCellObject objectWithTitle:@"Calendars"
+                                                                       subtitle:@"interact with them"]],
          
          nil];
         

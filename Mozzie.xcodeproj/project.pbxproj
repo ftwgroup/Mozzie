@@ -29,7 +29,7 @@
 		1C397A45162743C300CD34D1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C397A44162743C300CD34D1 /* CoreData.framework */; };
 		1C397A9016275ABC00CD34D1 /* FTWMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397A8C16275ABC00CD34D1 /* FTWMLoginViewController.m */; };
 		1C397A9116275ABC00CD34D1 /* FTWMLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C397A8D16275ABC00CD34D1 /* FTWMLoginViewController.xib */; };
-		1C397A9216275ABC00CD34D1 /* FTWMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397A8F16275ABC00CD34D1 /* FTWMViewController.m */; };
+		1C397A9216275ABC00CD34D1 /* FTWMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397A8F16275ABC00CD34D1 /* FTWMHomeViewController.m */; };
 		1C397A9F16275AEC00CD34D1 /* KalDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397A9416275AD400CD34D1 /* KalDate.m */; };
 		1C397AA016275AEC00CD34D1 /* KalLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397A9616275AD500CD34D1 /* KalLogic.m */; };
 		1C397AA116275AEC00CD34D1 /* KCCalendarEventListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397A9816275AD800CD34D1 /* KCCalendarEventListTableView.m */; };
@@ -126,8 +126,8 @@
 		1C397A8B16275ABC00CD34D1 /* FTWMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTWMLoginViewController.h; path = Home/FTWMLoginViewController.h; sourceTree = "<group>"; };
 		1C397A8C16275ABC00CD34D1 /* FTWMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTWMLoginViewController.m; path = Home/FTWMLoginViewController.m; sourceTree = "<group>"; };
 		1C397A8D16275ABC00CD34D1 /* FTWMLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FTWMLoginViewController.xib; path = Home/FTWMLoginViewController.xib; sourceTree = "<group>"; };
-		1C397A8E16275ABC00CD34D1 /* FTWMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTWMViewController.h; path = Home/FTWMViewController.h; sourceTree = "<group>"; };
-		1C397A8F16275ABC00CD34D1 /* FTWMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTWMViewController.m; path = Home/FTWMViewController.m; sourceTree = "<group>"; };
+		1C397A8E16275ABC00CD34D1 /* FTWMHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTWMHomeViewController.h; path = Home/FTWMHomeViewController.h; sourceTree = "<group>"; };
+		1C397A8F16275ABC00CD34D1 /* FTWMHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTWMHomeViewController.m; path = Home/FTWMHomeViewController.m; sourceTree = "<group>"; };
 		1C397A9316275AD300CD34D1 /* KalDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KalDate.h; path = Calendar/KalDate.h; sourceTree = "<group>"; };
 		1C397A9416275AD400CD34D1 /* KalDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KalDate.m; path = Calendar/KalDate.m; sourceTree = "<group>"; };
 		1C397A9516275AD400CD34D1 /* KalLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KalLogic.h; path = Calendar/KalLogic.h; sourceTree = "<group>"; };
@@ -338,8 +338,8 @@
 				1C397A8B16275ABC00CD34D1 /* FTWMLoginViewController.h */,
 				1C397A8C16275ABC00CD34D1 /* FTWMLoginViewController.m */,
 				1C397A8D16275ABC00CD34D1 /* FTWMLoginViewController.xib */,
-				1C397A8E16275ABC00CD34D1 /* FTWMViewController.h */,
-				1C397A8F16275ABC00CD34D1 /* FTWMViewController.m */,
+				1C397A8E16275ABC00CD34D1 /* FTWMHomeViewController.h */,
+				1C397A8F16275ABC00CD34D1 /* FTWMHomeViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -678,7 +678,7 @@
 				1C3E6552162649320050C7B5 /* NIViewRecycler.m in Sources */,
 				1C3E6553162649320050C7B5 /* NSString+NimbusCore.m in Sources */,
 				1C397A9016275ABC00CD34D1 /* FTWMLoginViewController.m in Sources */,
-				1C397A9216275ABC00CD34D1 /* FTWMViewController.m in Sources */,
+				1C397A9216275ABC00CD34D1 /* FTWMHomeViewController.m in Sources */,
 				1C397A9F16275AEC00CD34D1 /* KalDate.m in Sources */,
 				1C397AA016275AEC00CD34D1 /* KalLogic.m in Sources */,
 				1C397AA116275AEC00CD34D1 /* KCCalendarEventListTableView.m in Sources */,

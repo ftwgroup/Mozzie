@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FTWMViewController : UITableViewController
+@interface FTWMHomeViewController : UITableViewController
 
 @end

@@ -8,7 +8,7 @@
 
 #import "FTWMAppDelegate.h"
 #import "KCCalendarStore.h"
-#import "FTWMViewController.h"
+#import "FTWMHomeViewController.h"
 #import "FTWMLoginViewController.h"
 #import "UIColor+FTWColors.h"
 #import "KCConstants.h"
@@ -19,7 +19,7 @@
 @interface FTWMAppDelegate ()
 
 @property (strong, nonatomic) UINavigationController *navController;
-@property (strong, nonatomic) FTWMViewController *mainViewController;
+@property (strong, nonatomic) FTWMHomeViewController *mainViewController;
 @property (strong, nonatomic) FTWMLoginViewController *loginViewController;
 
 -(void)showLoginView;
@@ -98,7 +98,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor backgroundColor];
     // Our main view controller for now it is just a table view
-    self.mainViewController = [[FTWMViewController alloc] init];
+    self.mainViewController = [[FTWMHomeViewController alloc] init];
     self.navController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
     self.navController.navigationBar.tintColor = [UIColor headerColor];
     self.window.rootViewController = self.navController;

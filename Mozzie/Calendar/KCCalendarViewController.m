@@ -336,7 +336,10 @@
 
 //hide calendar options
 - (void)viewWillDisappear:(BOOL)animated {
+    //unset some key properties
     [self.calendarTable removeFromParentViewController];
+    //especially this delegate, which will try to call some methods after dealloc if we are not careful. 
+    self.navigationController.delegate = nil;
     [self.navigationController setToolbarHidden:YES];
 }
 
