@@ -59,5 +59,17 @@ NSManagedObjectModel *dataModel;
     }
 }
 
++ (NSArray* )userTwitterHandle {
+    NSFetchRequest* req = [NSFetchRequest new];
+    req.entity = [[KCDataStore model].entitiesByName objectForKey:@"Person"];
+    req.propertiesToFetch = @[@"twitterHandle"];
+    NSError* err;
+    NSArray* result = [[KCDataStore context] executeFetchRequest:req error:&err];
+        if (!result) {
+            [NSException raise:@"user Twitter Hande Fetch Failure" format:@"Reason: %@", [err localizedDescription]];
+        }
+    return result;
+}
+
 
 @end

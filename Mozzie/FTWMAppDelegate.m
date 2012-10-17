@@ -13,6 +13,7 @@
 #import "UIColor+FTWColors.h"
 #import "KCConstants.h"
 #import <Accounts/Accounts.h>
+#import <AddressBook/AddressBook.h>
 #import <Social/Social.h>
 #import <FacebookSDK/FacebookSDK.h>
 
@@ -48,6 +49,7 @@
     [FBProfilePictureView class];
     [self permissionsCalendar];
     [self permissionsTwitter];
+    [self permissionAddressBook];
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -101,6 +103,18 @@
 }
 
 #pragma mark Permissions
+- (void)permissionAddressBook {
+    CFErrorRef error = nil;
+    ABAddressBookRef myBook = ABAddressBookCreateWithOptions(nil, &error);
+    ABAddressBookRequestAccessWithCompletion(myBook, ^(bool granted, CFErrorRef error) {
+        if (granted) {
+            //great
+        } else {
+            //just go ahead and close the app
+        }
+    });
+}
+
 
 - (void)permissionsCalendar {
     //check for calendar permissions
@@ -109,12 +123,13 @@
             if (granted) {
                 //great
             } else {
-                [self permissionsCalendarAlert];
+                //[self permissionsCalendarAlert];
             };
         }];
         
     }
 }
+
 
 - (void)permissionsCalendarAlert {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"You can always enable calendar synching in system settings."
@@ -125,6 +140,20 @@
     dispatch_sync(dispatch_get_main_queue(), ^{
         [alert show];
     });
+}
+
+- (void)permissionsReminders {
+    //check for reminder permissions
+    if([[KCCalendarStore sharedStore].EKEvents respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
+        [[KCCalendarStore sharedStore].EKEvents requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+            if (granted) {
+                //great
+            } else {
+                //can always enable it later
+            };
+        }];
+        
+    }
 }
 
 - (void)permissionsTwitter {
@@ -143,22 +172,22 @@
         [accountStore requestAccessToAccountsWithType:twitterAccountType options:nil completion:^(BOOL granted, NSError *error) {
             //this whole bit is not really needed beyond testing purposes
             if (granted) {
-                //                ACAccount* twitterAccount = [[accountStore accountsWithAccountType:twitterAccountType] objectAtIndex:0];
-                //                NSURL* verifyCred = [[NSURL alloc] initWithString:@"https://api.twitter.com/1/account/verify_credentials.json"];
-                //                SLRequest* verify = [SLRequest requestForServiceType:SLServiceTypeTwitter
-                //                                                       requestMethod:SLRequestMethodGET
-                //                                                                 URL:verifyCred
-                //                                                          parameters:nil];
-                //                verify.account = twitterAccount;
-                //                [verify performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                //                    if ([urlResponse statusCode] == 200) {
-                //                        NSLog(@"Twitter authenticated");
-                //                    } else {
-                //                        NSLog(@"%d", [urlResponse statusCode]);
-                //                    }
-                //                }];
+//                           ACAccount* twitterAccount = [[accountStore accountsWithAccountType:twitterAccountType] objectAtIndex:0];
+//                            NSURL* verifyCred = [NSURL URLWithString:@"https://api.twitter.com/1/account/verify_credentials.json"];
+//                            SLRequest* verify = [SLRequest requestForServiceType:SLServiceTypeTwitter
+//                                                                   requestMethod:SLRequestMethodGET
+//                                                                             URL:verifyCred
+//                                                                      parameters:nil];
+//                            verify.account = twitterAccount;
+//                            [verify performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+//                                if ([urlResponse statusCode] == 200) {
+//                                    NSLog(@"Twitter authenticated");
+//                                } else {
+//                                    NSLog(@"%d", [urlResponse statusCode]);
+//                                }
+//                            }];
             } else {
-                [self permissionsTwitterAlert];
+                //[self permissionsTwitterAlert];
             }
         }];
     }

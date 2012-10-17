@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <AddressBook/AddressBook.h>
 
-@interface ContactsViewController : UITableViewController
+#import "NimbusAttributedLabel.h"
+#import "NimbusModels.h"
+#import "NimbusCore.h"
+
+@interface KCContactTableViewController : UITableViewController <NIAttributedLabelDelegate>
 @property (nonatomic) ABRecordRef person;
 @property (nonatomic) NSArray *updates;
 @end

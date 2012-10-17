@@ -11,7 +11,7 @@
 
 //#import <QuartzCore/QuartzCore.h>
 
-@interface FaceViewController : UIViewController
+@interface KCFaceView : UIViewController
 
 @property (strong, nonatomic) IBOutlet UILabel *contactName;
 @property (strong, nonatomic) IBOutlet UIImageView *contactImage;

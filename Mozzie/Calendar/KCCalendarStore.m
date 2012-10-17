@@ -71,11 +71,13 @@ static dispatch_once_t pred;
     }
 
     
-    NSPredicate *predicate = [sharedStore.EKEvents predicateForEventsWithStartDate:startOfUnit
+    NSPredicate *eventPredicate = [sharedStore.EKEvents predicateForEventsWithStartDate:startOfUnit
                                                                            endDate:endOfUnit
                                                                          calendars:sharedStore.calendars];
-    
-    return [sharedStore.EKEvents eventsMatchingPredicate:predicate];
+    //NSPredicate * reminderPredicate =[sharedStore.EKEvents predicateForIncompleteRemindersWithDueDateStarting:startOfUnit
+                                                                      //ending:endOfUnit
+                                                                   //calendars:sharedStore.calendars];
+    return [sharedStore.EKEvents eventsMatchingPredicate:eventPredicate];
 }
 
 + (NSArray* )getSectionArrayForCompositeCalendar:(NSArray *)compCal {

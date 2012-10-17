@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
-#import "ContactsTableViewController.h"
-#import "ContactsViewController.h"
+#import "KCContactsTableViewController.h"
+#import "KCContactTableViewController.h"
 #import "UIColor+FTWColors.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface ContactsTableViewController ()
+@interface KCContactsTableViewController ()
 @property (nonatomic) NSArray *friends;
 
 -(void)setupPeoplePicker;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation ContactsTableViewController
+@implementation KCContactsTableViewController
 
 @synthesize friends = _friends;
 
@@ -38,22 +38,14 @@
 - (void)loadView
 {
     [super loadView];
-    
-    // grab setup the facebook array
-    FBRequest* friendsRequest = [FBRequest requestForMyFriends];
-    [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
-                                                  NSDictionary* result,
-                                                  NSError *error) {
-        NSArray* friends = [result objectForKey:@"data"];
-        NSLog(@"got friends");
-        self.friends = friends;
-    }];
+    if (!self.friends) {
+        [self pullMyFriends];
+    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     [self setupPeoplePicker];
 }
 
@@ -64,6 +56,22 @@
 }
 
 # pragma mark - Temporary Methods for selecting contacts to view
+
+- (void)pullMyFriends {
+    // check before request
+    if (FBSession.activeSession.isOpen) {
+        // grab setup the facebook array
+        FBRequest* friendsRequest = [FBRequest requestForMyFriends];
+        [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
+                                                      NSDictionary* result,
+                                                      NSError *error) {
+            NSArray* friends = [result objectForKey:@"data"];
+            NSLog(@"got friends");
+            self.friends = friends;
+        }];
+    }
+}
+
 - (void)getFriend:(ABRecordRef)person
 {
     CFStringRef name = ABRecordCopyCompositeName(person);
@@ -89,24 +97,7 @@
             if ([NSfirstName isEqualToString:testFirstName] && [NSlastName isEqualToString:testLastName]) {
                 NSLog(@"we found %@",friend.first_name);
                 // Setup and save facebook data
-//                ABAddressBookRef addressBook = ABAddressBookCreate();
-//                
-//                ABMutableMultiValueRef facebook = ABMultiValueCreateMutable(kABDictionaryPropertyType);
-//                CFStringRef keys[4];
-//                CFStringRef values[4];
-//                keys[0] = kABPersonSocialProfileServiceKey;
-//                keys[1] = kABPersonSocialProfileUsernameKey;
-//                keys[2] = kABPersonSocialProfileUserIdentifierKey;
-//                values[0] = kABPersonSocialProfileServiceFacebook;
-//                values[1] = (__bridge CFStringRef)friend.username;
-//                values[2] = (__bridge CFStringRef)friend.id;
-//                
-//                CFDictionaryRef facebookDict = CFDictionaryCreate(kCFAllocatorDefault, (void *)keys, (void *)values, 3, &kCFCopyStringDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-//                
-//                ABMultiValueIdentifier identifier;
-//                bool didAdd = ABMultiValueAddValueAndLabel(facebook, facebookDict, (__bridge CFStringRef)@"testbook", &identifier);
-//                bool didSave = ABRecordSetValue(person, kABPersonSocialProfileProperty, facebook, nil);
-//                didSave = ABAddressBookSave(addressBook, NULL);
+                // this will need to harness core data
             }
         }
     }];
@@ -174,7 +165,7 @@
                 for (NSMutableDictionary *update in [result objectForKey:@"data"]) {
                     NSLog(@"result: %@", update);
                 }
-                ContactsViewController *personView = [[ContactsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                KCContactTableViewController *personView = [[KCContactTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
                 personView.person = person;
                 personView.updates = [result objectForKey:@"data"];
                 [self.navigationController pushViewController:personView animated:NO];

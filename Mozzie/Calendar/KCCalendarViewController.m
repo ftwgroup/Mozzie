@@ -12,6 +12,7 @@
 #import "KalDate.h"
 #import "KalLogic.h"
 #import "KCConstants.h"
+#import "KCAddEventViewController.h"
 
 @interface KCCalendarViewController ()
 
@@ -21,13 +22,14 @@
 
 #pragma mark - Add and Alter Events
 - (void)addEvent {
-    EKEventEditViewController* addorAlter = [[EKEventEditViewController alloc] init];
+    KCAddEventViewController* addorAlter = [[KCAddEventViewController alloc] init];
     addorAlter.eventStore = [KCCalendarStore sharedStore].EKEvents;
-    addorAlter.editViewDelegate = self;
     addorAlter.modalTransitionStyle = UIModalTransitionStylePartialCurl;
-    addorAlter.delegate = self;
-    addorAlter.navigationBar.tintColor = [UIColor headerColor];
-    [self presentViewController:addorAlter animated:YES completion:nil];
+    addorAlter.navigationController.navigationBar.tintColor = [UIColor headerColor];
+    addorAlter.tableView.backgroundColor = [UIColor backgroundColor];
+    [self presentViewController:addorAlter
+                       animated:YES
+                     completion:nil];
 }
 
 #pragma mark - Calendar chooser methods
@@ -209,6 +211,12 @@
     
 }
 
+- (void)setupNavbar {
+    UIBarButtonItem* addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                               target:self
+                                                                               action:@selector(addEvent)];
+    self.navigationController.navigationItem.rightBarButtonItem = addButton;
+}
 
 - (void)setupNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -240,6 +248,7 @@
     [self setupCalToolbar];
     [self setupActionsToolbar];
     [self setupTabbar];
+    [self setupNavbar];
     [self setupUserCalendars];
     [self setupEventList];
 }

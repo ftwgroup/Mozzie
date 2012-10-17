@@ -10,5 +10,5 @@
 #import <CoreData/CoreData.h>
 
 @interface KCDataStore : NSObject
-
++ (NSArray* )userTwitterHandle;
 @end
