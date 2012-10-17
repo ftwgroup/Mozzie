@@ -53,9 +53,6 @@
 		1C397B2F1627B09D00CD34D1 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C397B1A1627B09D00CD34D1 /* triangle.png */; };
 		1C397B301627B09D00CD34D1 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C397B1B1627B09D00CD34D1 /* twitter.png */; };
 		1C397B311627B09D00CD34D1 /* user-img.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C397B1C1627B09D00CD34D1 /* user-img.png */; };
-		1C397B411627B32000CD34D1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C397B401627B31F00CD34D1 /* Default.png */; };
-		1C397B431627B33000CD34D1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C397B421627B33000CD34D1 /* Default@2x.png */; };
-		1C397B451627B33F00CD34D1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C397B441627B33F00CD34D1 /* Default-568h@2x.png */; };
 		1C3E64F5162648E60050C7B5 /* NIAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3E64F0162648E60050C7B5 /* NIAttributedLabel.m */; };
 		1C3E64F6162648E60050C7B5 /* NSMutableAttributedString+NimbusAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3E64F4162648E60050C7B5 /* NSMutableAttributedString+NimbusAttributedLabel.m */; };
 		1C3E650D1626490F0050C7B5 /* NICellBackgrounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3E64F81626490F0050C7B5 /* NICellBackgrounds.m */; };
@@ -123,7 +120,6 @@
 		B9CC482016264CC300E31DF0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9CC481F16264CC300E31DF0 /* Default@2x.png */; };
 		B9CC482216264CCC00E31DF0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9CC482116264CCC00E31DF0 /* Default-568h@2x.png */; };
 		B9CC48281626591400E31DF0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9CC48271626591400E31DF0 /* MessageUI.framework */; };
-		B9DAFD4C16222635004A4007 /* ContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DAFD4B16222635004A4007 /* ContactsTableViewController.m */; };
 		B9DAFD4F16222D2E004A4007 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DAFD4D16222D2E004A4007 /* AddressBook.framework */; };
 		B9DAFD5016222D2E004A4007 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DAFD4E16222D2E004A4007 /* AddressBookUI.framework */; };
 /* End PBXBuildFile section */
@@ -194,9 +190,6 @@
 		1C397B1A1627B09D00CD34D1 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = triangle.png; path = Mozzie/Resources/Assets/triangle.png; sourceTree = SOURCE_ROOT; };
 		1C397B1B1627B09D00CD34D1 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = twitter.png; path = Mozzie/Resources/Assets/twitter.png; sourceTree = SOURCE_ROOT; };
 		1C397B1C1627B09D00CD34D1 /* user-img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "user-img.png"; path = "Mozzie/Resources/Assets/user-img.png"; sourceTree = SOURCE_ROOT; };
-		1C397B401627B31F00CD34D1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		1C397B421627B33000CD34D1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		1C397B441627B33F00CD34D1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1C3E64EF162648E60050C7B5 /* NIAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIAttributedLabel.h; path = ../nimbus/src/attributedlabel/src/NIAttributedLabel.h; sourceTree = "<group>"; };
 		1C3E64F0162648E60050C7B5 /* NIAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIAttributedLabel.m; path = ../nimbus/src/attributedlabel/src/NIAttributedLabel.m; sourceTree = "<group>"; };
 		1C3E64F1162648E60050C7B5 /* NimbusAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusAttributedLabel.h; path = ../nimbus/src/attributedlabel/src/NimbusAttributedLabel.h; sourceTree = "<group>"; };
@@ -303,20 +296,6 @@
 		B983B84416261EB40031999A /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
 		B983B84516261EB40031999A /* user-img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-img.png"; sourceTree = "<group>"; };
 		B983B85C16262BC70031999A /* header640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header640.png; sourceTree = "<group>"; };
-		B9A1ABFF1623B34700B37F3D /* NSDate+KalAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+KalAdditions.h"; sourceTree = "<group>"; };
-		B9A1AC001623B34700B37F3D /* NSDate+KalAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+KalAdditions.m"; sourceTree = "<group>"; };
-		B9A1AC011623B34700B37F3D /* KalLogic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KalLogic.h; sourceTree = "<group>"; };
-		B9A1AC021623B34700B37F3D /* KalLogic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KalLogic.m; sourceTree = "<group>"; };
-		B9A1AC041623B36C00B37F3D /* KCConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCConstants.h; sourceTree = "<group>"; };
-		B9A1AC051623B36C00B37F3D /* KCConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCConstants.m; sourceTree = "<group>"; };
-		B9A1AC071623B40400B37F3D /* KalDate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KalDate.h; sourceTree = "<group>"; };
-		B9A1AC081623B40400B37F3D /* KalDate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KalDate.m; sourceTree = "<group>"; };
-		B9A1AC091623B40400B37F3D /* KCCalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCCalendarViewController.h; sourceTree = "<group>"; };
-		B9A1AC0A1623B40400B37F3D /* KCCalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCCalendarViewController.m; sourceTree = "<group>"; };
-		B9A1AC0B1623B40400B37F3D /* KCCalendarEventListTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCCalendarEventListTableView.h; sourceTree = "<group>"; };
-		B9A1AC0C1623B40400B37F3D /* KCCalendarEventListTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCCalendarEventListTableView.m; sourceTree = "<group>"; };
-		B9A1AC0D1623B40400B37F3D /* KCCalendarStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCCalendarStore.h; sourceTree = "<group>"; };
-		B9A1AC0E1623B40400B37F3D /* KCCalendarStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCCalendarStore.m; sourceTree = "<group>"; };
 		B9A1AC0F1623B52300B37F3D /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		B9A1AC101623B52300B37F3D /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		B9BD13C9161E495600319E3C /* UIColor+FTWColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FTWColors.h"; sourceTree = "<group>"; };
@@ -325,8 +304,6 @@
 		B9CC481F16264CC300E31DF0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		B9CC482116264CCC00E31DF0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		B9CC48271626591400E31DF0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		B9DAFD4A16222635004A4007 /* ContactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTableViewController.h; sourceTree = "<group>"; };
-		B9DAFD4B16222635004A4007 /* ContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTableViewController.m; sourceTree = "<group>"; };
 		B9DAFD4D16222D2E004A4007 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		B9DAFD4E16222D2E004A4007 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -448,9 +425,6 @@
 		B9160E071612658800CA206E = {
 			isa = PBXGroup;
 			children = (
-				1C397B441627B33F00CD34D1 /* Default-568h@2x.png */,
-				1C397B421627B33000CD34D1 /* Default@2x.png */,
-				1C397B401627B31F00CD34D1 /* Default.png */,
 				B9160E39161265D900CA206E /* Nimbus */,
 				B9160E1C1612658800CA206E /* Mozzie */,
 				B9160E151612658800CA206E /* Frameworks */,
@@ -513,7 +487,6 @@
 				B9CC482116264CCC00E31DF0 /* Default-568h@2x.png */,
 				B9CC481F16264CC300E31DF0 /* Default@2x.png */,
 				B9CC481D16264CBA00E31DF0 /* Default.png */,
-				B9BD13C6161E41E900319E3C /* bg.png */,
 				B9160E1E1612658900CA206E /* Mozzie-Info.plist */,
 				B9160E1F1612658900CA206E /* InfoPlist.strings */,
 				B9160E221612658900CA206E /* main.m */,
@@ -729,12 +702,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9160E211612658900CA206E /* InfoPlist.strings in Resources */,
-				B9160E301612658900CA206E /* MainStoryboard.storyboard in Resources */,
-				B90B6973161B7F43000997AA /* FacebookSDKResources.bundle in Resources */,
-				B90B6974161B7F43000997AA /* FBUserSettingsViewResources.bundle in Resources */,
-				B90B697F161B83F2000997AA /* FTWMLoginViewController.xib in Resources */,
-				B9BD13C7161E41E900319E3C /* bg.png in Resources */,
-				B9DAFD5916223542004A4007 /* FaceViewController.xib in Resources */,
 				B983B84616261EB40031999A /* 320480.png in Resources */,
 				B983B84716261EB40031999A /* 6401136.png in Resources */,
 				B983B84816261EB40031999A /* 640960.png in Resources */,
@@ -779,9 +746,6 @@
 				1C397B2F1627B09D00CD34D1 /* triangle.png in Resources */,
 				1C397B301627B09D00CD34D1 /* twitter.png in Resources */,
 				1C397B311627B09D00CD34D1 /* user-img.png in Resources */,
-				1C397B411627B32000CD34D1 /* Default.png in Resources */,
-				1C397B431627B33000CD34D1 /* Default@2x.png in Resources */,
-				1C397B451627B33F00CD34D1 /* Default-568h@2x.png in Resources */,
 				1C0D839E162DEC68003E9759 /* FacebookSDKResources.bundle in Resources */,
 				1C0D839F162DEC68003E9759 /* FBUserSettingsViewResources.bundle in Resources */,
 			);
