@@ -24,7 +24,7 @@
 - (void)addEvent {
     KCAddEventViewController* addEvent = [[KCAddEventViewController alloc] initWithStyle:UITableViewStyleGrouped];
     addEvent.eventStore = [KCCalendarStore sharedStore].EKEvents;
-    addEvent.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    addEvent.modalTransitionStyle = kAppWideModalStyle;
     addEvent.navigationController.navigationBar.tintColor = [UIColor headerColor];
     addEvent.tableView.backgroundColor = [UIColor backgroundColor];
     [self presentViewController:addEvent
@@ -145,6 +145,7 @@
 - (void)setupUserCalendars {
 }
 
+//currently unused
 - (void)setupActionsToolbar {
     [self.navigationController setToolbarHidden:NO];
     
@@ -212,10 +213,15 @@
 }
 
 - (void)setupNavbar {
+    UIBarButtonItem* filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Cals"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(calendarSelect)];
+    
     UIBarButtonItem* addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                target:self
                                                                                action:@selector(addEvent)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    self.navigationItem.rightBarButtonItems = @[addButton, filterButton];
 }
 
 - (void)setupNotifications {
@@ -246,7 +252,7 @@
     [self setupAppearance];
     self.navigationController.delegate = self;
     [self setupCalToolbar];
-    [self setupActionsToolbar];
+    //[self setupActionsToolbar];
     [self setupTabbar];
     [self setupNavbar];
     [self setupUserCalendars];
@@ -340,7 +346,6 @@
 //show calendar options
 - (void)viewWillAppear:(BOOL)animated {
     [self.calendarTable.tableView reloadData];
-    [self setupActionsToolbar];
 }
 
 //hide calendar options
