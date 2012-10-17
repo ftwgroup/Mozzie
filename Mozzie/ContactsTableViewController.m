@@ -47,6 +47,7 @@
         NSArray* friends = [result objectForKey:@"data"];
         NSLog(@"got friends");
         self.friends = friends;
+        // TODO (julian) need to deal with connection errors
     }];
 }
 

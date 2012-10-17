@@ -14,10 +14,12 @@
 #import "NimbusModels.h"
 #import "NimbusCore.h"
 
+#import <MessageUI/MessageUI.h>
+
 
 @interface ContactsViewController () <NIAttributedLabelDelegate>
 @property (nonatomic, readwrite, retain) NITableViewModel *model;
-
+@property (nonatomic, readwrite, retain) NITableViewActions *actions;
 - (void)setupTableHeaderView;
 @end
 
@@ -25,6 +27,7 @@
 
 @synthesize model = _model;
 @synthesize updates = _updates;
+@synthesize actions = _actions;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -131,6 +134,8 @@
         // instance methods (- as a prefix). This allows you to use NICellFactory's class object as
         // the delegate or to instantiate the NICellFactory as an object and provide explicit mappings.
 //        self.model = [[NITableViewModel alloc] initWithSectionedArray:tableContents delegate:(id)[NICellFactory class]];
+        
+        _actions = [[NITableViewActions alloc] initWithController:self];
     }
     return self;
 }
@@ -141,6 +146,28 @@
 {
     [super viewDidLoad];
 
+    // Table action blocks
+    NITableViewActionBlock callBlock = ^BOOL(id object, UIViewController *controller) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"telprompt://4043131546"]];
+        return YES;
+    };
+    
+    NITableViewActionBlock emailBlock = ^BOOL(id object, UIViewController *controller) {
+        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+        picker.mailComposeDelegate = controller;
+        
+        [picker setSubject:@"test subject"];
+        
+        NSString *emailBody = @"test body";
+        [picker setMessageBody:emailBody isHTML:YES];
+        
+        picker.navigationBar.barStyle = UIBarStyleBlack;
+        
+        [controller presentModalViewController:picker animated:YES];
+        
+        return YES;
+    };
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -155,6 +182,7 @@
     ABMultiValueRef phoneNumbers = ABRecordCopyValue(self.person,
                                                      kABPersonPhoneProperty);
     ABMultiValueRef emailAddresses = ABRecordCopyValue(self.person, kABPersonEmailProperty);
+    ABMultiValueRef social = ABRecordCopyValue(self.person, kABPersonSocialProfileProperty);
     
     if (ABMultiValueGetCount(phoneNumbers) > 0) {
         phone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
@@ -167,11 +195,13 @@
     
     NSArray *tableContents = [NSArray arrayWithObject:@"Contact"];
     if (phone) {
-        tableContents = [tableContents arrayByAddingObject:[NISubtitleCellObject objectWithTitle:@"Mobile Number" subtitle:phone]];
+        tableContents = [tableContents arrayByAddingObject:[_actions attachNavigationAction:callBlock toObject:[NISubtitleCellObject objectWithTitle:@"Mobile Number" subtitle:phone]]];
     }
     if (email) {
-        tableContents = [tableContents arrayByAddingObject:[NISubtitleCellObject objectWithTitle:@"Email" subtitle:email]];
+        tableContents = [tableContents arrayByAddingObject:[_actions attachNavigationAction:emailBlock toObject:[NISubtitleCellObject objectWithTitle:@"Email" subtitle:email]]];
     }
+    
+    // Social network updates
     tableContents = [tableContents arrayByAddingObject:@"Updates"];
     for (NSMutableDictionary *update in self.updates) {
         //NSLog(@"result: %@", update);
@@ -183,6 +213,7 @@
     self.tableView.dataSource = self.model;
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
     self.tableView.backgroundView.backgroundColor = [UIColor backgroundColor];
+    self.tableView.delegate = [self.actions forwardingTo:self];
     [self setupTableHeaderView];
 }
 
@@ -293,7 +324,31 @@
     // rather than punt the user out of the application to Safari.
     [[UIApplication sharedApplication] openURL:result.URL];
 }
-
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    // Notifies users about errors associated with the interface
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            break;
+        case MFMailComposeResultSaved:
+            break;
+        case MFMailComposeResultSent:
+            break;
+        case MFMailComposeResultFailed:
+            break;
+            
+        default:
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email" message:@"Sending Failed - Unknown Error :-("
+                                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        }
+            
+            break;
+    }
+    [self dismissModalViewControllerAnimated:YES];
+}
 # pragma mark - Methods for rendering the user profile
 - (void) setupTableHeaderView
 {

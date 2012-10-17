@@ -7,6 +7,9 @@
 //
 
 #import <FacebookSDK/FacebookSDK.h>
+
+#import "NimbusCore.h"
+
 #import "FTWMAppDelegate.h"
 #import "KCCalendarStore.h"
 
@@ -129,6 +132,11 @@ NSString *const FBSessionStateChangedNotification = @"FTW-Group.Mozzie:FBSession
     self.mainViewController = [[FTWMViewController alloc] init];
     self.navController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
     self.navController.navigationBar.tintColor = [UIColor headerColor];
+//    if ([self.navController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
+//        UIImage *backgroundImage = [UIImage imageNamed:@"header640"];
+//        [backgroundImage drawInRect:self.navController.navigationBar.bounds];
+//        [self.navController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+//    }
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     
