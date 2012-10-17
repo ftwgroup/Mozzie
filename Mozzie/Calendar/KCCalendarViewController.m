@@ -22,12 +22,12 @@
 
 #pragma mark - Add and Alter Events
 - (void)addEvent {
-    KCAddEventViewController* addorAlter = [[KCAddEventViewController alloc] init];
-    addorAlter.eventStore = [KCCalendarStore sharedStore].EKEvents;
-    addorAlter.modalTransitionStyle = UIModalTransitionStylePartialCurl;
-    addorAlter.navigationController.navigationBar.tintColor = [UIColor headerColor];
-    addorAlter.tableView.backgroundColor = [UIColor backgroundColor];
-    [self presentViewController:addorAlter
+    KCAddEventViewController* addEvent = [[KCAddEventViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    addEvent.eventStore = [KCCalendarStore sharedStore].EKEvents;
+    addEvent.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    addEvent.navigationController.navigationBar.tintColor = [UIColor headerColor];
+    addEvent.tableView.backgroundColor = [UIColor backgroundColor];
+    [self presentViewController:addEvent
                        animated:YES
                      completion:nil];
 }
@@ -215,7 +215,7 @@
     UIBarButtonItem* addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                target:self
                                                                                action:@selector(addEvent)];
-    self.navigationController.navigationItem.rightBarButtonItem = addButton;
+    self.navigationItem.rightBarButtonItem = addButton;
 }
 
 - (void)setupNotifications {

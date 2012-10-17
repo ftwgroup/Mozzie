@@ -7,6 +7,7 @@
 //
 
 #import "KCAddEventViewController.h"
+#import "UIColor+FTWColors.h"
 
 @interface KCAddEventViewController ()
 @property (nonatomic, readwrite, retain) NITableViewModel* model;
@@ -32,12 +33,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Once the tableView has loaded we attach the model to the data source. As mentioned above,
+    // NITableViewModel implements UITableViewDataSource so that you don't have to implement any
+    // of the data source methods directly in your controller.
+    self.tableView.dataSource = self.model;
+    
+    // What we're doing here is known as "delegate chaining". It uses the message forwarding
+    // functionality of Objective-C to insert the actions object between the table view
+    // and this controller. The actions object forwards UITableViewDelegate methods along and
+    // selectively intercepts methods required to make user interactions work.
+    //
+    // Experiment: try commenting out this line. You'll notice that you can no longer tap any of
+    // the cells in the table view and that they no longer show the disclosure accessory types.
+    // Cool, eh? That this functionality is all provided to you in one line should make you
+    // heel-click.
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
+    self.tableView.backgroundView.backgroundColor = [UIColor backgroundColor];
+}
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,21 +61,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
