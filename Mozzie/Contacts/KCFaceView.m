@@ -6,19 +6,19 @@
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
-#import "FaceViewController.h"
+#import "KCFaceView.h"
 
-@interface FaceViewController ()
+@interface KCFaceView ()
 @end
 
-@implementation FaceViewController
+@implementation KCFaceView
 
 @synthesize contactImage = _contactImage;
 @synthesize contactName = _contactName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:@"FaceViewController" bundle:nil];
+    self = [super initWithNibName:@"KCFaceView" bundle:nil];
     if (self) {
         CGRect headerFrame = CGRectMake(0, 0, self.view.bounds.size.width, 100);
         [self.view setFrame:headerFrame];    }

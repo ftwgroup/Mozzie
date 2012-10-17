@@ -12,6 +12,7 @@
 #import "KalDate.h"
 #import "KalLogic.h"
 #import "KCConstants.h"
+#import "KCAddEventViewController.h"
 
 @interface KCCalendarViewController ()
 
@@ -21,13 +22,14 @@
 
 #pragma mark - Add and Alter Events
 - (void)addEvent {
-    EKEventEditViewController* addorAlter = [[EKEventEditViewController alloc] init];
-    addorAlter.eventStore = [KCCalendarStore sharedStore].EKEvents;
-    addorAlter.editViewDelegate = self;
-    addorAlter.modalTransitionStyle = UIModalTransitionStylePartialCurl;
-    addorAlter.delegate = self;
-    addorAlter.navigationBar.tintColor = [UIColor headerColor];
-    [self presentViewController:addorAlter animated:YES completion:nil];
+    KCAddEventViewController* addEvent = [[KCAddEventViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    addEvent.eventStore = [KCCalendarStore sharedStore].EKEvents;
+    addEvent.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    addEvent.navigationController.navigationBar.tintColor = [UIColor headerColor];
+    addEvent.tableView.backgroundColor = [UIColor backgroundColor];
+    [self presentViewController:addEvent
+                       animated:YES
+                     completion:nil];
 }
 
 #pragma mark - Calendar chooser methods
@@ -64,18 +66,6 @@
     NSDate* indexedDate = [KCCalendarStore indexedDate];
     [self updateCalendarTitleToDate:indexedDate];
     [self.calendarTable.tableView reloadData];
-}
-
-
-- (void)calendarPermissionsAlert {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Change the system calendar privacy settings to see your calendars."
-                                                    message:nil
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:nil, nil];
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        [alert show];
-    });
 }
 
 - (void)calendarSelect {
@@ -217,24 +207,16 @@
     [self addChildViewController:self.calendarTable];
     
     //iOS 6 requires permissions, not sure how this plays out?
-//    if([[KCCalendarStore sharedStore].EKEvents respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
-//        [[KCCalendarStore sharedStore].EKEvents requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-//            if (granted) {
-//                [self tabToDay];
-//                self.calendarTable = [[KCCalendarEventListTableView alloc] initWithStyle:UITableViewStyleGrouped];
-//                self.calendarTable.tableView.frame = CGRectMake(0, TOOL_BAR_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - TOOL_BAR_HEIGHT);
-//                
-//                [self.view addSubview:self.calendarTable.tableView];
-//                [self addChildViewController:self.calendarTable];
-//            } else {
-//                [self calendarPermissionsAlert];
-//            };
-//        }];
-//        
-//    }
+    //why is this commented out?
     
 }
 
+- (void)setupNavbar {
+    UIBarButtonItem* addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                               target:self
+                                                                               action:@selector(addEvent)];
+    self.navigationItem.rightBarButtonItem = addButton;
+}
 
 - (void)setupNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -266,6 +248,7 @@
     [self setupCalToolbar];
     [self setupActionsToolbar];
     [self setupTabbar];
+    [self setupNavbar];
     [self setupUserCalendars];
     [self setupEventList];
 }
@@ -354,9 +337,19 @@
 
 }
 
+//show calendar options
 - (void)viewWillAppear:(BOOL)animated {
     [self.calendarTable.tableView reloadData];
     [self setupActionsToolbar];
+}
+
+//hide calendar options
+- (void)viewWillDisappear:(BOOL)animated {
+    //unset some key properties
+    [self.calendarTable removeFromParentViewController];
+    //especially this delegate, which will try to call some methods after dealloc if we are not careful. 
+    self.navigationController.delegate = nil;
+    [self.navigationController setToolbarHidden:YES];
 }
 
 @end

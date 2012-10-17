@@ -6,34 +6,35 @@
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
-#import "ContactsViewController.h"
-#import "FaceViewController.h"
+#import "KCContactTableViewController.h"
+#import "KCFaceView.h"
 #import "UIColor+FTWColors.h"
-
-#import "NimbusAttributedLabel.h"
-#import "NimbusModels.h"
-#import "NimbusCore.h"
 
 #import <MessageUI/MessageUI.h>
 
-
-@interface ContactsViewController () <NIAttributedLabelDelegate>
 @property (nonatomic, readwrite, retain) NITableViewModel *model;
 @property (nonatomic, readwrite, retain) NITableViewActions *actions;
 - (void)setupTableHeaderView;
 @end
 
-@implementation ContactsViewController
+@implementation KCContactTableViewController
 
 @synthesize model = _model;
 @synthesize updates = _updates;
 @synthesize actions = _actions;
 
+
+- (void)attributedLabel:(NIAttributedLabel*)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point {
+    NSLog(@"tap");
+    // In a later example we will show how to push a Nimbus web controller onto the navigation stack
+    // rather than punt the user out of the application to Safari.
+    [[UIApplication sharedApplication] openURL:result.URL];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
-//    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.title = @"Profile View";
+        self.title = @"Contact Name";
         
         // We create a single block that can render a table view cell given an object.
 //        NICellDrawRectBlock drawTextBlock = ^CGFloat(CGRect rect, id object, UITableViewCell *cell) {
@@ -173,6 +174,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self setupWho];
     
     NSString* name = (__bridge_transfer NSString*)ABRecordCopyValue(self.person, kABPersonFirstNameProperty);
     //self.firstName.text = name;
@@ -215,6 +217,7 @@
     self.tableView.backgroundView.backgroundColor = [UIColor backgroundColor];
     self.tableView.delegate = [self.actions forwardingTo:self];
     [self setupTableHeaderView];
+
 }
 
 //-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -318,11 +321,45 @@
 //     */
 //}
 
-- (void)attributedLabel:(NIAttributedLabel*)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point {
-    NSLog(@"tap");
-    // In a later example we will show how to push a Nimbus web controller onto the navigation stack
-    // rather than punt the user out of the application to Safari.
-    [[UIApplication sharedApplication] openURL:result.URL];
+#pragma mark Person Info
+- (void)setupWho {
+    //NSString* name = (__bridge_transfer NSString*)ABRecordCopyValue(self.person, kABPersonFirstNameProperty);
+    //self.firstName.text = name;
+    
+    NSString* phone = nil;
+    NSString* email = nil;
+    ABMultiValueRef phoneNumbers = ABRecordCopyValue(self.person,
+                                                     kABPersonPhoneProperty);
+    ABMultiValueRef emailAddresses = ABRecordCopyValue(self.person, kABPersonEmailProperty);
+    
+    if (ABMultiValueGetCount(phoneNumbers) > 0) {
+        phone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+    }
+    
+    if (ABMultiValueGetCount(emailAddresses) > 0) {
+        email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emailAddresses, 0);
+    }
+    //self.phoneNumber.text = phone;
+    
+    NSArray *tableContents = [NSArray arrayWithObject:@"Contact"];
+    if (phone) {
+        tableContents = [tableContents arrayByAddingObject:[NISubtitleCellObject objectWithTitle:@"Mobile Number" subtitle:phone]];
+    }
+    if (email) {
+        tableContents = [tableContents arrayByAddingObject:[NISubtitleCellObject objectWithTitle:@"Email" subtitle:email]];
+    }
+    tableContents = [tableContents arrayByAddingObject:@"Updates"];
+    for (NSMutableDictionary *update in self.updates) {
+        //NSLog(@"result: %@", update);
+        NSString *title = [update objectForKey:@"story"];
+        tableContents = [tableContents arrayByAddingObject:[NITitleCellObject objectWithTitle:title]];
+    }
+    self.model = [[NITableViewModel alloc] initWithSectionedArray:tableContents delegate:(id)[NICellFactory class]];
+    
+    self.tableView.dataSource = self.model;
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
+    self.tableView.backgroundView.backgroundColor = [UIColor backgroundColor];
+    [self setupTableHeaderView];
 }
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
@@ -352,7 +389,7 @@
 # pragma mark - Methods for rendering the user profile
 - (void) setupTableHeaderView
 {
-    FaceViewController *faceView = [[FaceViewController alloc] initWithNibName:nil bundle:nil];
+    KCFaceView *faceView = [[KCFaceView alloc] initWithNibName:nil bundle:nil];
     faceView.view.backgroundColor = [UIColor backgroundColor];
     if (ABRecordGetRecordType(self.person) == kABPersonType) {
         UIImage *image = [UIImage imageWithData:(__bridge NSData *)(ABPersonCopyImageData(self.person))];
@@ -362,4 +399,5 @@
     }
     self.tableView.tableHeaderView = faceView.view;
 }
+
 @end

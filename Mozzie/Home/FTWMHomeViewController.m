@@ -6,22 +6,22 @@
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
-#import "FTWMViewController.h"
+#import "FTWMHomeViewController.h"
 #import "UIColor+FTWColors.h"
 
 #import "KCCalendarViewController.h"
-#import "ContactsViewController.h"
-#import "ContactsTableViewController.h"
+#import "KCProfileTableViewController.h"
+#import "KCContactsTableViewController.h"
 
 #import "NimbusModels.h"
 
-@interface FTWMViewController ()
+@interface FTWMHomeViewController ()
 @property (nonatomic, readwrite, retain) NITableViewModel *model;
 @property (nonatomic, readwrite, retain) NITableViewActions *actions;
 
 @end
 
-@implementation FTWMViewController
+@implementation FTWMHomeViewController
 
 -(id)initWithStyle:(UITableViewStyle)style {
     // We explicitly set the table view style in this controller's implementation because we want this
@@ -29,7 +29,7 @@
     self = [super initWithStyle:UITableViewStyleGrouped];
     
     if (self) {
-        // Set the title hear because we never change it
+        // Set the title here because we never change it
         self.title = @"Mozzie";
         
         // When we instantiate the actions object we must provide it with a weak reference to the parent
@@ -56,12 +56,17 @@
           
           // NIPushControllerAction is a helper method that instantiates the controller class and then
           // pushes it onto the current view controller's navigation stack.
-          NIPushControllerAction([ContactsTableViewController class])
-            toObject:[NISubtitleCellObject objectWithTitle:@"Contacts" subtitle:@"View profiles"]],
-         @"Feeds",
-         [_actions attachNavigationAction:NIPushControllerAction([ContactsViewController class]) toObject:[NISubtitleCellObject objectWithTitle:@"Social Feeds" subtitle:@"Facebook, twitter, etc."]],
+          NIPushControllerAction([KCContactsTableViewController class])
+            toObject:[NISubtitleCellObject objectWithTitle:@"Contacts"
+                                                  subtitle:@"Your friend's Profiles"]],
+         @"Profile",
+         [_actions attachNavigationAction:NIPushControllerAction([KCProfileTableViewController class])
+                                 toObject:[NISubtitleCellObject objectWithTitle:@"Profile"
+                                                                       subtitle:@"Your profile."]],
          @"Calendars",
-         [_actions attachNavigationAction:NIPushControllerAction([KCCalendarViewController class]) toObject:[NISubtitleCellObject objectWithTitle:@"Calendars" subtitle:@"interact with them"]],
+         [_actions attachNavigationAction:NIPushControllerAction([KCCalendarViewController class])
+                                 toObject:[NISubtitleCellObject objectWithTitle:@"Calendars"
+                                                                       subtitle:@"See only what you have planned."]],
          
          nil];
         
@@ -99,10 +104,8 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    // This is a core Nimbus method that simplifies the logic required to display a controller on
-    // both the iPad (where all orientations are supported) and the iPhone (where anything but
-    // upside-down is supported). This method will be deprecated in iOS 6.0.
-    return NIIsSupportedOrientation(toInterfaceOrientation);
+    //annoying bug where if interface orientation is landscape on init the screen is frozen, rotating the screen will fix it
+    return UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
 }
 
 
