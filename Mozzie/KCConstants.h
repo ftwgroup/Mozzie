@@ -12,4 +12,5 @@
 extern NSString* const kCalendarPermissionsNotification;
 extern NSString* const kCalendarPermissionsBoolKey;
 extern NSString* const FBSessionStateChangedNotification;
+extern UIModalTransitionStyle const kAppWideModalStyle;
 @end
