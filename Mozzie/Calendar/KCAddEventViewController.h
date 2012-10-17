@@ -11,6 +11,8 @@
 #import "NimbusModels.h"
 #import <EventKit/EventKit.h>
 
-@interface KCAddEventViewController : UITableViewController <UITextFieldDelegate>
+#define TOOL_BAR_HEIGHT 40
+
+@interface KCAddEventViewController : UITableViewController <UITextFieldDelegate, NIMutableTableViewModelDelegate>
 @property (strong, nonatomic) EKEventStore* eventStore;
 @end

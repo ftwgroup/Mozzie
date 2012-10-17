@@ -8,10 +8,12 @@
 
 #import "KCAddEventViewController.h"
 #import "UIColor+FTWColors.h"
+#import "KCContactsTableViewController.h"
 
 @interface KCAddEventViewController ()
-@property (nonatomic, readwrite, retain) NITableViewModel* model;
-@property (nonatomic, readwrite, retain) NITableViewActions *actions;
+@property (nonatomic, strong) NIMutableTableViewModel* model;
+@property (nonatomic, readwrite, retain) NITableViewActions* actions;
+@property (nonatomic, strong) NSIndexPath* indexPathForDeletion;
 @property (strong, nonatomic) NSDate* startDate;
 //location is only a string for now
 @property (strong, nonatomic) NSString* location;
@@ -47,7 +49,10 @@
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
+        self.title = @"New Event";
+        
         self.actions = [[NITableViewActions alloc] initWithController:self];
+        
         NSArray* tableElements =
         [NSArray arrayWithObjects:@"Details",
          [NITextInputFormElement textInputElementWithID:0
@@ -60,6 +65,8 @@
                                            datePickerMode:UIDatePickerModeDateAndTime
                                           didChangeTarget:self
                                         didChangeSelector:@selector(datePickerDidChangeValue:)],
+         @"People",
+         [NITitleCellObject objectWithTitle:@"Add a contact or group"],
          @"Status",
          [NISegmentedControlFormElement segmentedControlElementWithID:0
                                                             labelText:@"Status"
@@ -75,10 +82,24 @@
                                                delegate:self],
          nil];
         
-        self.model = [[NITableViewModel alloc] initWithSectionedArray:tableElements
+        self.model = [[NIMutableTableViewModel alloc] initWithSectionedArray:tableElements
                                                              delegate:(id)[NICellFactory class]];
     }
     return self;
+}
+
+#pragma mark Nav Methods
+- (void)navAddPersonOrGroup {
+    [self.navigationController pushViewController:[KCContactsTableViewController new] animated:YES];
+}
+
+- (void)navCancel {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)navDone {
+    //save
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark Segmented Control
@@ -86,7 +107,26 @@
      self.status1confirmed0pending = [NSNumber numberWithInteger:segmentedControl.selectedSegmentIndex];
  }
 
-#pragma mark - Autorotation
+#pragma mark Setup
+- (void)setupNavBar {
+    UIBarButtonItem* addPerson = [[UIBarButtonItem alloc] initWithTitle:@"Peeps"
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(navAddPersonOrGroup)];
+    
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                               target:self
+                                                                               action:@selector(navDone)];
+    
+    UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                               target:self
+                                                                               action:@selector(navCancel)];
+    self.navigationItem.leftBarButtonItem = cancelButton;
+    self.navigationItem.rightBarButtonItems = @[doneButton, addPerson];
+}
+
+
+#pragma mark - shouldAutorotate
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return NIIsSupportedOrientation(toInterfaceOrientation);
 }
@@ -106,6 +146,40 @@
 //            textInputCell.textField.textColor = [UIColor blackColor];
 //        }
 //    }
+}
+
+#pragma mark - NIMutableTableViewModelDelegate
+
+//remove people/groups
+- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+         canEditObject:(id)object
+           atIndexPath:(NSIndexPath *)indexPath
+           inTableView:(UITableView *)tableView {
+    if (indexPath.section == 1 && indexPath.row > 0) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+//example code
+- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
+    shouldDeleteObject:(id)object
+           atIndexPath:(NSIndexPath *)indexPath
+           inTableView:(UITableView *)tableView {
+    // We're going to store the index path that wants to be deleted so that we can delete the correct
+    // cell after the alert view has been dismissed.
+    self.indexPathForDeletion = indexPath;
+    
+    // Rather than allow the model to simply delete the object, we're going to present a prompt that
+    // confirms with the user that they want to delete this object.
+    UIAlertView *confirmationAlertView = [[UIAlertView alloc] initWithTitle:@"Confirm"
+                                                                    message:@"Are you that sure you want to delete this cell?"
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"No"
+                                                          otherButtonTitles:@"Yes", nil];
+    [confirmationAlertView show];
+    return NO;
 }
 
 #pragma mark - TextFieldDelegate
@@ -181,8 +255,15 @@
 {
     [super viewDidLoad];
     self.tableView.dataSource = self.model;
+    self.tableView.delegate = [self.actions forwardingTo:self];
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
     self.tableView.backgroundView.backgroundColor = [UIColor backgroundColor];
+    [self setupNavBar];
+    
+    //cancel editing gesture
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTableView)];
+    tap.cancelsTouchesInView = NO;
+    [self.tableView addGestureRecognizer:tap];
 }
 
 @end

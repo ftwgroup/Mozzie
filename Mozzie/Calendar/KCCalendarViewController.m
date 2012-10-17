@@ -24,10 +24,11 @@
 - (void)addEvent {
     KCAddEventViewController* addEvent = [[KCAddEventViewController alloc] initWithStyle:UITableViewStyleGrouped];
     addEvent.eventStore = [KCCalendarStore sharedStore].EKEvents;
-    addEvent.modalTransitionStyle = kAppWideModalStyle;
-    addEvent.navigationController.navigationBar.tintColor = [UIColor headerColor];
     addEvent.tableView.backgroundColor = [UIColor backgroundColor];
-    [self presentViewController:addEvent
+    UINavigationController* modalNav = [[UINavigationController alloc] initWithRootViewController:addEvent];
+    modalNav.navigationBar.tintColor = [UIColor headerColor];
+    modalNav.modalTransitionStyle = kAppWideModalStyle;
+    [self presentViewController:modalNav
                        animated:YES
                      completion:nil];
 }
