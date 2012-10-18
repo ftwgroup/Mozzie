@@ -18,6 +18,7 @@
 @property (nonatomic, readwrite, retain) NITableViewActions *actions;
 - (void)setupTableHeaderView;
 
+
 @end
 
 @implementation KCContactTableViewController
@@ -150,70 +151,7 @@
 {
     [super viewDidLoad];
 
-    // Table action blocks
-    NITableViewActionBlock callBlock = ^BOOL(id object, UIViewController *controller) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"telprompt://4043131546"]];
-        return YES;
-    };
-    
-    NITableViewActionBlock emailBlock = ^BOOL(id object, UIViewController *controller) {
-        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
-        picker.mailComposeDelegate = controller;
-        
-        [picker setSubject:@"test subject"];
-        
-        NSString *emailBody = @"test body";
-        [picker setMessageBody:emailBody isHTML:YES];
-        
-        picker.navigationBar.barStyle = UIBarStyleBlack;
-        
-        [controller presentModalViewController:picker animated:YES];
-        
-        return YES;
-    };
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self setupWho];
-    
-    NSString* name = (__bridge_transfer NSString*)ABRecordCopyValue(self.person, kABPersonFirstNameProperty);
-    //self.firstName.text = name;
-    
-    NSString* phone = nil;
-    NSString* email = nil;
-    ABMultiValueRef phoneNumbers = ABRecordCopyValue(self.person,
-                                                     kABPersonPhoneProperty);
-    ABMultiValueRef emailAddresses = ABRecordCopyValue(self.person, kABPersonEmailProperty);
-    ABMultiValueRef social = ABRecordCopyValue(self.person, kABPersonSocialProfileProperty);
-    
-    if (ABMultiValueGetCount(phoneNumbers) > 0) {
-        phone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
-    }
-    
-    if (ABMultiValueGetCount(emailAddresses) > 0) {
-        email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emailAddresses, 0);
-    }
-    //self.phoneNumber.text = phone;
-    
-    NSArray *tableContents = [NSArray arrayWithObject:@"Contact"];
-    if (phone) {
-        tableContents = [tableContents arrayByAddingObject:[_actions attachNavigationAction:callBlock toObject:[NISubtitleCellObject objectWithTitle:@"Mobile Number" subtitle:phone]]];
-    }
-    if (email) {
-        tableContents = [tableContents arrayByAddingObject:[_actions attachNavigationAction:emailBlock toObject:[NISubtitleCellObject objectWithTitle:@"Email" subtitle:email]]];
-    }
-    
-    // Social network updates
-    tableContents = [tableContents arrayByAddingObject:@"Updates"];
-    for (NSMutableDictionary *update in self.updates) {
-        //NSLog(@"result: %@", update);
-        NSString *title = [update objectForKey:@"story"];
-        tableContents = [tableContents arrayByAddingObject:[NITitleCellObject objectWithTitle:title]];
-    }
-    self.model = [[NITableViewModel alloc] initWithSectionedArray:tableContents delegate:(id)[NICellFactory class]];
 
     self.tableView.dataSource = self.model;
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
@@ -329,6 +267,28 @@
     //NSString* name = (__bridge_transfer NSString*)ABRecordCopyValue(self.person, kABPersonFirstNameProperty);
     //self.firstName.text = name;
     
+    // Table action blocks
+    NITableViewActionBlock callBlock = ^BOOL(id object, UIViewController *controller) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"telprompt://4043131546"]];
+        return YES;
+    };
+    
+    NITableViewActionBlock emailBlock = ^BOOL(id object, UIViewController *controller) {
+        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+        picker.mailComposeDelegate = controller;
+        
+        [picker setSubject:@"test subject"];
+        
+        NSString *emailBody = @"test body";
+        [picker setMessageBody:emailBody isHTML:YES];
+        
+        picker.navigationBar.barStyle = UIBarStyleBlack;
+        
+        [controller presentModalViewController:picker animated:YES];
+        
+        return YES;
+    };
+    
     NSString* phone = nil;
     NSString* email = nil;
     ABMultiValueRef phoneNumbers = ABRecordCopyValue(self.person,
@@ -346,10 +306,10 @@
     
     NSArray *tableContents = [NSArray arrayWithObject:@"Contact"];
     if (phone) {
-        tableContents = [tableContents arrayByAddingObject:[NISubtitleCellObject objectWithTitle:@"Mobile Number" subtitle:phone]];
+        tableContents = [tableContents arrayByAddingObject:[_actions attachNavigationAction:callBlock toObject:[NISubtitleCellObject objectWithTitle:@"Mobile Number" subtitle:phone]]];
     }
     if (email) {
-        tableContents = [tableContents arrayByAddingObject:[NISubtitleCellObject objectWithTitle:@"Email" subtitle:email]];
+        tableContents = [tableContents arrayByAddingObject:[_actions attachNavigationAction:emailBlock toObject:[NISubtitleCellObject objectWithTitle:@"Email" subtitle:email]]];
     }
     tableContents = [tableContents arrayByAddingObject:@"Updates"];
     for (NSMutableDictionary *update in self.updates) {
