@@ -12,6 +12,11 @@
 @interface FTWMLoginViewController ()
 
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *newAccButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+- (IBAction)newAccAction:(UIButton *)sender;
+- (IBAction)cancelAction:(UIButton *)sender;
+
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 - (IBAction)performLogin:(id)sender;
@@ -22,6 +27,7 @@
 
 @synthesize loginButton = _loginButton;
 @synthesize spinner = _spinner;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,5 +70,11 @@
     // getting back to this screen without having been successfull authorized
     // is to stop showing our activity indicator.
     [self.spinner stopAnimating];
+}
+- (IBAction)newAccAction:(UIButton *)sender {
+}
+
+- (IBAction)cancelAction:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

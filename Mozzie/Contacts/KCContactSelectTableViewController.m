@@ -21,8 +21,6 @@
     if (self) {
         self.title = @"Contacts";
         
-        CFErrorRef addressError;
-        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, &addressError);
         // In order to be able to modify a model we must create an instance of NIMutableTableViewModel.
         // This object differs from NITableViewModel in that it exposes methods for modifying the
         // contents of the model, similarly to the differences between NSArray and NSMutableArray.
