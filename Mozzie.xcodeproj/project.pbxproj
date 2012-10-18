@@ -11,7 +11,7 @@
 		1C0D839B162DEC52003E9759 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C0D839A162DEC52003E9759 /* FacebookSDK.framework */; };
 		1C0D839E162DEC68003E9759 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D839C162DEC68003E9759 /* FacebookSDKResources.bundle */; };
 		1C0D839F162DEC68003E9759 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1C0D839D162DEC68003E9759 /* FBUserSettingsViewResources.bundle */; };
-		1C0D83A4162E3236003E9759 /* KCAddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0D83A3162E3236003E9759 /* KCAddEventViewController.m */; };
+		1C0D83A4162E3236003E9759 /* KCAddEventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0D83A3162E3236003E9759 /* KCAddEventTableViewController.m */; };
 		1C397A45162743C300CD34D1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C397A44162743C300CD34D1 /* CoreData.framework */; };
 		1C397A9016275ABC00CD34D1 /* FTWMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397A8C16275ABC00CD34D1 /* FTWMLoginViewController.m */; };
 		1C397A9116275ABC00CD34D1 /* FTWMLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C397A8D16275ABC00CD34D1 /* FTWMLoginViewController.xib */; };
@@ -22,7 +22,7 @@
 		1C397AA216275AEC00CD34D1 /* KCCalendarStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397A9A16275ADC00CD34D1 /* KCCalendarStore.m */; };
 		1C397AA316275AEC00CD34D1 /* KCCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397A9C16275AE100CD34D1 /* KCCalendarViewController.m */; };
 		1C397AA416275AEC00CD34D1 /* NSDate+KalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397A9E16275AE800CD34D1 /* NSDate+KalAdditions.m */; };
-		1C397AAC16275B1F00CD34D1 /* KCContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397AA616275B1F00CD34D1 /* KCContactsTableViewController.m */; };
+		1C397AAC16275B1F00CD34D1 /* KCContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397AA616275B1F00CD34D1 /* KCContactsViewController.m */; };
 		1C397AAD16275B1F00CD34D1 /* KCContactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397AA816275B1F00CD34D1 /* KCContactTableViewController.m */; };
 		1C397AAE16275B1F00CD34D1 /* KCFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397AAA16275B1F00CD34D1 /* KCFaceView.m */; };
 		1C397AAF16275B1F00CD34D1 /* KCFaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C397AAB16275B1F00CD34D1 /* KCFaceView.xib */; };
@@ -86,6 +86,7 @@
 		1C3E6551162649320050C7B5 /* NIState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3E653C162649320050C7B5 /* NIState.m */; };
 		1C3E6552162649320050C7B5 /* NIViewRecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3E653E162649320050C7B5 /* NIViewRecycler.m */; };
 		1C3E6553162649320050C7B5 /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3E6540162649320050C7B5 /* NSString+NimbusCore.m */; };
+		1C4BCE95162F61C4004B2210 /* KCContactSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4BCE94162F61C3004B2210 /* KCContactSelectTableViewController.m */; };
 		1CCA778F162DD39B0002F549 /* KCProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA778E162DD39B0002F549 /* KCProfileTableViewController.m */; };
 		B90B6976161B7F62000997AA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90B6975161B7F62000997AA /* Social.framework */; };
 		B90B6979161B7F6E000997AA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90B6977161B7F6E000997AA /* Accounts.framework */; };
@@ -113,8 +114,8 @@
 		1C0D839A162DEC52003E9759 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Mozzie/External/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		1C0D839C162DEC68003E9759 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = Mozzie/External/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		1C0D839D162DEC68003E9759 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = Mozzie/External/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
-		1C0D83A2162E3236003E9759 /* KCAddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCAddEventViewController.h; path = Calendar/KCAddEventViewController.h; sourceTree = "<group>"; };
-		1C0D83A3162E3236003E9759 /* KCAddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCAddEventViewController.m; path = Calendar/KCAddEventViewController.m; sourceTree = "<group>"; };
+		1C0D83A2162E3236003E9759 /* KCAddEventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCAddEventTableViewController.h; path = Calendar/KCAddEventTableViewController.h; sourceTree = "<group>"; };
+		1C0D83A3162E3236003E9759 /* KCAddEventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCAddEventTableViewController.m; path = Calendar/KCAddEventTableViewController.m; sourceTree = "<group>"; };
 		1C397A44162743C300CD34D1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1C397A8B16275ABC00CD34D1 /* FTWMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTWMLoginViewController.h; path = Home/FTWMLoginViewController.h; sourceTree = "<group>"; };
 		1C397A8C16275ABC00CD34D1 /* FTWMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTWMLoginViewController.m; path = Home/FTWMLoginViewController.m; sourceTree = "<group>"; };
@@ -133,8 +134,8 @@
 		1C397A9C16275AE100CD34D1 /* KCCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCCalendarViewController.m; path = Calendar/KCCalendarViewController.m; sourceTree = "<group>"; };
 		1C397A9D16275AE400CD34D1 /* NSDate+KalAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+KalAdditions.h"; path = "Calendar/NSDate+KalAdditions.h"; sourceTree = "<group>"; };
 		1C397A9E16275AE800CD34D1 /* NSDate+KalAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+KalAdditions.m"; path = "Calendar/NSDate+KalAdditions.m"; sourceTree = "<group>"; };
-		1C397AA516275B1F00CD34D1 /* KCContactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCContactsTableViewController.h; path = Contacts/KCContactsTableViewController.h; sourceTree = "<group>"; };
-		1C397AA616275B1F00CD34D1 /* KCContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCContactsTableViewController.m; path = Contacts/KCContactsTableViewController.m; sourceTree = "<group>"; };
+		1C397AA516275B1F00CD34D1 /* KCContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCContactsViewController.h; path = Contacts/KCContactsViewController.h; sourceTree = "<group>"; };
+		1C397AA616275B1F00CD34D1 /* KCContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCContactsViewController.m; path = Contacts/KCContactsViewController.m; sourceTree = "<group>"; };
 		1C397AA716275B1F00CD34D1 /* KCContactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCContactTableViewController.h; path = Contacts/KCContactTableViewController.h; sourceTree = "<group>"; };
 		1C397AA816275B1F00CD34D1 /* KCContactTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCContactTableViewController.m; path = Contacts/KCContactTableViewController.m; sourceTree = "<group>"; };
 		1C397AA916275B1F00CD34D1 /* KCFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCFaceView.h; path = Contacts/KCFaceView.h; sourceTree = "<group>"; };
@@ -247,6 +248,8 @@
 		1C3E653E162649320050C7B5 /* NIViewRecycler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIViewRecycler.m; path = ../nimbus/src/core/src/NIViewRecycler.m; sourceTree = "<group>"; };
 		1C3E653F162649320050C7B5 /* NSString+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NimbusCore.h"; path = "../nimbus/src/core/src/NSString+NimbusCore.h"; sourceTree = "<group>"; };
 		1C3E6540162649320050C7B5 /* NSString+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NimbusCore.m"; path = "../nimbus/src/core/src/NSString+NimbusCore.m"; sourceTree = "<group>"; };
+		1C4BCE93162F61C3004B2210 /* KCContactSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCContactSelectTableViewController.h; path = Contacts/KCContactSelectTableViewController.h; sourceTree = "<group>"; };
+		1C4BCE94162F61C3004B2210 /* KCContactSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCContactSelectTableViewController.m; path = Contacts/KCContactSelectTableViewController.m; sourceTree = "<group>"; };
 		1CCA778D162DD39B0002F549 /* KCProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCProfileTableViewController.h; sourceTree = "<group>"; };
 		1CCA778E162DD39B0002F549 /* KCProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCProfileTableViewController.m; sourceTree = "<group>"; };
 		B90B6975161B7F62000997AA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -551,8 +554,10 @@
 		B9160E961612700B00CA206E /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				1C397AA516275B1F00CD34D1 /* KCContactsTableViewController.h */,
-				1C397AA616275B1F00CD34D1 /* KCContactsTableViewController.m */,
+				1C4BCE93162F61C3004B2210 /* KCContactSelectTableViewController.h */,
+				1C4BCE94162F61C3004B2210 /* KCContactSelectTableViewController.m */,
+				1C397AA516275B1F00CD34D1 /* KCContactsViewController.h */,
+				1C397AA616275B1F00CD34D1 /* KCContactsViewController.m */,
 				1C397AA716275B1F00CD34D1 /* KCContactTableViewController.h */,
 				1C397AA816275B1F00CD34D1 /* KCContactTableViewController.m */,
 				1C397AA916275B1F00CD34D1 /* KCFaceView.h */,
@@ -588,8 +593,8 @@
 				1C397A9A16275ADC00CD34D1 /* KCCalendarStore.m */,
 				1C397A9B16275ADE00CD34D1 /* KCCalendarViewController.h */,
 				1C397A9C16275AE100CD34D1 /* KCCalendarViewController.m */,
-				1C0D83A2162E3236003E9759 /* KCAddEventViewController.h */,
-				1C0D83A3162E3236003E9759 /* KCAddEventViewController.m */,
+				1C0D83A2162E3236003E9759 /* KCAddEventTableViewController.h */,
+				1C0D83A3162E3236003E9759 /* KCAddEventTableViewController.m */,
 				1C397A9D16275AE400CD34D1 /* NSDate+KalAdditions.h */,
 				1C397A9E16275AE800CD34D1 /* NSDate+KalAdditions.m */,
 			);
@@ -731,7 +736,7 @@
 				1C397AA216275AEC00CD34D1 /* KCCalendarStore.m in Sources */,
 				1C397AA316275AEC00CD34D1 /* KCCalendarViewController.m in Sources */,
 				1C397AA416275AEC00CD34D1 /* NSDate+KalAdditions.m in Sources */,
-				1C397AAC16275B1F00CD34D1 /* KCContactsTableViewController.m in Sources */,
+				1C397AAC16275B1F00CD34D1 /* KCContactsViewController.m in Sources */,
 				1C397AAD16275B1F00CD34D1 /* KCContactTableViewController.m in Sources */,
 				1C397AAE16275B1F00CD34D1 /* KCFaceView.m in Sources */,
 				1C397AB216275B4A00CD34D1 /* KCDataStore.m in Sources */,
@@ -743,7 +748,8 @@
 				1C397AD71627867400CD34D1 /* Person.m in Sources */,
 				1CCA778F162DD39B0002F549 /* KCProfileTableViewController.m in Sources */,
 				1C0D8399162DEAE5003E9759 /* KCConstants.m in Sources */,
-				1C0D83A4162E3236003E9759 /* KCAddEventViewController.m in Sources */,
+				1C0D83A4162E3236003E9759 /* KCAddEventTableViewController.m in Sources */,
+				1C4BCE95162F61C4004B2210 /* KCContactSelectTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

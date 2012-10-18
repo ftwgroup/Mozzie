@@ -12,7 +12,7 @@
 #import "KalDate.h"
 #import "KalLogic.h"
 #import "KCConstants.h"
-#import "KCAddEventViewController.h"
+#import "KCAddEventTableViewController.h"
 
 @interface KCCalendarViewController ()
 
@@ -22,7 +22,7 @@
 
 #pragma mark - Add and Alter Events
 - (void)addEvent {
-    KCAddEventViewController* addEvent = [[KCAddEventViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    KCAddEventTableViewController* addEvent = [[KCAddEventTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     addEvent.eventStore = [KCCalendarStore sharedStore].EKEvents;
     addEvent.tableView.backgroundColor = [UIColor backgroundColor];
     UINavigationController* modalNav = [[UINavigationController alloc] initWithRootViewController:addEvent];

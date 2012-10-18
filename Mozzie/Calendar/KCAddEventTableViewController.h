@@ -13,6 +13,6 @@
 
 #define TOOL_BAR_HEIGHT 40
 
-@interface KCAddEventViewController : UITableViewController <UITextFieldDelegate, NIMutableTableViewModelDelegate>
+@interface KCAddEventTableViewController : UITableViewController <UITextFieldDelegate, NIMutableTableViewModelDelegate>
 @property (strong, nonatomic) EKEventStore* eventStore;
 @end

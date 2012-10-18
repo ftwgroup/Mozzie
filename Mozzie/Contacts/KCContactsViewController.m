@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
-#import "KCContactsTableViewController.h"
+#import "KCContactsViewController.h"
 #import "KCContactTableViewController.h"
 #import "UIColor+FTWColors.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface KCContactsTableViewController ()
+@interface KCContactsViewController ()
 @property (nonatomic) NSArray *friends;
 
 -(void)setupPeoplePicker;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation KCContactsTableViewController
+@implementation KCContactsViewController
 
 @synthesize friends = _friends;
 

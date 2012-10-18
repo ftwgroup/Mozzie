@@ -11,7 +11,7 @@
 
 #import "KCCalendarViewController.h"
 #import "KCProfileTableViewController.h"
-#import "KCContactsTableViewController.h"
+#import "KCContactsViewController.h"
 
 #import "NimbusModels.h"
 
@@ -56,7 +56,7 @@
           
           // NIPushControllerAction is a helper method that instantiates the controller class and then
           // pushes it onto the current view controller's navigation stack.
-          NIPushControllerAction([KCContactsTableViewController class])
+          NIPushControllerAction([KCContactsViewController class])
             toObject:[NISubtitleCellObject objectWithTitle:@"Contacts"
                                                   subtitle:@"Your friend's Profiles"]],
          @"Profile",

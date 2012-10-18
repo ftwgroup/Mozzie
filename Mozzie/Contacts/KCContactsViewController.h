@@ -10,6 +10,6 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import <AddressBook/AddressBook.h>
 
-@interface KCContactsTableViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate>
+@interface KCContactsViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate>
 
 @end

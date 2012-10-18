@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
-#import "KCAddEventViewController.h"
+#import "KCAddEventTableViewController.h"
 #import "UIColor+FTWColors.h"
-#import "KCContactsTableViewController.h"
+#import "KCContactSelectTableViewController.h"
 
-@interface KCAddEventViewController ()
+@interface KCAddEventTableViewController ()
 @property (nonatomic, strong) NIMutableTableViewModel* model;
 @property (nonatomic, readwrite, retain) NITableViewActions* actions;
 @property (nonatomic, strong) NSIndexPath* indexPathForDeletion;
@@ -21,7 +21,7 @@
 @property (strong, nonatomic) NSNumber* status1confirmed0pending;
 @end
 
-@implementation KCAddEventViewController
+@implementation KCAddEventTableViewController
 
 
 #pragma mark DatePicker
@@ -56,7 +56,7 @@
         NSArray* tableElements =
         [NSArray arrayWithObjects:@"Details",
          [NITextInputFormElement textInputElementWithID:0
-                                        placeholderText:@"Name"
+                                        placeholderText:@"Title"
                                                   value:nil
                                                delegate:self],
          [NIDatePickerFormElement datePickerElementWithID:0
@@ -90,7 +90,7 @@
 
 #pragma mark Nav Methods
 - (void)navAddPersonOrGroup {
-    [self.navigationController pushViewController:[KCContactsTableViewController new] animated:YES];
+    [self.navigationController pushViewController:[KCContactSelectTableViewController new] animated:YES];
 }
 
 - (void)navCancel {

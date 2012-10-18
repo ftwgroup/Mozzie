@@ -242,7 +242,7 @@
     switch (state) {
         case FBSessionStateOpen: {
             // do something interesting
-            if (self.loginViewController != nil) {
+            if (self.loginViewController) {
                 UIViewController *topViewController = [self.navController topViewController];
                 [topViewController dismissViewControllerAnimated:YES completion:nil];
                 self.loginViewController = nil;
