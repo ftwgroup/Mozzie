@@ -62,7 +62,7 @@
     [self.window makeKeyAndVisible];
     
     // See if we have a valid token for the current state.
-    if ([self openSessionWithAllowLoginUI:NO]) {
+    if (![self openSessionWithAllowLoginUI:NO]) {
         [self showLoginView];
     }
     return YES;

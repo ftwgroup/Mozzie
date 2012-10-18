@@ -12,9 +12,12 @@
 
 #import <MessageUI/MessageUI.h>
 
+@interface KCContactTableViewController ()
+
 @property (nonatomic, readwrite, retain) NITableViewModel *model;
 @property (nonatomic, readwrite, retain) NITableViewActions *actions;
 - (void)setupTableHeaderView;
+
 @end
 
 @implementation KCContactTableViewController
