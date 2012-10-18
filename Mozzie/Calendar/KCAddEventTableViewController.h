@@ -15,4 +15,5 @@
 
 @interface KCAddEventTableViewController : UITableViewController <UITextFieldDelegate, NIMutableTableViewModelDelegate>
 @property (strong, nonatomic) EKEventStore* eventStore;
+-(id)initWithEvent:(EKEvent*)event;
 @end

@@ -8,6 +8,7 @@
 
 #import "KCCalendarEventListTableView.h"
 #import "KCCalendarStore.h"
+#import "KCAddEventViewController.h"
 #import <EventKit/EventKit.h>
 #import "UIColor+FTWColors.h"
 #import "KalLogic.h"
@@ -16,6 +17,8 @@
 @property (strong, nonatomic) NSArray* compositeCalendar;
 @property (strong, nonatomic) NSArray* sectionArray;
 @property (strong, nonatomic) NSMutableArray* sectionSizes;
+
+-(NSInteger)getIndex:(NSIndexPath*)indexPath;
 @end
 
 @implementation KCCalendarEventListTableView
@@ -39,6 +42,21 @@
     self.tableView.backgroundColor = [UIColor backgroundColor];
     self.tableView.backgroundView = [UIView new];
     self.tableView.backgroundView.backgroundColor = [UIColor backgroundColor];
+}
+
+- (NSInteger)getIndex:(NSIndexPath *)indexPath
+{
+            
+        NSInteger addPrevious = 0;
+        NSInteger untilNow = indexPath.section;
+        for (NSInteger i = 0; i < untilNow; i++) {
+            //NSLog(@"%d", [[self.sectionSizes objectAtIndex:i] integerValue]);
+            addPrevious = addPrevious + [[self.sectionSizes objectAtIndex:i] integerValue];
+        }
+        
+        NSInteger index = indexPath.row + addPrevious;
+        return index;
+    
 }
 
 #pragma mark - Table view data source
@@ -98,16 +116,8 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    NSInteger addPrevious = 0;
-    NSInteger untilNow = indexPath.section;
-    for (NSInteger i = 0; i < untilNow; i++) {
-        //NSLog(@"%d", [[self.sectionSizes objectAtIndex:i] integerValue]);
-        addPrevious = addPrevious + [[self.sectionSizes objectAtIndex:i] integerValue];
-    }
-    
-    NSInteger index = indexPath.row + addPrevious;
-    [self tableViewCellConfiguration:cell ForIndex:index];
+
+    [self tableViewCellConfiguration:cell ForIndex:[self getIndex:indexPath]];
     return cell;
 }
 
@@ -115,14 +125,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Nothing for now...
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    // TODO (julian) we need to add options for doing more than just editing an event
+    EKEvent* eventAtIndex = [self.compositeCalendar objectAtIndex:[self getIndex:indexPath]];
+
+    KCAddEventViewController *eventForm = [[KCAddEventViewController alloc] initWithEvent:eventAtIndex];
+    [self.navigationController pushViewController:eventForm animated:YES];
 }
 
 #pragma mark - View Did 
