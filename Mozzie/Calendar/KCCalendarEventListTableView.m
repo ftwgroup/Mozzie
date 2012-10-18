@@ -8,7 +8,7 @@
 
 #import "KCCalendarEventListTableView.h"
 #import "KCCalendarStore.h"
-#import "KCAddEventViewController.h"
+#import "KCAddEventTableViewController.h"
 #import <EventKit/EventKit.h>
 #import "UIColor+FTWColors.h"
 #import "KalLogic.h"
@@ -128,7 +128,7 @@
     // TODO (julian) we need to add options for doing more than just editing an event
     EKEvent* eventAtIndex = [self.compositeCalendar objectAtIndex:[self getIndex:indexPath]];
 
-    KCAddEventViewController *eventForm = [[KCAddEventViewController alloc] initWithEvent:eventAtIndex];
+    KCAddEventTableViewController *eventForm = [[KCAddEventTableViewController alloc] initWithEvent:eventAtIndex];
     [self.navigationController pushViewController:eventForm animated:YES];
 }
 
