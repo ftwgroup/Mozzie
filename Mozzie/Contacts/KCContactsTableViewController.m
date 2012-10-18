@@ -163,9 +163,9 @@
         // post the action using a lightweight static start method
         [FBRequestConnection startWithGraphPath:[facebookID stringByAppendingString:@"/feed"] completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
             if (!error) {
-                for (NSMutableDictionary *update in [result objectForKey:@"data"]) {
-                    NSLog(@"result: %@", update);
-                }
+                //for (NSMutableDictionary *update in [result objectForKey:@"data"]) {
+                //    NSLog(@"result: %@", update);
+                //}
                 KCContactTableViewController *personView = [[KCContactTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
                 personView.person = person;
                 personView.updates = [result objectForKey:@"data"];

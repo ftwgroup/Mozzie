@@ -125,7 +125,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    // TODO (julian) we need to add options for doing more than just editing an event
     EKEvent* eventAtIndex = [self.compositeCalendar objectAtIndex:[self getIndex:indexPath]];
 
     KCAddEventViewController *eventForm = [[KCAddEventViewController alloc] initWithEvent:eventAtIndex];
