@@ -44,6 +44,55 @@
     [self.view endEditing:YES];
 }
 
+-(id)initWithEvent:(EKEvent*)event
+{
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    if (self) {
+        self.title = @"New Event";
+        
+        self.actions = [[NITableViewActions alloc] initWithController:self];
+        // TODO (julian) needs to be able to handle the case of an all day event
+        NSArray* tableElements =
+        [NSArray arrayWithObjects:@"Details",
+         [NITextInputFormElement textInputElementWithID:0
+                                        placeholderText:@"Name"
+                                                  value:event.title
+                                               delegate:self],
+         [NIDatePickerFormElement datePickerElementWithID:0
+                                                labelText:@"Start Time"
+                                                     date:event.startDate
+                                           datePickerMode:UIDatePickerModeDateAndTime
+                                          didChangeTarget:self
+                                        didChangeSelector:@selector(datePickerDidChangeValue:)],
+         [NIDatePickerFormElement datePickerElementWithID:0
+                                                labelText:@"End Time"
+                                                     date:event.endDate
+                                           datePickerMode:UIDatePickerModeDateAndTime
+                                          didChangeTarget:self
+                                        didChangeSelector:@selector(datePickerDidChangeValue:)],
+         @"People",
+         [NITitleCellObject objectWithTitle:@"Add a contact or group"],
+         @"Status",
+         [NISegmentedControlFormElement segmentedControlElementWithID:0
+                                                            labelText:@"Status"
+                                                             segments:[NSArray arrayWithObjects:
+                                                                       @"Pending", @"Confirmed", nil]
+                                                        selectedIndex:0
+                                                      didChangeTarget:self
+                                                    didChangeSelector:@selector(segmentedControlDidChangeValue:)],
+         @"Location",
+         [NITextInputFormElement textInputElementWithID:1
+                                        placeholderText:@"TBD"
+                                                  value:event.location
+                                               delegate:self],
+         nil];
+        
+        self.model = [[NIMutableTableViewModel alloc] initWithSectionedArray:tableElements
+                                                                    delegate:(id)[NICellFactory class]];
+    }
+    return self;
+}
+
 #pragma init Nimbus Style
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -60,7 +109,13 @@
                                                   value:nil
                                                delegate:self],
          [NIDatePickerFormElement datePickerElementWithID:0
-                                                labelText:@"Date"
+                                                labelText:@"Start Time"
+                                                     date:[NSDate date]
+                                           datePickerMode:UIDatePickerModeDateAndTime
+                                          didChangeTarget:self
+                                        didChangeSelector:@selector(datePickerDidChangeValue:)],
+         [NIDatePickerFormElement datePickerElementWithID:0
+                                                labelText:@"End Time"
                                                      date:[NSDate date]
                                            datePickerMode:UIDatePickerModeDateAndTime
                                           didChangeTarget:self
