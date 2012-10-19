@@ -84,6 +84,9 @@
     self.mainViewController = [[FTWMHomeViewController alloc] init];
     self.navController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
     self.navController.navigationBar.tintColor = [UIColor headerColor];
+    
+    UIImage *backgroundImage = [UIImage imageNamed:@"header320.png"];
+    [self.navController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     

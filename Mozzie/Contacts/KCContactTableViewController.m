@@ -69,7 +69,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self testRequest];
+    //[self testRequest];
     self.tableView.dataSource = self.model;
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
     self.tableView.backgroundView.backgroundColor = [UIColor backgroundColor];
@@ -167,7 +167,13 @@
     for (NSMutableDictionary *update in self.updates) {
         //NSLog(@"result: %@", update);
         NSString *title = [update objectForKey:@"story"];
-        tableContents = [tableContents arrayByAddingObject:[_actions attachNavigationAction:[self detailAction:update] toObject:[NITitleCellObject objectWithTitle:title]]];
+        if (title) {
+            tableContents = [tableContents arrayByAddingObject:[_actions attachNavigationAction:[self detailAction:update] toObject:[NITitleCellObject objectWithTitle:title]]];
+        } else {
+            title = [update objectForKey:@"message"];
+            tableContents = [tableContents arrayByAddingObject:[_actions attachNavigationAction:[self detailAction:update] toObject:[NITitleCellObject objectWithTitle:title]]];
+        }
+
     }
     self.model = [[NITableViewModel alloc] initWithSectionedArray:tableContents delegate:(id)[NICellFactory class]];
     
