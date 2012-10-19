@@ -9,6 +9,7 @@
 #import "KCContactTableViewController.h"
 #import "KCFaceView.h"
 #import "UIColor+FTWColors.h"
+#import "RKRequestExample.h"
 
 #import <MessageUI/MessageUI.h>
 
@@ -45,11 +46,30 @@
     }
     return self;
 }
+-(void)testRequest
+{
+    Contact *contact = [[Contact alloc] init];
+    RKObjectManager *manager = [RKObjectManager sharedManager];
+    manager.client.baseURL = [RKURL URLWithString:@"http://localhost:8000"];
+    RKObjectMapping *contactMapping = [manager.mappingProvider objectMappingForClass:[Contact class]];
+    
+//    RKObjectMapping *contactMapping = [RKObjectMapping mappingForClass:[Contact class]];
+    [contactMapping mapKeyPath:@"id" toAttribute:@"identifier"];
+    [contactMapping mapKeyPath:@"fb_id" toAttribute:@"fbID"];
+    [contactMapping mapKeyPath:@"first" toAttribute:@"firstName"];
+    [contactMapping mapKeyPath:@"last" toAttribute:@"lastName"];
+    [contactMapping mapKeyPath:@"lkdin_id" toAttribute:@"lkdINID"];
+    [contactMapping mapKeyPath:@"nick_name" toAttribute:@"nickName"];
+    [contactMapping mapKeyPath:@"on_phone" toAttribute:@"onPhone"];
+    [contactMapping mapKeyPath:@"photo" toAttribute:@"photo"];
+    
+    [manager loadObjectsAtResourcePath:@"/people"  objectMapping:contactMapping delegate:contact];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self testRequest];
     self.tableView.dataSource = self.model;
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
     self.tableView.backgroundView.backgroundColor = [UIColor backgroundColor];

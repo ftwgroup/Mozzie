@@ -99,6 +99,14 @@
 		B9160E231612658900CA206E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160E221612658900CA206E /* main.m */; };
 		B9160E271612658900CA206E /* FTWMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160E261612658900CA206E /* FTWMAppDelegate.m */; };
 		B9160EA616128A4000CA206E /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160EA516128A4000CA206E /* CoreText.framework */; };
+		B98BC26116311E4F00A0E298 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B98BC25516311D3500A0E298 /* libRestKit.a */; };
+		B98BC26816311EB100A0E298 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B98BC26216311EB100A0E298 /* CFNetwork.framework */; };
+		B98BC26916311EB100A0E298 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B98BC26316311EB100A0E298 /* libxml2.dylib */; };
+		B98BC26A16311EB100A0E298 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B98BC26416311EB100A0E298 /* MobileCoreServices.framework */; };
+		B98BC26B16311EB100A0E298 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B98BC26516311EB100A0E298 /* QuartzCore.framework */; };
+		B98BC26C16311EB100A0E298 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B98BC26616311EB100A0E298 /* Security.framework */; };
+		B98BC26D16311EB100A0E298 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B98BC26716311EB100A0E298 /* SystemConfiguration.framework */; };
+		B98BC27216312ECB00A0E298 /* RKRequestExample.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BC27116312ECB00A0E298 /* RKRequestExample.m */; };
 		B9A1AC111623B52300B37F3D /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A1AC0F1623B52300B37F3D /* EventKit.framework */; };
 		B9A1AC121623B52300B37F3D /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A1AC101623B52300B37F3D /* EventKitUI.framework */; };
 		B9BD13CB161E495600319E3C /* UIColor+FTWColors.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BD13CA161E495600319E3C /* UIColor+FTWColors.m */; };
@@ -106,6 +114,51 @@
 		B9DAFD4F16222D2E004A4007 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DAFD4D16222D2E004A4007 /* AddressBook.framework */; };
 		B9DAFD5016222D2E004A4007 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DAFD4E16222D2E004A4007 /* AddressBookUI.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B98BC25416311D3500A0E298 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B98BC24916311D3500A0E298 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160D1614564E810060A5C5;
+			remoteInfo = RestKit;
+		};
+		B98BC25616311D3500A0E298 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B98BC24916311D3500A0E298 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160D2614564E820060A5C5;
+			remoteInfo = RestKitTests;
+		};
+		B98BC25816311D3500A0E298 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B98BC24916311D3500A0E298 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160E62145651060060A5C5;
+			remoteInfo = RestKitFramework;
+		};
+		B98BC25A16311D3500A0E298 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B98BC24916311D3500A0E298 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160E78145651060060A5C5;
+			remoteInfo = RestKitFrameworkTests;
+		};
+		B98BC25C16311D3500A0E298 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B98BC24916311D3500A0E298 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 259C301615128079003066A2;
+			remoteInfo = RestKitResources;
+		};
+		B98BC26E16311FFA00A0E298 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B98BC24916311D3500A0E298 /* RestKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 25160D1514564E810060A5C5;
+			remoteInfo = RestKit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1C0D8397162DEAE5003E9759 /* KCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCConstants.h; sourceTree = "<group>"; };
@@ -273,6 +326,15 @@
 		B9160E251612658900CA206E /* FTWMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTWMAppDelegate.h; sourceTree = "<group>"; };
 		B9160E261612658900CA206E /* FTWMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTWMAppDelegate.m; sourceTree = "<group>"; };
 		B9160EA516128A4000CA206E /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		B98BC24916311D3500A0E298 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
+		B98BC26216311EB100A0E298 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		B98BC26316311EB100A0E298 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		B98BC26416311EB100A0E298 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		B98BC26516311EB100A0E298 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B98BC26616311EB100A0E298 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B98BC26716311EB100A0E298 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B98BC27016312ECB00A0E298 /* RKRequestExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RKRequestExample.h; path = Mozzie/CoreStore/RKRequestExample.h; sourceTree = "<group>"; };
+		B98BC27116312ECB00A0E298 /* RKRequestExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RKRequestExample.m; path = Mozzie/CoreStore/RKRequestExample.m; sourceTree = "<group>"; };
 		B9A1AC0F1623B52300B37F3D /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		B9A1AC101623B52300B37F3D /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		B9BD13C9161E495600319E3C /* UIColor+FTWColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FTWColors.h"; sourceTree = "<group>"; };
@@ -287,18 +349,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B98BC26C16311EB100A0E298 /* Security.framework in Frameworks */,
+				B98BC26816311EB100A0E298 /* CFNetwork.framework in Frameworks */,
+				B98BC26916311EB100A0E298 /* libxml2.dylib in Frameworks */,
+				B98BC26A16311EB100A0E298 /* MobileCoreServices.framework in Frameworks */,
+				B98BC26B16311EB100A0E298 /* QuartzCore.framework in Frameworks */,
+				B98BC26D16311EB100A0E298 /* SystemConfiguration.framework in Frameworks */,
+				1C397A45162743C300CD34D1 /* CoreData.framework in Frameworks */,
+				B98BC26116311E4F00A0E298 /* libRestKit.a in Frameworks */,
 				1C8942CE1630994300315E24 /* SenTestingKit.framework in Frameworks */,
 				B9CC48281626591400E31DF0 /* MessageUI.framework in Frameworks */,
 				B90B6979161B7F6E000997AA /* Accounts.framework in Frameworks */,
-				1C397A45162743C300CD34D1 /* CoreData.framework in Frameworks */,
 				B9A1AC111623B52300B37F3D /* EventKit.framework in Frameworks */,
 				B9A1AC121623B52300B37F3D /* EventKitUI.framework in Frameworks */,
 				B9DAFD4F16222D2E004A4007 /* AddressBook.framework in Frameworks */,
 				B9DAFD5016222D2E004A4007 /* AddressBookUI.framework in Frameworks */,
 				B90B697A161B7F6E000997AA /* AdSupport.framework in Frameworks */,
 				B90B6976161B7F62000997AA /* Social.framework in Frameworks */,
-				B9160EA616128A4000CA206E /* CoreText.framework in Frameworks */,
 				B9160E171612658800CA206E /* UIKit.framework in Frameworks */,
+				B9160EA616128A4000CA206E /* CoreText.framework in Frameworks */,
 				B9160E191612658800CA206E /* Foundation.framework in Frameworks */,
 				B9160E1B1612658800CA206E /* CoreGraphics.framework in Frameworks */,
 				1CACC1081630B74F009EA821 /* FacebookSDK.framework in Frameworks */,
@@ -324,6 +393,8 @@
 				1C397AC416277AAE00CD34D1 /* Group.m */,
 				1C397AB016275B4A00CD34D1 /* KCDataStore.h */,
 				1C397AB116275B4A00CD34D1 /* KCDataStore.m */,
+				B98BC27016312ECB00A0E298 /* RKRequestExample.h */,
+				B98BC27116312ECB00A0E298 /* RKRequestExample.m */,
 			);
 			name = CoreStore;
 			path = ..;
@@ -496,6 +567,7 @@
 		B9160E071612658800CA206E = {
 			isa = PBXGroup;
 			children = (
+				B98BC24916311D3500A0E298 /* RestKit.xcodeproj */,
 				1C8942FE1630AFCF00315E24 /* Default.png */,
 				B9160E1C1612658800CA206E /* Mozzie */,
 				B9160E151612658800CA206E /* Frameworks */,
@@ -514,6 +586,12 @@
 		B9160E151612658800CA206E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B98BC26216311EB100A0E298 /* CFNetwork.framework */,
+				B98BC26316311EB100A0E298 /* libxml2.dylib */,
+				B98BC26416311EB100A0E298 /* MobileCoreServices.framework */,
+				B98BC26516311EB100A0E298 /* QuartzCore.framework */,
+				B98BC26616311EB100A0E298 /* Security.framework */,
+				B98BC26716311EB100A0E298 /* SystemConfiguration.framework */,
 				1CACC1071630B74F009EA821 /* FacebookSDK.framework */,
 				1C8942CD1630994300315E24 /* SenTestingKit.framework */,
 				B9CC48271626591400E31DF0 /* MessageUI.framework */,
@@ -581,6 +659,18 @@
 			name = Contacts;
 			sourceTree = "<group>";
 		};
+		B98BC24A16311D3500A0E298 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B98BC25516311D3500A0E298 /* libRestKit.a */,
+				B98BC25716311D3500A0E298 /* RestKitTests.octest */,
+				B98BC25916311D3500A0E298 /* RestKit.framework */,
+				B98BC25B16311D3500A0E298 /* RestKitFrameworkTests.octest */,
+				B98BC25D16311D3500A0E298 /* RestKitResources.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B9A1AC061623B3DD00B37F3D /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -616,6 +706,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B98BC26F16311FFA00A0E298 /* PBXTargetDependency */,
 			);
 			name = Mozzie;
 			productName = Mozzie;
@@ -643,12 +734,56 @@
 			mainGroup = B9160E071612658800CA206E;
 			productRefGroup = B9160E131612658800CA206E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B98BC24A16311D3500A0E298 /* Products */;
+					ProjectRef = B98BC24916311D3500A0E298 /* RestKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				B9160E111612658800CA206E /* Mozzie */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B98BC25516311D3500A0E298 /* libRestKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKit.a;
+			remoteRef = B98BC25416311D3500A0E298 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B98BC25716311D3500A0E298 /* RestKitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitTests.octest;
+			remoteRef = B98BC25616311D3500A0E298 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B98BC25916311D3500A0E298 /* RestKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RestKit.framework;
+			remoteRef = B98BC25816311D3500A0E298 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B98BC25B16311D3500A0E298 /* RestKitFrameworkTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitFrameworkTests.octest;
+			remoteRef = B98BC25A16311D3500A0E298 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B98BC25D16311D3500A0E298 /* RestKitResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitResources.bundle;
+			remoteRef = B98BC25C16311D3500A0E298 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B9160E101612658800CA206E /* Resources */ = {
@@ -748,10 +883,19 @@
 				1CACC1161630FEC7009EA821 /* EmailAddresses.m in Sources */,
 				1CACC1191630FEE3009EA821 /* Person.m in Sources */,
 				1CACC11C1630FF0F009EA821 /* PhoneNumbers.m in Sources */,
+				B98BC27216312ECB00A0E298 /* RKRequestExample.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B98BC26F16311FFA00A0E298 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RestKit;
+			targetProxy = B98BC26E16311FFA00A0E298 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B9160E1F1612658900CA206E /* InfoPlist.strings */ = {
@@ -830,10 +974,15 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/Mozzie/External/FacebookBundle\"/**,",
 					"\"$(SRCROOT)/Mozzie/External/nimbus\"/**",
+					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
 				);
 				INFOPLIST_FILE = "Mozzie/Mozzie-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "-lsqlite3.0";
+				OTHER_LDFLAGS = (
+					"-lsqlite3.0",
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -857,10 +1006,15 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/Mozzie/External/FacebookBundle\"/**,",
 					"\"$(SRCROOT)/Mozzie/External/nimbus\"/**",
+					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
 				);
 				INFOPLIST_FILE = "Mozzie/Mozzie-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "-lsqlite3.0";
+				OTHER_LDFLAGS = (
+					"-lsqlite3.0",
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "77ADA761-EBAE-4160-BB3B-68D818D210A3";
 				TARGETED_DEVICE_FAMILY = 1;

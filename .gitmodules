@@ -2,3 +2,6 @@
 [submodule "Mozzie/External/nimbus"]
 	path = Mozzie/External/nimbus
 	url = git://github.com/jverkoey/nimbus.git
+[submodule "RestKit"]
+	path = RestKit
+	url = git://github.com/RestKit/RestKit.git

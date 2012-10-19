@@ -30,18 +30,15 @@
     return self;
 }
 
-- (void)loadView {
-
-}
-
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+
     if (!self.accountStore) {
         self.accountStore = [[ACAccountStore alloc] init];
         [self pullTwitterFeed];
     }
     
-    [super viewDidLoad];
     [self synchAlert];
 	// Do any additional setup after loading the view.
 }
