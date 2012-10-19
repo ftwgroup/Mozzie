@@ -8,12 +8,13 @@
 
 #import "KCContactsViewController.h"
 #import "KCContactTableViewController.h"
+#import "KCDataStore.h"
 #import "UIColor+FTWColors.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface KCContactsViewController ()
-@property (nonatomic) NSArray *friends;
+@property (strong, nonatomic) NSArray *friends;
 
 -(void)setupPeoplePicker;
 -(void)setupSearchBar;
@@ -21,6 +22,13 @@
 -(void)postPerson:(ABRecordRef)person facebookID:(NSString *)facebookID tryReauthIfNeeded:(BOOL)tryReauthIfNeeded;
 
 @end
+
+//C Function for ABAddressbook API
+//to access objective C methods we pass in this refToSelf
+//void *refToStore;
+//void storeContactsInCoreData(ABRecordRef personRecordRef, KCContactsViewController *refToSelf) {
+//    [[(__bridge KCDataStore *)refToStore dataStore] saveEntityFromPersonRecordRef:personRecordRef];
+//};
 
 @implementation KCContactsViewController
 
@@ -171,7 +179,10 @@
                 personView.updates = [result objectForKey:@"data"];
                 [self.navigationController pushViewController:personView animated:NO];
             } else {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                    message:error.localizedDescription
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alertView show];
             }
         }];
@@ -197,4 +208,5 @@
 {
     return NO;
 }
+
 @end

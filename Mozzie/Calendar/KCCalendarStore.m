@@ -16,6 +16,15 @@ static dispatch_once_t pred;
 
 @implementation KCCalendarStore
 
+- (NSArray *) calendars
+{
+    if (!_calendars) {
+        _calendars = [NSArray new];
+    }
+    return _calendars;
+}
+
+
 + (KCCalendarStore* )sharedStore
 {
     dispatch_once(&pred, ^{

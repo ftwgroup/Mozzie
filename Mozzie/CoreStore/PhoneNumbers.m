@@ -2,7 +2,7 @@
 //  PhoneNumbers.m
 //  Mozzie
 //
-//  Created by JJ Weber on 10/11/12.
+//  Created by JJ Weber on 10/18/12.
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
@@ -12,9 +12,8 @@
 
 @implementation PhoneNumbers
 
-@dynamic home;
-@dynamic cell;
-@dynamic work;
+@dynamic number;
+@dynamic label;
 @dynamic person;
 
 @end

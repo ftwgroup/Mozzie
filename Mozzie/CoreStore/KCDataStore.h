@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import <AddressBook/AddressBook.h>
 
 @interface KCDataStore : NSObject
 + (NSArray* )userTwitterHandle;
++ (NSArray* )fetchPeople;
++ (BOOL)saveEntityFromPersonRecordRef:(ABRecordRef) person;
 @end

@@ -2,7 +2,7 @@
 //  PhoneNumbers.h
 //  Mozzie
 //
-//  Created by JJ Weber on 10/11/12.
+//  Created by JJ Weber on 10/18/12.
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
@@ -13,9 +13,8 @@
 
 @interface PhoneNumbers : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * home;
-@property (nonatomic, retain) NSNumber * cell;
-@property (nonatomic, retain) NSNumber * work;
+@property (nonatomic, retain) NSString * number;
+@property (nonatomic, retain) NSString * label;
 @property (nonatomic, retain) Person *person;
 
 @end

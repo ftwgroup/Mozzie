@@ -11,6 +11,6 @@
 #import "NimbusModels.h"
 #import <AddressBook/AddressBook.h>
 
-@interface KCContactSelectTableViewController : UITableViewController <NIMutableTableViewModelDelegate>
+@interface KCContactSelectTableViewController : UITableViewController
 
 @end

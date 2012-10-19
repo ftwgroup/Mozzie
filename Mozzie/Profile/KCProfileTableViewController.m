@@ -31,15 +31,18 @@
 }
 
 - (void)loadView {
-    if (!self.accountStore) {
-        self.accountStore = [[ACAccountStore alloc] init];
-        [self pullTwitterFeed];
-    }
+
 }
 
 - (void)viewDidLoad
 {
+    if (!self.accountStore) {
+        self.accountStore = [[ACAccountStore alloc] init];
+        [self pullTwitterFeed];
+    }
+    
     [super viewDidLoad];
+    [self synchAlert];
 	// Do any additional setup after loading the view.
 }
 
@@ -120,4 +123,66 @@
     self.tableView.tableHeaderView = faceView.view;
 }
 
+# pragma mark - Synch 
+# pragma mark - Contacts
+- (void)synchAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Would you like to synch your contacts with Mozzie?"
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:@"No"
+                                          otherButtonTitles:@"Yes", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    [alertView resignFirstResponder];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex > 0) {
+        [self synchAppDBWithAddressBook];
+    }
+    [alertView resignFirstResponder];
+}
+
+- (void)synchAppDBWithAddressBook {
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+//        CFErrorRef *abError = NULL;
+//        CFArrayRef personArr;
+//        ABAddressBookRef myAB = ABAddressBookCreateWithOptions(nil, abError);
+//        if (abError) {
+//            NSLog(@"AddressBook failed to init with error %@", CFErrorCopyDescription(*abError));
+//        } else {
+//            personArr = ABAddressBookCopyArrayOfAllPeople(myAB);
+//            for (int i = 0; i < CFArrayGetCount(personArr); i++) {
+//                [KCDataStore saveEntityFromPersonRecordRef:CFArrayGetValueAtIndex(personArr, i)];
+//            }
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Done Synching!"
+//                                                                message:nil delegate:self
+//                                                      cancelButtonTitle:@"Ok"
+//                                                      otherButtonTitles:nil, nil];
+//                [alert show];
+//            });
+//        }
+//    });
+    //non-asynch
+    CFErrorRef *abError = NULL;
+    CFArrayRef personArr;
+    ABAddressBookRef myAB = ABAddressBookCreateWithOptions(nil, abError);
+    if (abError) {
+        NSLog(@"AddressBook failed to init with error %@", CFErrorCopyDescription(*abError));
+    } else {
+        personArr = ABAddressBookCopyArrayOfAllPeople(myAB);
+        for (int i = 0; i < CFArrayGetCount(personArr); i++) {
+            [KCDataStore saveEntityFromPersonRecordRef:CFArrayGetValueAtIndex(personArr, i)];
+        }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Done Synching!"
+                                                            message:nil
+                                                       delegate:self
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
 @end

@@ -12,10 +12,6 @@
 @interface FTWMLoginViewController ()
 
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
-@property (weak, nonatomic) IBOutlet UIButton *newAccButton;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-- (IBAction)newAccAction:(UIButton *)sender;
-- (IBAction)cancelAction:(UIButton *)sender;
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
@@ -25,6 +21,9 @@
 
 @implementation FTWMLoginViewController
 
+- (IBAction)cancelButton:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @synthesize loginButton = _loginButton;
 @synthesize spinner = _spinner;
 
@@ -71,10 +70,5 @@
     // is to stop showing our activity indicator.
     [self.spinner stopAnimating];
 }
-- (IBAction)newAccAction:(UIButton *)sender {
-}
 
-- (IBAction)cancelAction:(UIButton *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 @end

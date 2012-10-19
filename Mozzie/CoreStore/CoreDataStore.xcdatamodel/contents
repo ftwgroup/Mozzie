@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="11G63" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="EmailAddresses" representedClassName="EmailAddresses" syncable="YES">
-        <attribute name="primary" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="secondary" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="ternary" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="EmailAddress" representedClassName="EmailAddresses" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="emailAddresses" inverseEntity="Person" syncable="YES"/>
     </entity>
+    <entity name="Entity" syncable="YES"/>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="attendees" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -20,6 +19,7 @@
         <relationship name="manyPeople" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="manyGroups" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName="Person" syncable="YES">
+        <attribute name="abRecordID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="facebookID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,22 +28,22 @@
         <attribute name="photoData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitterHandle" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="emailAddresses" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EmailAddresses" inverseName="person" inverseEntity="EmailAddresses" syncable="YES"/>
+        <relationship name="emailAddresses" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EmailAddress" inverseName="person" inverseEntity="EmailAddress" syncable="YES"/>
         <relationship name="manyEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="manyPeople" inverseEntity="Event" syncable="YES"/>
         <relationship name="manyGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="manyPeople" inverseEntity="Group" syncable="YES"/>
-        <relationship name="phoneNumbers" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PhoneNumbers" inverseName="person" inverseEntity="PhoneNumbers" syncable="YES"/>
+        <relationship name="phoneNumbers" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PhoneNumber" inverseName="person" inverseEntity="PhoneNumber" syncable="YES"/>
     </entity>
-    <entity name="PhoneNumbers" representedClassName="PhoneNumbers" syncable="YES">
-        <attribute name="cell" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="home" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="work" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    <entity name="PhoneNumber" representedClassName="PhoneNumbers" syncable="YES">
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="phoneNumbers" inverseEntity="Person" syncable="YES"/>
     </entity>
     <elements>
-        <element name="EmailAddresses" positionX="-198" positionY="27" width="128" height="105"/>
+        <element name="EmailAddress" positionX="-198" positionY="27" width="128" height="75"/>
         <element name="Event" positionX="106" positionY="-81" width="128" height="135"/>
         <element name="Group" positionX="-54" positionY="-342" width="128" height="90"/>
-        <element name="Person" positionX="-378" positionY="-294" width="128" height="225"/>
-        <element name="PhoneNumbers" positionX="-396" positionY="27" width="128" height="105"/>
+        <element name="Person" positionX="-378" positionY="-294" width="128" height="240"/>
+        <element name="PhoneNumber" positionX="-396" positionY="27" width="128" height="90"/>
+        <element name="Entity" positionX="160" positionY="192" width="128" height="45"/>
     </elements>
 </model>
