@@ -17,6 +17,7 @@
 @interface DetailView : UITableViewController
 @property (nonatomic, readwrite, retain) NITableViewModel *model;
 @property (nonatomic, readwrite, retain) NITableViewActions *actions;
+@property (nonatomic, retain) Contact *contact;
 - (id)initWithUpdate:(NSMutableDictionary*)updateDict;
 @end
 
@@ -24,6 +25,7 @@
 
 @synthesize model = _model;
 @synthesize actions = _actions;
+@synthesize contact = _contact;
 
 
 - (id)initWithUpdate:(NSMutableDictionary*)updateDict
@@ -43,33 +45,37 @@
 
         _model = [[NITableViewModel alloc] initWithSectionedArray:sectionedObjects
                                                          delegate:(id)[NICellFactory class]];
+        _contact = [Contact new];
     }
     return self;
 }
 -(void)testRequest
 {
-    Contact *contact = [[Contact alloc] init];
     RKObjectManager *manager = [RKObjectManager sharedManager];
     manager.client.baseURL = [RKURL URLWithString:@"http://localhost:8000"];
     RKObjectMapping *contactMapping = [manager.mappingProvider objectMappingForClass:[Contact class]];
     
-//    RKObjectMapping *contactMapping = [RKObjectMapping mappingForClass:[Contact class]];
-    [contactMapping mapKeyPath:@"id" toAttribute:@"identifier"];
-    [contactMapping mapKeyPath:@"fb_id" toAttribute:@"fbID"];
-    [contactMapping mapKeyPath:@"first" toAttribute:@"firstName"];
-    [contactMapping mapKeyPath:@"last" toAttribute:@"lastName"];
-    [contactMapping mapKeyPath:@"lkdin_id" toAttribute:@"lkdINID"];
-    [contactMapping mapKeyPath:@"nick_name" toAttribute:@"nickName"];
-    [contactMapping mapKeyPath:@"on_phone" toAttribute:@"onPhone"];
-    [contactMapping mapKeyPath:@"photo" toAttribute:@"photo"];
+    NSDictionary *queryParams = [NSDictionary dictionaryWithObject:@"json" forKey:@"format"];
+    NSString *resourcePath = [@"/people/" stringByAppendingQueryParameters:queryParams];
+    NSLog(@"resource %@", resourcePath);
+    [manager loadObjectsAtResourcePath:resourcePath objectMapping:contactMapping delegate:self.contact];
     
-    [manager loadObjectsAtResourcePath:@"/people"  objectMapping:contactMapping delegate:contact];
+//    RKObjectMapping *contactMapping = [RKObjectMapping mappingForClass:[Contact class]];
+//    [contactMapping mapKeyPath:@"id" toAttribute:@"identifier"];
+//    [contactMapping mapKeyPath:@"fb_id" toAttribute:@"fbID"];
+//    [contactMapping mapKeyPath:@"first" toAttribute:@"firstName"];
+//    [contactMapping mapKeyPath:@"last" toAttribute:@"lastName"];
+//    [contactMapping mapKeyPath:@"lkdin_id" toAttribute:@"lkdINID"];
+//    [contactMapping mapKeyPath:@"nick_name" toAttribute:@"nickName"];
+//    [contactMapping mapKeyPath:@"on_phone" toAttribute:@"onPhone"];
+//    [contactMapping mapKeyPath:@"photo" toAttribute:@"photo"];
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //[self testRequest];
+    [self testRequest];
     self.tableView.dataSource = self.model;
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
     self.tableView.backgroundView.backgroundColor = [UIColor backgroundColor];

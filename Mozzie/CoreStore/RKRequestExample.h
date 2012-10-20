@@ -14,7 +14,7 @@
 
 @end
 
-@interface Contact : NSObject <RKObjectLoaderDelegate>
+@interface Contact : NSObject <RKObjectLoaderDelegate,RKRequestDelegate>
 
 @property (nonatomic, retain) NSString*identifier;
 @property (nonatomic, retain) NSString *fbID;

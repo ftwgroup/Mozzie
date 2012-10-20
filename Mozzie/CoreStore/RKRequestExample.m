@@ -96,9 +96,40 @@
     NSLog(@"Encountered an error: %@", error);
 }
 
+// RKRequestDelegate Protocol
 - (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error
 {
     NSLog(@"Encounted an error: %@", error);
+}
+
+- (void)request:(RKRequest *)request didReceiveResponse:(RKResponse *)response
+{
+    NSLog(@"Response: %@",response);
+}
+
+- (void)request:(RKRequest*)request didLoadResponse:(RKResponse*)response {
+    if ([request isGET]) {
+        // Handling GET /foo.xml
+        
+        if ([response isOK]) {
+            // Success! Let's take a look at the data
+            NSLog(@"Retrieved JSON: %@", [response bodyAsString]);
+        }
+        
+    } else if ([request isPOST]) {
+        
+        // Handling POST /other.json
+        if ([response isJSON]) {
+            NSLog(@"Got a JSON response back from our POST!");
+        }
+        
+    } else if ([request isDELETE]) {
+        
+        // Handling DELETE /missing_resource.txt
+        if ([response isNotFound]) {
+            NSLog(@"The resource path '%@' was not found.", [request resourcePath]);
+        }
+    }
 }
 
 // CRUD through a router

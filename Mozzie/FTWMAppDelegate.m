@@ -43,14 +43,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // RestKist client
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURLString:@"httpe://localhost:8000"];
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURLString:@"http://localhost:8000"];
     
     // Enable automatic network activity indicator
     objectManager.client.requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;
     
     // Setup our Contact Mapping
     RKObjectMapping *contactMapping = [RKObjectMapping mappingForClass:[Contact class]];
-    [contactMapping mapKeyPath:@"id" toAttribute:@"identifier"];
+    //[contactMapping mapKeyPath:@"id" toAttribute:@"identifier"];
     [contactMapping mapKeyPath:@"fb_id" toAttribute:@"fbID"];
     [contactMapping mapKeyPath:@"first" toAttribute:@"firstName"];
     [contactMapping mapKeyPath:@"last" toAttribute:@"lastName"];
@@ -59,12 +59,14 @@
     [contactMapping mapKeyPath:@"on_phone" toAttribute:@"onPhone"];
     [contactMapping mapKeyPath:@"photo" toAttribute:@"photo"];
     
+    [objectManager.mappingProvider addObjectMapping:contactMapping];
+    
     // Register our mappings with the provider using a resource path pattern
-    RKObjectRouter *router = [RKObjectManager sharedManager].router;
+    //RKObjectRouter *router = [RKObjectManager sharedManager].router;
     
     // Define a default resource path
-    [router routeClass:[Contact class] toResourcePath:@"/people/:identifier"];
-    [router routeClass:[Contact class] toResourcePath:@"/people" forMethod:RKRequestMethodPOST];
+    //[router routeClass:[Contact class] toResourcePath:@"/people/:identifier"];
+    //[router routeClass:[Contact class] toResourcePath:@"/people" forMethod:RKRequestMethodPOST];
     
     
     //temporarily just the first one
