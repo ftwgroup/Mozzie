@@ -47,10 +47,6 @@
 
 - (void)calendarChooserSelectionDidChange:(EKCalendarChooser *)calendarChooser {
     [KCCalendarStore sharedStore].calendars = [NSArray arrayWithArray:[calendarChooser.selectedCalendars allObjects]];
-    //passing nil as value for calendars when querying EKCalendarStore actually returns ALL cals
-    if ([KCCalendarStore sharedStore].calendars.count == 0) {
-        [KCCalendarStore sharedStore].calendars = [NSArray new];
-    } 
 }
 
 #pragma mark - Calendar methods

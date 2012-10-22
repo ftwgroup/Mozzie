@@ -43,7 +43,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // RestKist client
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURLString:@"httpe://localhost:8000"];
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURLString:@"http://localhost:8000"];
     
     // Enable automatic network activity indicator
     objectManager.client.requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;
