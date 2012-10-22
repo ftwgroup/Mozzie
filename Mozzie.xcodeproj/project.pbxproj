@@ -89,6 +89,12 @@
 		1CACC1161630FEC7009EA821 /* EmailAddresses.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACC1151630FEC7009EA821 /* EmailAddresses.m */; };
 		1CACC1191630FEE3009EA821 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACC1181630FEE3009EA821 /* Person.m */; };
 		1CACC11C1630FF0F009EA821 /* PhoneNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACC11B1630FF0F009EA821 /* PhoneNumbers.m */; };
+		4CA73E5F1635E01D0091053E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8942CD1630994300315E24 /* SenTestingKit.framework */; };
+		4CA73E601635E01D0091053E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160E161612658800CA206E /* UIKit.framework */; };
+		4CA73E611635E01D0091053E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160E181612658800CA206E /* Foundation.framework */; };
+		4CA73E671635E01D0091053E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4CA73E651635E01D0091053E /* InfoPlist.strings */; };
+		4CA73E6A1635E01D0091053E /* MozzieRestKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA73E691635E01D0091053E /* MozzieRestKitTests.m */; };
+		4CA73E711635EA4F0091053E /* KCRKInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA73E701635EA4F0091053E /* KCRKInit.m */; };
 		B90B6976161B7F62000997AA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90B6975161B7F62000997AA /* Social.framework */; };
 		B90B6979161B7F6E000997AA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90B6977161B7F6E000997AA /* Accounts.framework */; };
 		B90B697A161B7F6E000997AA /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90B6978161B7F6E000997AA /* AdSupport.framework */; };
@@ -116,6 +122,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4CA73E771635F45A0091053E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9160E091612658800CA206E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9160E111612658800CA206E;
+			remoteInfo = Mozzie;
+		};
 		B98BC25416311D3500A0E298 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B98BC24916311D3500A0E298 /* RestKit.xcodeproj */;
@@ -312,6 +325,14 @@
 		1CACC1181630FEE3009EA821 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = Mozzie/CoreStore/Person.m; sourceTree = "<group>"; };
 		1CACC11A1630FF0F009EA821 /* PhoneNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneNumbers.h; path = Mozzie/CoreStore/PhoneNumbers.h; sourceTree = "<group>"; };
 		1CACC11B1630FF0F009EA821 /* PhoneNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhoneNumbers.m; path = Mozzie/CoreStore/PhoneNumbers.m; sourceTree = "<group>"; };
+		4CA73E5E1635E01D0091053E /* MozzieRestKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MozzieRestKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CA73E641635E01D0091053E /* MozzieRestKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MozzieRestKitTests-Info.plist"; sourceTree = "<group>"; };
+		4CA73E661635E01D0091053E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4CA73E681635E01D0091053E /* MozzieRestKitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MozzieRestKitTests.h; sourceTree = "<group>"; };
+		4CA73E691635E01D0091053E /* MozzieRestKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MozzieRestKitTests.m; sourceTree = "<group>"; };
+		4CA73E6B1635E01D0091053E /* MozzieRestKitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MozzieRestKitTests-Prefix.pch"; sourceTree = "<group>"; };
+		4CA73E6F1635EA4F0091053E /* KCRKInit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCRKInit.h; sourceTree = "<group>"; };
+		4CA73E701635EA4F0091053E /* KCRKInit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCRKInit.m; sourceTree = "<group>"; };
 		B90B6975161B7F62000997AA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B90B6977161B7F6E000997AA /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B90B6978161B7F6E000997AA /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -345,6 +366,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4CA73E5A1635E01D0091053E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CA73E5F1635E01D0091053E /* SenTestingKit.framework in Frameworks */,
+				4CA73E601635E01D0091053E /* UIKit.framework in Frameworks */,
+				4CA73E611635E01D0091053E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9160E0F1612658800CA206E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -564,12 +595,33 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
+		4CA73E621635E01D0091053E /* MozzieRestKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CA73E681635E01D0091053E /* MozzieRestKitTests.h */,
+				4CA73E691635E01D0091053E /* MozzieRestKitTests.m */,
+				4CA73E631635E01D0091053E /* Supporting Files */,
+			);
+			path = MozzieRestKitTests;
+			sourceTree = "<group>";
+		};
+		4CA73E631635E01D0091053E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4CA73E641635E01D0091053E /* MozzieRestKitTests-Info.plist */,
+				4CA73E651635E01D0091053E /* InfoPlist.strings */,
+				4CA73E6B1635E01D0091053E /* MozzieRestKitTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		B9160E071612658800CA206E = {
 			isa = PBXGroup;
 			children = (
 				B98BC24916311D3500A0E298 /* RestKit.xcodeproj */,
 				1C8942FE1630AFCF00315E24 /* Default.png */,
 				B9160E1C1612658800CA206E /* Mozzie */,
+				4CA73E621635E01D0091053E /* MozzieRestKitTests */,
 				B9160E151612658800CA206E /* Frameworks */,
 				B9160E131612658800CA206E /* Products */,
 			);
@@ -579,6 +631,7 @@
 			isa = PBXGroup;
 			children = (
 				B9160E121612658800CA206E /* Mozzie.app */,
+				4CA73E5E1635E01D0091053E /* MozzieRestKitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -616,6 +669,8 @@
 			children = (
 				B9160E251612658900CA206E /* FTWMAppDelegate.h */,
 				B9160E261612658900CA206E /* FTWMAppDelegate.m */,
+				4CA73E6F1635EA4F0091053E /* KCRKInit.h */,
+				4CA73E701635EA4F0091053E /* KCRKInit.m */,
 				B9BD13C9161E495600319E3C /* UIColor+FTWColors.h */,
 				B9BD13CA161E495600319E3C /* UIColor+FTWColors.m */,
 				1C0D8397162DEAE5003E9759 /* KCConstants.h */,
@@ -695,6 +750,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4CA73E5D1635E01D0091053E /* MozzieRestKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CA73E6C1635E01D0091053E /* Build configuration list for PBXNativeTarget "MozzieRestKitTests" */;
+			buildPhases = (
+				4CA73E591635E01D0091053E /* Sources */,
+				4CA73E5A1635E01D0091053E /* Frameworks */,
+				4CA73E5B1635E01D0091053E /* Resources */,
+				4CA73E5C1635E01D0091053E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4CA73E781635F45A0091053E /* PBXTargetDependency */,
+			);
+			name = MozzieRestKitTests;
+			productName = MozzieRestKitTests;
+			productReference = 4CA73E5E1635E01D0091053E /* MozzieRestKitTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		B9160E111612658800CA206E /* Mozzie */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9160E361612658900CA206E /* Build configuration list for PBXNativeTarget "Mozzie" */;
@@ -743,6 +817,7 @@
 			projectRoot = "";
 			targets = (
 				B9160E111612658800CA206E /* Mozzie */,
+				4CA73E5D1635E01D0091053E /* MozzieRestKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -786,6 +861,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4CA73E5B1635E01D0091053E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CA73E671635E01D0091053E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9160E101612658800CA206E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -821,7 +904,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4CA73E5C1635E01D0091053E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		4CA73E591635E01D0091053E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CA73E6A1635E01D0091053E /* MozzieRestKitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9160E0E1612658800CA206E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -884,12 +991,18 @@
 				1CACC1191630FEE3009EA821 /* Person.m in Sources */,
 				1CACC11C1630FF0F009EA821 /* PhoneNumbers.m in Sources */,
 				B98BC27216312ECB00A0E298 /* RKRequestExample.m in Sources */,
+				4CA73E711635EA4F0091053E /* KCRKInit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4CA73E781635F45A0091053E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B9160E111612658800CA206E /* Mozzie */;
+			targetProxy = 4CA73E771635F45A0091053E /* PBXContainerItemProxy */;
+		};
 		B98BC26F16311FFA00A0E298 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RestKit;
@@ -898,6 +1011,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4CA73E651635E01D0091053E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CA73E661635E01D0091053E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		B9160E1F1612658900CA206E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -909,6 +1030,55 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4CA73E6D1635E01D0091053E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Mozzie.app/Mozzie";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MozzieRestKitTests/MozzieRestKitTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
+				INFOPLIST_FILE = "MozzieRestKitTests/MozzieRestKitTests-Info.plist";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PUBLIC_HEADERS_FOLDER_PATH)/Private";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "\"$(SOURCE_ROOT)/RestKit";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		4CA73E6E1635E01D0091053E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Mozzie.app/Mozzie";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MozzieRestKitTests/MozzieRestKitTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
+				INFOPLIST_FILE = "MozzieRestKitTests/MozzieRestKitTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PUBLIC_HEADERS_FOLDER_PATH)/Private";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "\"$(SOURCE_ROOT)/RestKit";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		B9160E341612658900CA206E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1025,6 +1195,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4CA73E6C1635E01D0091053E /* Build configuration list for PBXNativeTarget "MozzieRestKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CA73E6D1635E01D0091053E /* Debug */,
+				4CA73E6E1635E01D0091053E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		B9160E0C1612658800CA206E /* Build configuration list for PBXProject "Mozzie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

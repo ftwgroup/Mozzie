@@ -11,7 +11,7 @@
 #import <RestKit/CoreData.h>
 
 @interface RKRequestExample : NSObject <RKRequestDelegate>
-
+- (void)setupCoreDataStore;
 @end
 
 @interface Contact : NSObject <RKObjectLoaderDelegate,RKRequestDelegate>

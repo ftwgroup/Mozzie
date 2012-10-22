@@ -25,7 +25,7 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="linkedinID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="onPhone" optional="YES" syncable="YES"/>
+        <attribute name="onPhone" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="photoData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitterHandle" optional="YES" attributeType="String" syncable="YES"/>

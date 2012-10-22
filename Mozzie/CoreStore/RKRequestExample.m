@@ -60,6 +60,15 @@
 @synthesize onPhone;
 @synthesize photo;
 
+//RKObjectManager *manager = [RKObjectManager sharedManager];
+//manager.client.baseURL = [RKURL URLWithString:@"http://localhost:8000"];
+//RKObjectMapping *contactMapping = [manager.mappingProvider objectMappingForClass:[Contact class]];
+//
+//NSDictionary *queryParams = [NSDictionary dictionaryWithObject:@"json" forKey:@"format"];
+//NSString *resourcePath = [@"/people/" stringByAppendingQueryParameters:queryParams];
+//NSLog(@"resource %@", resourcePath);
+//[manager loadObjectsAtResourcePath:resourcePath objectMapping:contactMapping delegate:self.contact];
+
 - (void)setupRouter {
     // Grab the reference to the router from the manager
     RKObjectRouter *router = [RKObjectManager sharedManager].router;
@@ -81,8 +90,7 @@
     [objectMapping mapKeyPath:@"photo" toAttribute:@"photo"];
 
 
-    RKObjectManager* manager = [RKObjectManager objectManagerWithBaseURLString:@"http://restkit.org"];
-    [manager loadObjectsAtResourcePath:@"/contacts/1" objectMapping:objectMapping delegate:self];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/contacts/1" objectMapping:objectMapping delegate:self];
 }
 
 // RKObjectLoaderDelegate methods
@@ -191,14 +199,5 @@
 //- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
 //    RKLogInfo(@"Load collection of Articles: %@", objects);
 //}
-
-// CoreData Mapping
-- (void)setupCoreDataStore
-{
-    RKObjectManager* objectManager = [RKObjectManager objectManagerWithBaseURL:@"http://restkit.org"];
-    RKManagedObjectStore* objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:@"MyApp.sqlite"];
-    objectManager.objectStore = objectStore;
-}
-
 
 @end
