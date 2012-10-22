@@ -28,5 +28,6 @@
 @dynamic manyGroups;
 @dynamic phoneNumbers;
 @dynamic abRecordID;
+@dynamic onPhone;
 
 @end

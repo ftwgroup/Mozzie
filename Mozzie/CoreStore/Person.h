@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSSet *manyGroups;
 @property (nonatomic, retain) PhoneNumbers *phoneNumbers;
 @property (nonatomic) NSInteger abRecordID;
+@property (nonatomic, assign) BOOL onPhone;
 @end
 
 @interface Person (CoreDataGeneratedAccessors)
