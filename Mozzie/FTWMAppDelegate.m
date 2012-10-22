@@ -50,7 +50,7 @@
     
     // Setup our Contact Mapping
     RKObjectMapping *contactMapping = [RKObjectMapping mappingForClass:[Contact class]];
-    [contactMapping mapKeyPath:@"id" toAttribute:@"identifier"];
+    //[contactMapping mapKeyPath:@"id" toAttribute:@"identifier"];
     [contactMapping mapKeyPath:@"fb_id" toAttribute:@"fbID"];
     [contactMapping mapKeyPath:@"first" toAttribute:@"firstName"];
     [contactMapping mapKeyPath:@"last" toAttribute:@"lastName"];
@@ -59,12 +59,14 @@
     [contactMapping mapKeyPath:@"on_phone" toAttribute:@"onPhone"];
     [contactMapping mapKeyPath:@"photo" toAttribute:@"photo"];
     
+    [objectManager.mappingProvider addObjectMapping:contactMapping];
+    
     // Register our mappings with the provider using a resource path pattern
-    RKObjectRouter *router = [RKObjectManager sharedManager].router;
+    //RKObjectRouter *router = [RKObjectManager sharedManager].router;
     
     // Define a default resource path
-    [router routeClass:[Contact class] toResourcePath:@"/people/:identifier"];
-    [router routeClass:[Contact class] toResourcePath:@"/people" forMethod:RKRequestMethodPOST];
+    //[router routeClass:[Contact class] toResourcePath:@"/people/:identifier"];
+    //[router routeClass:[Contact class] toResourcePath:@"/people" forMethod:RKRequestMethodPOST];
     
     
     //temporarily just the first one
@@ -84,6 +86,9 @@
     self.mainViewController = [[FTWMHomeViewController alloc] init];
     self.navController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
     self.navController.navigationBar.tintColor = [UIColor headerColor];
+    
+    UIImage *backgroundImage = [UIImage imageNamed:@"header320.png"];
+    [self.navController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     
