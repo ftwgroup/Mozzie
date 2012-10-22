@@ -9,6 +9,7 @@
 #import "MozzieRestKitTests.h"
 #import "RKRequestExample.h"
 #import "KCRKInit.h"
+#import "KCDataStore.h"
 
 @implementation MozzieRestKitTests
 
@@ -19,8 +20,8 @@
     
     STAssertNotNil([RKObjectManager sharedManager], @"Could not create shared object manager");
     STAssertNotNil([RKObjectManager sharedManager].objectStore, @"Could not create test");
-    
-    // Set-up code here.
+
+    STAssertNoThrow([KCDataStore context], @"Core Data conflicts with RestKit");
     
     initConvenience = nil;
 }
@@ -35,7 +36,6 @@
 - (void)testKCRKInit
 {
     [self setUp];
-    STFail(@"Fail!");
     [self tearDown];
 }
 

@@ -11,6 +11,9 @@
 #import <AddressBook/AddressBook.h>
 
 @interface KCDataStore : NSObject
++ (NSManagedObjectContext*) context;
++ (NSManagedObjectModel *) model;
+
 + (NSArray* )userTwitterHandle;
 + (NSArray* )fetchPeople;
 + (BOOL)saveEntityFromPersonRecordRef:(ABRecordRef) person;

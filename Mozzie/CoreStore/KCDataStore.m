@@ -32,7 +32,7 @@ NSManagedObjectModel *dataModel;
         
         NSError* err;
         if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&err]) {
-            [NSException raise:@"Open failed!"
+            [NSException raise:@"Core data db open failed!"
                         format:@"Reason: %@", [err localizedDescription]];
         } else {
             dataContext = [NSManagedObjectContext new];

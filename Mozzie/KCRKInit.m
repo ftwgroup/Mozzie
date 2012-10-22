@@ -8,6 +8,8 @@
 
 #import "KCRKInit.h"
 #import "Person.h"
+#import "KCConstants.h"
+#import "KCDataStore.h"
 #import <RestKit/RestKit.h>
 
 @implementation KCRKInit
@@ -19,7 +21,15 @@
     [RKObjectManager setSharedManager:objectManager];
     
     // Store Manager
-    RKManagedObjectStore* objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:@"KCdataStore.data"];
+    NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+    NSString* documentDirectory = [documentDirectories objectAtIndex:0];
+    
+    
+    RKManagedObjectStore* objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:kCoreDataStoreName
+                                                                               inDirectory:documentDirectory
+                                                                     usingSeedDatabaseName:nil
+                                                                        managedObjectModel:[KCDataStore model]
+                                                                                  delegate:self];
     [RKObjectManager sharedManager].objectStore = objectStore;
     
     // Enable automatic network activity indicator
