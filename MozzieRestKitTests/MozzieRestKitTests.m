@@ -16,14 +16,14 @@
 - (void)setUp
 {
     [super setUp];
-    KCRKInit* initConvenience = [[KCRKInit alloc] init];
+    [KCRKInit setupRK];
     
     STAssertNotNil([RKObjectManager sharedManager], @"Could not create shared object manager");
-    STAssertNotNil([RKObjectManager sharedManager].objectStore, @"Could not create test");
+    STAssertNotNil([RKObjectManager sharedManager].objectStore, @"Could not create test db context");
 
     STAssertNoThrow([KCDataStore context], @"Core Data conflicts with RestKit");
     
-    initConvenience = nil;
+    
 }
 
 - (void)tearDown

@@ -13,20 +13,15 @@
 #import <RestKit/RestKit.h>
 
 @implementation KCRKInit
-- (id) init {
++ (void) setupRK {
     /* first initialize the base class */
-    self = [super init];
     // RestKist client
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURLString:@"http://localhost:8000"];
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURLString:kMozzieServeBaseURL];
     [RKObjectManager setSharedManager:objectManager];
     
-    // Store Manager
-    NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
-    NSString* documentDirectory = [documentDirectories objectAtIndex:0];
-    
-    
+    // Store Manager    
     RKManagedObjectStore* objectStore = [RKManagedObjectStore objectStoreWithStoreFilename:kCoreDataStoreName
-                                                                               inDirectory:documentDirectory
+                                                                               inDirectory:nil
                                                                      usingSeedDatabaseName:nil
                                                                         managedObjectModel:[KCDataStore model]
                                                                                   delegate:self];
@@ -36,7 +31,7 @@
     objectManager.client.requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;
     
     // Setup Person Mappping
-    RKManagedObjectMapping *personMapping = [RKManagedObjectMapping mappingForClass:[Person class] inManagedObjectStore:objectStore];
+    //RKManagedObjectMapping *personMapping = [RKManagedObjectMapping mappingForClass:[Person class] inManagedObjectStore:objectStore];
     
 //    // Setup our Contact Mapping
 //    RKObjectMapping *contactMapping = [RKObjectMapping mappingForClass:[Contact class]];
@@ -57,9 +52,5 @@
     // Define a default resource path
     //[router routeClass:[Contact class] toResourcePath:@"/people/:identifier"];
     //[router routeClass:[Contact class] toResourcePath:@"/people" forMethod:RKRequestMethodPOST];
-
-    
-    
-    return self;
 }
 @end

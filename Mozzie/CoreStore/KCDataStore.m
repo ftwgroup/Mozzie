@@ -10,6 +10,7 @@
 #import "Person.h"
 #import "PhoneNumbers.h"
 #import "EmailAddresses.h"
+#import <RestKit/RestKit.h>
 
 NSManagedObjectContext *dataContext;
 NSManagedObjectModel *dataModel;
@@ -23,24 +24,7 @@ NSManagedObjectModel *dataModel;
 
 + (NSManagedObjectContext*) context {
     if (!dataContext) {
-        NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
-        NSString* documentDirectory = [documentDirectories objectAtIndex:0];
-        
-        NSURL* storeURL = [NSURL fileURLWithPath:[documentDirectory stringByAppendingString:@"KCdataStore.data"]];
-        
-        NSPersistentStoreCoordinator* psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[KCDataStore model]];
-        
-        NSError* err;
-        if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&err]) {
-            [NSException raise:@"Core data db open failed!"
-                        format:@"Reason: %@", [err localizedDescription]];
-        } else {
-            dataContext = [NSManagedObjectContext new];
-            [dataContext setPersistentStoreCoordinator:psc];
-            
-            // ???
-            [dataContext setUndoManager:nil];
-        }
+        dataContext = [RKObjectManager sharedManager].objectStore.primaryManagedObjectContext;
     }
     
     return dataContext;

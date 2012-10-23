@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface KCRKInit : NSObject
-
++ (void) setupRK;
 @end

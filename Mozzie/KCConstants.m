@@ -13,5 +13,6 @@ NSString* const kCalendarPermissionsNotification = @"user has set calendar permi
 NSString* const kCoreDataStoreName = @"KCdataStore.data";
 NSString* const kCalendarPermissionsBoolKey = @"permissions y/n";
 NSString* const FBSessionStateChangedNotification = @"FTW-Group.Mozzie:FBSessionStateChangedNotification";
+NSString* const kMozzieServeBaseURL = @"
 UIModalTransitionStyle const kAppWideModalStyle = UIModalTransitionStyleCoverVertical;
 @end

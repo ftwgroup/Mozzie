@@ -44,7 +44,7 @@
 {
        
     //setup RestKit
-    [[KCRKInit alloc] init];
+    [KCRKInit setupRK];
     
     //temporarily just the first one
     // BUG WORKAROUND:

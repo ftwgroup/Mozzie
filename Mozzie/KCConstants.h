@@ -13,5 +13,6 @@ extern NSString* const kCalendarPermissionsNotification;
 extern NSString* const kCalendarPermissionsBoolKey;
 extern NSString* const kCoreDataStoreName;
 extern NSString* const FBSessionStateChangedNotification;
+extern NSString* const kMozzieServeBaseURL;
 extern UIModalTransitionStyle const kAppWideModalStyle;
 @end
