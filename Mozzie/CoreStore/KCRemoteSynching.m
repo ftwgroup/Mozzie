@@ -8,6 +8,7 @@
 
 #import "KCRemoteSynching.h"
 #import "KCConstants.h"
+#import "KCDataStore.h"
 #import "Person.h"
 
 @interface KCRemoteSynching ()
@@ -20,8 +21,15 @@
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
 {
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdatedAt"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    //[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdatedAt"];
+    //[[NSUserDefaults standardUserDefaults] synchronize];
+    // Get the names to parse in sorted order.
+    NSMutableArray *personIncomingAppIDs = [NSMutableArray new];
+    for (Person* personIncoming in objects) {
+        [personIncomingAppIDs addObject:personIncoming.mozzieIdentifier];
+    }
+    [KCDataStore removeDuplicatesByIDsAndSave:personIncomingAppIDs];
+    
     [self requestFinished];
 }
 
@@ -40,7 +48,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kSynchingRequestComplete object:nil];
 }
 
-#pragma mark Synch Methods
+#pragma mark Sync Methods
 
 - (void)synchContactsFromMozzieServer {
     // Load the object model via RestKit        

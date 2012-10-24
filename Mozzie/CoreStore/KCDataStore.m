@@ -76,6 +76,21 @@ NSManagedObjectModel *dataModel;
     }
 }
 
+//TODO, implemented apple recommended find or create:
+//http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/CoreData/Articles/cdImporting.html
++ (BOOL)removeDuplicatesByIDsAndSave:(NSArray* )ids {
+    NSArray* sortedIDs = [ids sortedArrayUsingSelector: @selector(compare:)];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:
+     [NSEntityDescription entityForName:@"Person" inManagedObjectContext:[KCDataStore context]]];
+    [fetchRequest setPredicate: [NSPredicate predicateWithFormat: @"(mozzieIdentifier IN %@)", ids]];
+    [fetchRequest setSortDescriptors:
+     @[ [[NSSortDescriptor alloc] initWithKey: @"mozzieIdentifier" ascending:YES] ]];
+    // Execute the fetch.
+    NSError *error;
+    NSArray *objectsWithMatchingIDs = [[KCDataStore context] executeFetchRequest:fetchRequest error:&error];
+}
+
 + (BOOL)saveEntityFromPersonRecordRef:(ABRecordRef)person {
     //names (need more to cover all potential names in AB
     Person *contact = [NSEntityDescription insertNewObjectForEntityForName:@"Person"
