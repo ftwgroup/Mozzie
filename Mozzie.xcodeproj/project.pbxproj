@@ -1138,7 +1138,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ipsheeta Furtado";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JJ Weber (Z7F6ED46X7)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Mozzie/External/FacebookBundle\"",
@@ -1160,7 +1160,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E298E3C4-C428-491A-A3D0-25028BB2C649";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "73168B1C-6AEB-46E4-9824-6D6F1F97F5C3";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1170,7 +1170,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Ipsheeta Furtado";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JJ Weber (Z7F6ED46X7)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Mozzie/External/FacebookBundle\"",
@@ -1192,7 +1192,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E298E3C4-C428-491A-A3D0-25028BB2C649";
+				PROVISIONING_PROFILE = "73168B1C-6AEB-46E4-9824-6D6F1F97F5C3";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -5,3 +5,6 @@
 [submodule "RestKit"]
 	path = RestKit
 	url = git://github.com/RestKit/RestKit.git
+[submodule "Mozzie/External/STUtils"]
+	path = Mozzie/External/STUtils
+	url = git://github.com/ldandersen/STUtils.git

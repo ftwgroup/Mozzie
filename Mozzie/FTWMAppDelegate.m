@@ -234,7 +234,9 @@
 {
     self.loginViewController = [[FTWMLoginViewController alloc] init];
     UIViewController *topViewController = [self.navController topViewController];
-    [topViewController presentViewController:self.loginViewController
+    UINavigationController* navBar = [[UINavigationController alloc] initWithRootViewController:self.loginViewController];
+    navBar.navigationBar.tintColor = [UIColor headerColor];
+    [topViewController presentViewController:navBar
                                     animated:YES
                                   completion:nil];
 }

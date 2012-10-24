@@ -8,6 +8,7 @@
 
 #import "FTWMLoginViewController.h"
 #import "UIColor+FTWColors.h"
+#import "KCConstants.h"
 #import "FTWMAppDelegate.h"
 
 @interface FTWMLoginViewController ()
@@ -30,6 +31,24 @@
 }
 @synthesize spinner = _spinner;
 
+
+#pragma mark Check for validity
+- (BOOL)checkThatFieldsAreValid {
+    //copied email regex
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    if ([emailTest evaluateWithObject:self.emailField.text]) {
+        return YES;
+    } else {
+        self.emailField.placeholder = @"PLEASE ENTER A VALID EMAIL ADDRESS";
+    }
+    
+    if ([self.passwordField.text isEqualToString:self.confirmPasswordField.text]) {
+        return YES;
+    } else {
+        self.passwordField.placeholder = @"PASSWORDS DO NOT MATCH!";
+    }
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,7 +81,11 @@
 }
 
 - (IBAction)createButton:(UIButton *)sender {
-    
+    if ([self checkThatFieldsAreValid]) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.emailField forKey:@"LastUpdatedAt"];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [NSUserDefaults standardUserDefaults]
 }
 
 -(void)loginFailed
