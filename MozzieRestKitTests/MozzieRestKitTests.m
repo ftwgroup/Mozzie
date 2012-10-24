@@ -7,12 +7,20 @@
 //
 
 #import "MozzieRestKitTests.h"
-#import "RKRequestExample.h"
+#import "KCConstants.h"
 #import "KCRKInit.h"
+#import "KCRemoteSynching.h"
+#import "Person.h"
 #import "KCDataStore.h"
+#import <RestKit/Testing.h>
+
+@interface MozzieRestKitTests ()
+
+@end
 
 @implementation MozzieRestKitTests
 
+//initializing RestKit
 - (void)setUp
 {
     [super setUp];
@@ -38,5 +46,25 @@
     [self setUp];
     [self tearDown];
 }
+
+//Loading objects into core data
+- (void)setUpRMSynch {
+    [super setUp];
+    KCRemoteSynching* synchHandler = [[KCRemoteSynching alloc] init];
+    [synchHandler synchContactsFromMozzieServer];
+}
+
+- (void)tearDownRMSynch {
+    [super tearDown];
+}
+
+
+
+- (void)testKCRemoteSynching {
+    [self setUpRMSynch];
+    [self tearDownRMSynch];
+}
+
+
 
 @end

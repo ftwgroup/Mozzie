@@ -7,6 +7,7 @@
 //
 
 #import "KCRKInit.h"
+#import "PhoneNumber.h"
 #import "Person.h"
 #import "KCConstants.h"
 #import "KCDataStore.h"
@@ -14,9 +15,9 @@
 
 @implementation KCRKInit
 + (void) setupRK {
-    /* first initialize the base class */
+    
     // RestKist client
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURLString:kMozzieServeBaseURL];
+    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURLString:kMozzieServerBaseURL];
     [RKObjectManager setSharedManager:objectManager];
     
     // Store Manager    
@@ -29,28 +30,34 @@
     
     // Enable automatic network activity indicator
     objectManager.client.requestQueue.showsNetworkActivityIndicatorWhenBusy = YES;
-    
+    //Setup Numbers Mapping
+//    RKManagedObjectMapping* numbersMapping = [RKManagedObjectMapping mappingForClass:[PhoneNumber class]
+//                                                                inManagedObjectStore:objectStore];
+//    [numbersMapping mapKeyPath:@"number" toAttribute:@"number"];
+//    
+//    [objectManager.mappingProvider addObjectMapping:numbersMapping];
+
     // Setup Person Mappping
-    //RKManagedObjectMapping *personMapping = [RKManagedObjectMapping mappingForClass:[Person class] inManagedObjectStore:objectStore];
+    RKManagedObjectMapping *personMapping = [RKManagedObjectMapping mappingForClass:[Person class]
+                                                               inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
+    personMapping.primaryKeyAttribute = @"app_id";
+    [personMapping mapKeyPath:@"app_id" toAttribute:@"mozzieIdentifier"];
+    [personMapping mapKeyPath:@"fb_id" toAttribute:@"facebookID"];
+    [personMapping mapKeyPath:@"first" toAttribute:@"firstName"];
+    [personMapping mapKeyPath:@"last" toAttribute:@"lastName"];
+    [personMapping mapKeyPath:@"lkdin_id" toAttribute:@"linkedinID"];
+    [personMapping mapKeyPath:@"nick_name" toAttribute:@"nickName"];
+    [personMapping mapKeyPath:@"on_phone" toAttribute:@"onPhone"];
+    [personMapping mapKeyPath:@"photo" toAttribute:@"photoData"];
+    [personMapping mapKeyPath:@"numbers" toAttribute:@"phoneNumbers"];
     
-//    // Setup our Contact Mapping
-//    RKObjectMapping *contactMapping = [RKObjectMapping mappingForClass:[Contact class]];
-//    //[contactMapping mapKeyPath:@"id" toAttribute:@"identifier"];
-//    [contactMapping mapKeyPath:@"fb_id" toAttribute:@"fbID"];
-//    [contactMapping mapKeyPath:@"first" toAttribute:@"firstName"];
-//    [contactMapping mapKeyPath:@"last" toAttribute:@"lastName"];
-//    [contactMapping mapKeyPath:@"lkdin_id" toAttribute:@"lkdINID"];
-//    [contactMapping mapKeyPath:@"nick_name" toAttribute:@"nickName"];
-//    [contactMapping mapKeyPath:@"on_phone" toAttribute:@"onPhone"];
-//    [contactMapping mapKeyPath:@"photo" toAttribute:@"photo"];
-    
-//    [objectManager.mappingProvider addObjectMapping:contactMapping];
+    [[RKObjectManager sharedManager].mappingProvider addObjectMapping:personMapping];
     
     // Register our mappings with the provider using a resource path pattern
-    //RKObjectRouter *router = [RKObjectManager sharedManager].router;
+    RKObjectRouter *router = [RKObjectManager sharedManager].router;
     
     // Define a default resource path
-    //[router routeClass:[Contact class] toResourcePath:@"/people/:identifier"];
-    //[router routeClass:[Contact class] toResourcePath:@"/people" forMethod:RKRequestMethodPOST];
+    [router routeClass:[Person class] toResourcePath:@"/people/:identifier" forMethod:RKRequestMethodGET];
+    [router routeClass:[Person class] toResourcePath:@"/people" forMethod:RKRequestMethodPOST];
 }
 @end

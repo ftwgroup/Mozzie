@@ -86,9 +86,10 @@
 		1CACC1081630B74F009EA821 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CACC1071630B74F009EA821 /* FacebookSDK.framework */; };
 		1CACC10A1630B7EB009EA821 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1CACC1091630B7EB009EA821 /* FacebookSDKResources.bundle */; };
 		1CACC10C1630B7F8009EA821 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1CACC10B1630B7F8009EA821 /* FBUserSettingsViewResources.bundle */; };
-		1CACC1161630FEC7009EA821 /* EmailAddresses.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACC1151630FEC7009EA821 /* EmailAddresses.m */; };
-		1CACC1191630FEE3009EA821 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACC1181630FEE3009EA821 /* Person.m */; };
-		1CACC11C1630FF0F009EA821 /* PhoneNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACC11B1630FF0F009EA821 /* PhoneNumbers.m */; };
+		1CACC1161630FEC7009EA821 /* EmailAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACC1151630FEC7009EA821 /* EmailAddress.m */; };
+		1CACC11C1630FF0F009EA821 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACC11B1630FF0F009EA821 /* PhoneNumber.m */; };
+		4C000C11163727BC00CA2132 /* KCRemoteSynching.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C000C10163727BC00CA2132 /* KCRemoteSynching.m */; };
+		4C891435163765BF00959C40 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C891434163765BF00959C40 /* Person.m */; };
 		4CA73E5F1635E01D0091053E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8942CD1630994300315E24 /* SenTestingKit.framework */; };
 		4CA73E601635E01D0091053E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160E161612658800CA206E /* UIKit.framework */; };
 		4CA73E611635E01D0091053E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160E181612658800CA206E /* Foundation.framework */; };
@@ -319,12 +320,14 @@
 		1CACC1071630B74F009EA821 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Mozzie/External/FacebookBundle/FacebookSDK.framework; sourceTree = "<group>"; };
 		1CACC1091630B7EB009EA821 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = Mozzie/External/FacebookBundle/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		1CACC10B1630B7F8009EA821 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = Mozzie/External/FacebookBundle/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
-		1CACC1141630FEC7009EA821 /* EmailAddresses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailAddresses.h; path = Mozzie/CoreStore/EmailAddresses.h; sourceTree = "<group>"; };
-		1CACC1151630FEC7009EA821 /* EmailAddresses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailAddresses.m; path = Mozzie/CoreStore/EmailAddresses.m; sourceTree = "<group>"; };
-		1CACC1171630FEE2009EA821 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = Mozzie/CoreStore/Person.h; sourceTree = "<group>"; };
-		1CACC1181630FEE3009EA821 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = Mozzie/CoreStore/Person.m; sourceTree = "<group>"; };
-		1CACC11A1630FF0F009EA821 /* PhoneNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneNumbers.h; path = Mozzie/CoreStore/PhoneNumbers.h; sourceTree = "<group>"; };
-		1CACC11B1630FF0F009EA821 /* PhoneNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhoneNumbers.m; path = Mozzie/CoreStore/PhoneNumbers.m; sourceTree = "<group>"; };
+		1CACC1141630FEC7009EA821 /* EmailAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailAddress.h; path = Mozzie/CoreStore/EmailAddress.h; sourceTree = "<group>"; };
+		1CACC1151630FEC7009EA821 /* EmailAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailAddress.m; path = Mozzie/CoreStore/EmailAddress.m; sourceTree = "<group>"; };
+		1CACC11A1630FF0F009EA821 /* PhoneNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneNumber.h; path = Mozzie/CoreStore/PhoneNumber.h; sourceTree = "<group>"; };
+		1CACC11B1630FF0F009EA821 /* PhoneNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhoneNumber.m; path = Mozzie/CoreStore/PhoneNumber.m; sourceTree = "<group>"; };
+		4C000C0F163727BC00CA2132 /* KCRemoteSynching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCRemoteSynching.h; path = Mozzie/CoreStore/KCRemoteSynching.h; sourceTree = "<group>"; };
+		4C000C10163727BC00CA2132 /* KCRemoteSynching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCRemoteSynching.m; path = Mozzie/CoreStore/KCRemoteSynching.m; sourceTree = "<group>"; };
+		4C891433163765BF00959C40 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = Mozzie/CoreStore/Person.h; sourceTree = "<group>"; };
+		4C891434163765BF00959C40 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = Mozzie/CoreStore/Person.m; sourceTree = "<group>"; };
 		4CA73E5E1635E01D0091053E /* MozzieRestKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MozzieRestKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CA73E641635E01D0091053E /* MozzieRestKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MozzieRestKitTests-Info.plist"; sourceTree = "<group>"; };
 		4CA73E661635E01D0091053E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -411,13 +414,15 @@
 		1C397A491627443D00CD34D1 /* CoreStore */ = {
 			isa = PBXGroup;
 			children = (
+				4C000C0F163727BC00CA2132 /* KCRemoteSynching.h */,
+				4C000C10163727BC00CA2132 /* KCRemoteSynching.m */,
+				4C891433163765BF00959C40 /* Person.h */,
+				4C891434163765BF00959C40 /* Person.m */,
 				1C397AB616275B7B00CD34D1 /* CoreDataStore.xcdatamodel */,
-				1CACC1171630FEE2009EA821 /* Person.h */,
-				1CACC1181630FEE3009EA821 /* Person.m */,
-				1CACC1141630FEC7009EA821 /* EmailAddresses.h */,
-				1CACC1151630FEC7009EA821 /* EmailAddresses.m */,
-				1CACC11A1630FF0F009EA821 /* PhoneNumbers.h */,
-				1CACC11B1630FF0F009EA821 /* PhoneNumbers.m */,
+				1CACC1141630FEC7009EA821 /* EmailAddress.h */,
+				1CACC1151630FEC7009EA821 /* EmailAddress.m */,
+				1CACC11A1630FF0F009EA821 /* PhoneNumber.h */,
+				1CACC11B1630FF0F009EA821 /* PhoneNumber.m */,
 				1C397AC616277ADE00CD34D1 /* Event.h */,
 				1C397AC716277ADE00CD34D1 /* Event.m */,
 				1C397AC316277AAE00CD34D1 /* Group.h */,
@@ -987,11 +992,12 @@
 				1C8942EE1630ABAB00315E24 /* NIRadioGroupController.m in Sources */,
 				1C8942EF1630ABAB00315E24 /* NITableViewActions.m in Sources */,
 				1C8942F01630ABAB00315E24 /* NITableViewModel.m in Sources */,
-				1CACC1161630FEC7009EA821 /* EmailAddresses.m in Sources */,
-				1CACC1191630FEE3009EA821 /* Person.m in Sources */,
-				1CACC11C1630FF0F009EA821 /* PhoneNumbers.m in Sources */,
+				1CACC1161630FEC7009EA821 /* EmailAddress.m in Sources */,
+				1CACC11C1630FF0F009EA821 /* PhoneNumber.m in Sources */,
 				B98BC27216312ECB00A0E298 /* RKRequestExample.m in Sources */,
 				4CA73E711635EA4F0091053E /* KCRKInit.m in Sources */,
+				4C000C11163727BC00CA2132 /* KCRemoteSynching.m in Sources */,
+				4C891435163765BF00959C40 /* Person.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,11 +19,15 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <RestKit/RestKit.h>
 
+//temp
+#import "KCRemoteSynching.h"
+
 @interface FTWMAppDelegate ()
 
 @property (strong, nonatomic) UINavigationController *navController;
 @property (strong, nonatomic) FTWMHomeViewController *mainViewController;
 @property (strong, nonatomic) FTWMLoginViewController *loginViewController;
+@property (strong, nonatomic) KCRemoteSynching* synchHandler;
 
 -(void)showLoginView;
 -(void)createAndPresentLoginView;
@@ -45,6 +49,9 @@
        
     //setup RestKit
     [KCRKInit setupRK];
+    //synch with server
+    self.synchHandler = [KCRemoteSynching new];
+    [self.synchHandler synchContactsFromMozzieServer];
     
     //temporarily just the first one
     // BUG WORKAROUND:

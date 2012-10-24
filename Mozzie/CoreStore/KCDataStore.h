@@ -17,4 +17,5 @@
 + (NSArray* )userTwitterHandle;
 + (NSArray* )fetchPeople;
 + (BOOL)saveEntityFromPersonRecordRef:(ABRecordRef) person;
++ (BOOL)isInDB:(NSNumber* )ID Entity:(NSString *)entity;
 @end

@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
-#import "PhoneNumbers.h"
+#import "PhoneNumber.h"
 #import "Person.h"
 
 
-@implementation PhoneNumbers
+@implementation PhoneNumber
 
 @dynamic number;
 @dynamic label;
