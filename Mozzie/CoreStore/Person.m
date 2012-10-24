@@ -2,24 +2,27 @@
 //  Person.m
 //  Mozzie
 //
-//  Created by JJ Weber on 10/18/12.
+//  Created by FTWGroup on 10/23/12.
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
 #import "Person.h"
-#import "EmailAddresses.h"
+#import "EmailAddress.h"
 #import "Event.h"
 #import "Group.h"
-#import "PhoneNumbers.h"
+#import "PhoneNumber.h"
 
 
 @implementation Person
 
+@dynamic abRecordID;
 @dynamic facebookID;
 @dynamic firstName;
 @dynamic lastName;
 @dynamic linkedinID;
+@dynamic mozzieIdentifier;
 @dynamic nickName;
+@dynamic onPhone;
 @dynamic photoData;
 @dynamic title;
 @dynamic twitterHandle;
@@ -27,6 +30,5 @@
 @dynamic manyEvents;
 @dynamic manyGroups;
 @dynamic phoneNumbers;
-@dynamic abRecordID;
 
 @end

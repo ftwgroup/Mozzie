@@ -1,5 +1,5 @@
 //
-//  EmailAddresses.h
+//  PhoneNumbers.h
 //  Mozzie
 //
 //  Created by JJ Weber on 10/18/12.
@@ -11,9 +11,10 @@
 
 @class Person;
 
-@interface EmailAddresses : NSManagedObject
+@interface PhoneNumber : NSManagedObject
 
-@property (nonatomic, retain) NSString * address;
+@property (nonatomic, retain) NSString * number;
+@property (nonatomic, retain) NSString * label;
 @property (nonatomic, retain) Person *person;
 
 @end

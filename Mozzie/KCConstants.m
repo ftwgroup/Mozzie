@@ -10,7 +10,10 @@
 
 @implementation KCConstants
 NSString* const kCalendarPermissionsNotification = @"user has set calendar permissions";
+NSString* const kCoreDataStoreName = @"KCdataStore.data";
 NSString* const kCalendarPermissionsBoolKey = @"permissions y/n";
 NSString* const FBSessionStateChangedNotification = @"FTW-Group.Mozzie:FBSessionStateChangedNotification";
+NSString* const kMozzieServerBaseURL = @"http://127.0.0.1:8000/";
+NSString* const kSynchingRequestComplete = @"synching request complete";
 UIModalTransitionStyle const kAppWideModalStyle = UIModalTransitionStyleCoverVertical;
 @end

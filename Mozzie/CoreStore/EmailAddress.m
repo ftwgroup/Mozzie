@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
-#import "EmailAddresses.h"
+#import "EmailAddress.h"
 #import "Person.h"
 
 
-@implementation EmailAddresses
+@implementation EmailAddress
 
 @dynamic address;
 @dynamic person;

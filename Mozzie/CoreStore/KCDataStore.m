@@ -8,8 +8,9 @@
 
 #import "KCDataStore.h"
 #import "Person.h"
-#import "PhoneNumbers.h"
-#import "EmailAddresses.h"
+#import "PhoneNumber.h"
+#import "EmailAddress.h"
+#import <RestKit/RestKit.h>
 
 NSManagedObjectContext *dataContext;
 NSManagedObjectModel *dataModel;
@@ -23,24 +24,7 @@ NSManagedObjectModel *dataModel;
 
 + (NSManagedObjectContext*) context {
     if (!dataContext) {
-        NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
-        NSString* documentDirectory = [documentDirectories objectAtIndex:0];
-        
-        NSURL* storeURL = [NSURL fileURLWithPath:[documentDirectory stringByAppendingString:@"KCdataStore.data"]];
-        
-        NSPersistentStoreCoordinator* psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[KCDataStore model]];
-        
-        NSError* err;
-        if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&err]) {
-            [NSException raise:@"Open failed!"
-                        format:@"Reason: %@", [err localizedDescription]];
-        } else {
-            dataContext = [NSManagedObjectContext new];
-            [dataContext setPersistentStoreCoordinator:psc];
-            
-            // ???
-            [dataContext setUndoManager:nil];
-        }
+        dataContext = [RKObjectManager sharedManager].objectStore.primaryManagedObjectContext;
     }
     
     return dataContext;
@@ -76,11 +60,11 @@ NSManagedObjectModel *dataModel;
     return result;
 }
 
-+ (BOOL)isInDB:(NSInteger) ID Entity:(NSString *)entity  {
++ (BOOL)isInDB:(NSNumber *)ID Entity:(NSString *)entity  {
     NSFetchRequest* req = [NSFetchRequest new];
     req.entity = [[KCDataStore model].entitiesByName objectForKey:entity];
     NSString *attributeName = @"abRecordID";
-    NSInteger attributeValue = ID;
+    NSInteger attributeValue = [ID integerValue];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %i", attributeName, attributeValue];
     req.predicate = predicate;
     NSError* error;
@@ -92,11 +76,26 @@ NSManagedObjectModel *dataModel;
     }
 }
 
+//TODO, implemented apple recommended find or create:
+//http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/CoreData/Articles/cdImporting.html
++ (BOOL)removeDuplicatesByIDsAndSave:(NSArray* )ids {
+    NSArray* sortedIDs = [ids sortedArrayUsingSelector: @selector(compare:)];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:
+     [NSEntityDescription entityForName:@"Person" inManagedObjectContext:[KCDataStore context]]];
+    [fetchRequest setPredicate: [NSPredicate predicateWithFormat: @"(mozzieIdentifier IN %@)", ids]];
+    [fetchRequest setSortDescriptors:
+     @[ [[NSSortDescriptor alloc] initWithKey: @"mozzieIdentifier" ascending:YES] ]];
+    // Execute the fetch.
+    NSError *error;
+    NSArray *objectsWithMatchingIDs = [[KCDataStore context] executeFetchRequest:fetchRequest error:&error];
+}
+
 + (BOOL)saveEntityFromPersonRecordRef:(ABRecordRef)person {
     //names (need more to cover all potential names in AB
     Person *contact = [NSEntityDescription insertNewObjectForEntityForName:@"Person"
                                                     inManagedObjectContext:[KCDataStore context]];
-    NSInteger ID = ABRecordGetRecordID(person);
+    NSNumber* ID = [NSNumber numberWithInt:ABRecordGetRecordID(person)];
     if ([self isInDB:ID Entity:@"Person"]) {
         //done
         return true;
@@ -110,7 +109,7 @@ NSManagedObjectModel *dataModel;
     ABMultiValueRef phoneRefs = ABRecordCopyValue(person, kABPersonPhoneProperty);
     //phone numbers 
     for (int p = 0; p < ABMultiValueGetCount(phoneRefs); p++) {
-        PhoneNumbers *digits = [NSEntityDescription insertNewObjectForEntityForName:@"PhoneNumber"
+        PhoneNumber *digits = [NSEntityDescription insertNewObjectForEntityForName:@"PhoneNumber"
                                                         inManagedObjectContext:[KCDataStore context]];
         digits.number = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(phoneRefs, p));
         digits.label = (__bridge NSString *)(ABMultiValueCopyLabelAtIndex(phoneRefs, p));
@@ -121,7 +120,7 @@ NSManagedObjectModel *dataModel;
     ABMultiValueRef emailRefs = ABRecordCopyValue(person, kABPersonEmailProperty);
     for (int e = 0; e < ABMultiValueGetCount(emailRefs); e++)
     {
-        EmailAddresses *email = [NSEntityDescription insertNewObjectForEntityForName:@"EmailAddress"
+        EmailAddress *email = [NSEntityDescription insertNewObjectForEntityForName:@"EmailAddress"
                                                             inManagedObjectContext:[KCDataStore context]];
         email.address = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emailRefs, e));
         email.person = contact;
