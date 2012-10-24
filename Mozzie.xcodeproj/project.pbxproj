@@ -100,6 +100,7 @@
 		1CF75419163892AF0027C602 /* NSURL+STAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF75402163892AE0027C602 /* NSURL+STAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1CF7541D163892AF0027C602 /* STRandomization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF7540E163892AF0027C602 /* STRandomization.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1CF7541E163892AF0027C602 /* STTargetActionQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF75410163892AF0027C602 /* STTargetActionQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1CF754221638A1D40027C602 /* KCImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF754211638A1D40027C602 /* KCImportViewController.m */; };
 		4C000C11163727BC00CA2132 /* KCRemoteSynching.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C000C10163727BC00CA2132 /* KCRemoteSynching.m */; };
 		4C891435163765BF00959C40 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C891434163765BF00959C40 /* Person.m */; };
 		4CA73E5F1635E01D0091053E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8942CD1630994300315E24 /* SenTestingKit.framework */; };
@@ -361,6 +362,8 @@
 		1CF7540F163892AF0027C602 /* STTargetActionQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTargetActionQueue.h; sourceTree = "<group>"; };
 		1CF75410163892AF0027C602 /* STTargetActionQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STTargetActionQueue.m; sourceTree = "<group>"; };
 		1CF7541F163892D90027C602 /* STUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STUtils.h; sourceTree = "<group>"; };
+		1CF754201638A1D40027C602 /* KCImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCImportViewController.h; path = Profile/KCImportViewController.h; sourceTree = "<group>"; };
+		1CF754211638A1D40027C602 /* KCImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCImportViewController.m; path = Profile/KCImportViewController.m; sourceTree = "<group>"; };
 		4C000C0F163727BC00CA2132 /* KCRemoteSynching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCRemoteSynching.h; path = Mozzie/CoreStore/KCRemoteSynching.h; sourceTree = "<group>"; };
 		4C000C10163727BC00CA2132 /* KCRemoteSynching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCRemoteSynching.m; path = Mozzie/CoreStore/KCRemoteSynching.m; sourceTree = "<group>"; };
 		4C891433163765BF00959C40 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = Mozzie/CoreStore/Person.h; sourceTree = "<group>"; };
@@ -632,6 +635,8 @@
 		1CCA7791162DD3A00002F549 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				1CF754201638A1D40027C602 /* KCImportViewController.h */,
+				1CF754211638A1D40027C602 /* KCImportViewController.m */,
 				1C8942CF16309AEE00315E24 /* KCProfileTableViewController.h */,
 				1C8942D016309AEE00315E24 /* KCProfileTableViewController.m */,
 			);
@@ -1097,6 +1102,7 @@
 				1CF75419163892AF0027C602 /* NSURL+STAdditions.m in Sources */,
 				1CF7541D163892AF0027C602 /* STRandomization.m in Sources */,
 				1CF7541E163892AF0027C602 /* STTargetActionQueue.m in Sources */,
+				1CF754221638A1D40027C602 /* KCImportViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "UIColor+FTWColors.h"
 #import "KCConstants.h"
 #import "FTWMAppDelegate.h"
+#import "KCImportViewController.h"
 #import "STKeychain.h"
 
 #define KEYBOARD_ANIMATION_DURATION 0.3
@@ -102,6 +103,7 @@
                    forServiceName:kMozzieApp
                    updateExisting:NO
                             error:&error];
+        [self.navigationController pushViewController:[KCImportViewController new] animated:YES];
     }
     if (!error) {
         [[NSUserDefaults standardUserDefaults] synchronize];
