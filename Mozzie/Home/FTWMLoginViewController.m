@@ -10,9 +10,16 @@
 #import "UIColor+FTWColors.h"
 #import "KCConstants.h"
 #import "FTWMAppDelegate.h"
+#import "STKeychain.h"
+
+#define KEYBOARD_ANIMATION_DURATION 0.3
+#define MINIMUM_SCROLL_FRACTION 0.2
+#define MAXIMUM_SCROLL_FRACTION 0.8
+#define PORTRAIT_KEYBOARD_HEIGHT 216
+#define LANDSCAPE_KEYBOARD_HEIGHT 162
 
 @interface FTWMLoginViewController ()
-
+@property CGFloat animatedDistance;
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
@@ -40,13 +47,15 @@
     if ([emailTest evaluateWithObject:self.emailField.text]) {
         return YES;
     } else {
-        self.emailField.placeholder = @"PLEASE ENTER A VALID EMAIL ADDRESS";
+        self.emailField.text = @"PLEASE ENTER A VALID EMAIL ADDRESS";
+        return NO;
     }
     
     if ([self.passwordField.text isEqualToString:self.confirmPasswordField.text]) {
         return YES;
     } else {
-        self.passwordField.placeholder = @"PASSWORDS DO NOT MATCH!";
+        self.passwordField.text = @"PASSWORDS DO NOT MATCH";
+        return NO;
     }
 }
 
@@ -69,6 +78,10 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor backgroundColor];
+    self.emailField.delegate = self;
+    self.passwordField.delegate = self;
+    self.confirmPasswordField.delegate = self;
+    self.title = @"Create Account";
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTableView)];
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
@@ -81,11 +94,22 @@
 }
 
 - (IBAction)createButton:(UIButton *)sender {
+    NSError* error;
     if ([self checkThatFieldsAreValid]) {
-        [[NSUserDefaults standardUserDefaults] setObject:self.emailField forKey:@"LastUpdatedAt"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.emailField.text forKey:kUserEmail];
+        [STKeychain storeUsername:self.emailField.text
+                      andPassword:self.passwordField.text
+                   forServiceName:kMozzieApp
+                   updateExisting:NO
+                            error:&error];
     }
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [NSUserDefaults standardUserDefaults]
+    if (!error) {
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    } else {
+        NSLog(@"Failed to save user in Key Chain");
+    }
+    
 }
 
 -(void)loginFailed
@@ -103,6 +127,46 @@
 }
 
 #pragma mark Text Field Delegate
+//prevent keyboard from obscuring text fields
+//http://www.cocoawithlove.com/2008/10/sliding-uitextfields-around-to-avoid.html
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
+    CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
+    
+    CGFloat midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
+    CGFloat numerator = midline - viewRect.origin.y - MINIMUM_SCROLL_FRACTION * viewRect.size.height;
+    CGFloat denominator = (MAXIMUM_SCROLL_FRACTION - MINIMUM_SCROLL_FRACTION) * viewRect.size.height;
+    CGFloat heightFraction = numerator / denominator;
+    
+    if (heightFraction < 0.0) {
+        heightFraction = 0.0;
+    }
+    else if (heightFraction > 1.0) {
+        heightFraction = 1.0;
+    }
+    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait ||
+        orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        _animatedDistance = floor(PORTRAIT_KEYBOARD_HEIGHT * heightFraction);
+    }
+    else {
+        _animatedDistance = floor(LANDSCAPE_KEYBOARD_HEIGHT * heightFraction);
+    }
+    
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y -= _animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
@@ -110,6 +174,17 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [textField resignFirstResponder];
+    
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y += _animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self.view setFrame:viewFrame];
+    
+    [UIView commitAnimations];
 }
 
 - (IBAction)performLogin:(id)sender {

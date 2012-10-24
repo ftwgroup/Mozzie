@@ -16,5 +16,6 @@ extern NSString* const FBSessionStateChangedNotification;
 extern NSString* const kMozzieServerBaseURL;
 extern NSString* const kSynchingRequestComplete;
 extern NSString* const kUserEmail;
+extern NSString* const kMozzieApp;
 extern UIModalTransitionStyle const kAppWideModalStyle;
 @end

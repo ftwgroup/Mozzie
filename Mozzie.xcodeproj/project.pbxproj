@@ -88,6 +88,18 @@
 		1CACC10C1630B7F8009EA821 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1CACC10B1630B7F8009EA821 /* FBUserSettingsViewResources.bundle */; };
 		1CACC1161630FEC7009EA821 /* EmailAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACC1151630FEC7009EA821 /* EmailAddress.m */; };
 		1CACC11C1630FF0F009EA821 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACC11B1630FF0F009EA821 /* PhoneNumber.m */; };
+		1CF753EF163890730027C602 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF753EE163890730027C602 /* STKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1CF75411163892AF0027C602 /* NSArray+STAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF753F2163892AE0027C602 /* NSArray+STAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1CF75412163892AF0027C602 /* NSData+STAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF753F4163892AE0027C602 /* NSData+STAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1CF75413163892AF0027C602 /* NSDate+STAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF753F6163892AE0027C602 /* NSDate+STAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1CF75414163892AF0027C602 /* NSDictionary+STAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF753F8163892AE0027C602 /* NSDictionary+STAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1CF75415163892AF0027C602 /* NSMutableString+STAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF753FA163892AE0027C602 /* NSMutableString+STAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1CF75416163892AF0027C602 /* NSObject+STAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF753FC163892AE0027C602 /* NSObject+STAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1CF75417163892AF0027C602 /* NSOutputStream+STAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF753FE163892AE0027C602 /* NSOutputStream+STAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1CF75418163892AF0027C602 /* NSString+STAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF75400163892AE0027C602 /* NSString+STAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1CF75419163892AF0027C602 /* NSURL+STAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF75402163892AE0027C602 /* NSURL+STAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1CF7541D163892AF0027C602 /* STRandomization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF7540E163892AF0027C602 /* STRandomization.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1CF7541E163892AF0027C602 /* STTargetActionQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF75410163892AF0027C602 /* STTargetActionQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4C000C11163727BC00CA2132 /* KCRemoteSynching.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C000C10163727BC00CA2132 /* KCRemoteSynching.m */; };
 		4C891435163765BF00959C40 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C891434163765BF00959C40 /* Person.m */; };
 		4CA73E5F1635E01D0091053E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8942CD1630994300315E24 /* SenTestingKit.framework */; };
@@ -324,6 +336,31 @@
 		1CACC1151630FEC7009EA821 /* EmailAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailAddress.m; path = Mozzie/CoreStore/EmailAddress.m; sourceTree = "<group>"; };
 		1CACC11A1630FF0F009EA821 /* PhoneNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneNumber.h; path = Mozzie/CoreStore/PhoneNumber.h; sourceTree = "<group>"; };
 		1CACC11B1630FF0F009EA821 /* PhoneNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhoneNumber.m; path = Mozzie/CoreStore/PhoneNumber.m; sourceTree = "<group>"; };
+		1CF753ED163890730027C602 /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKeychain.h; sourceTree = "<group>"; };
+		1CF753EE163890730027C602 /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKeychain.m; sourceTree = "<group>"; };
+		1CF753F1163892AE0027C602 /* NSArray+STAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+STAdditions.h"; sourceTree = "<group>"; };
+		1CF753F2163892AE0027C602 /* NSArray+STAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+STAdditions.m"; sourceTree = "<group>"; };
+		1CF753F3163892AE0027C602 /* NSData+STAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+STAdditions.h"; sourceTree = "<group>"; };
+		1CF753F4163892AE0027C602 /* NSData+STAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+STAdditions.m"; sourceTree = "<group>"; };
+		1CF753F5163892AE0027C602 /* NSDate+STAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+STAdditions.h"; sourceTree = "<group>"; };
+		1CF753F6163892AE0027C602 /* NSDate+STAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+STAdditions.m"; sourceTree = "<group>"; };
+		1CF753F7163892AE0027C602 /* NSDictionary+STAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+STAdditions.h"; sourceTree = "<group>"; };
+		1CF753F8163892AE0027C602 /* NSDictionary+STAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+STAdditions.m"; sourceTree = "<group>"; };
+		1CF753F9163892AE0027C602 /* NSMutableString+STAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+STAdditions.h"; sourceTree = "<group>"; };
+		1CF753FA163892AE0027C602 /* NSMutableString+STAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+STAdditions.m"; sourceTree = "<group>"; };
+		1CF753FB163892AE0027C602 /* NSObject+STAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+STAdditions.h"; sourceTree = "<group>"; };
+		1CF753FC163892AE0027C602 /* NSObject+STAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+STAdditions.m"; sourceTree = "<group>"; };
+		1CF753FD163892AE0027C602 /* NSOutputStream+STAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOutputStream+STAdditions.h"; sourceTree = "<group>"; };
+		1CF753FE163892AE0027C602 /* NSOutputStream+STAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOutputStream+STAdditions.m"; sourceTree = "<group>"; };
+		1CF753FF163892AE0027C602 /* NSString+STAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+STAdditions.h"; sourceTree = "<group>"; };
+		1CF75400163892AE0027C602 /* NSString+STAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+STAdditions.m"; sourceTree = "<group>"; };
+		1CF75401163892AE0027C602 /* NSURL+STAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+STAdditions.h"; sourceTree = "<group>"; };
+		1CF75402163892AE0027C602 /* NSURL+STAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+STAdditions.m"; sourceTree = "<group>"; };
+		1CF7540D163892AF0027C602 /* STRandomization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STRandomization.h; sourceTree = "<group>"; };
+		1CF7540E163892AF0027C602 /* STRandomization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STRandomization.m; sourceTree = "<group>"; };
+		1CF7540F163892AF0027C602 /* STTargetActionQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTargetActionQueue.h; sourceTree = "<group>"; };
+		1CF75410163892AF0027C602 /* STTargetActionQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STTargetActionQueue.m; sourceTree = "<group>"; };
+		1CF7541F163892D90027C602 /* STUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STUtils.h; sourceTree = "<group>"; };
 		4C000C0F163727BC00CA2132 /* KCRemoteSynching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCRemoteSynching.h; path = Mozzie/CoreStore/KCRemoteSynching.h; sourceTree = "<group>"; };
 		4C000C10163727BC00CA2132 /* KCRemoteSynching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCRemoteSynching.m; path = Mozzie/CoreStore/KCRemoteSynching.m; sourceTree = "<group>"; };
 		4C891433163765BF00959C40 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = Mozzie/CoreStore/Person.h; sourceTree = "<group>"; };
@@ -451,6 +488,7 @@
 		1C397AD81627A36500CD34D1 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				1CF753EC163890730027C602 /* STUtils */,
 				1C8942FD1630AE4E00315E24 /* Facebook */,
 				1C893EB91630971100315E24 /* nimbus */,
 			);
@@ -598,6 +636,55 @@
 				1C8942D016309AEE00315E24 /* KCProfileTableViewController.m */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		1CF753EC163890730027C602 /* STUtils */ = {
+			isa = PBXGroup;
+			children = (
+				1CF7541F163892D90027C602 /* STUtils.h */,
+				1CF753F0163892AE0027C602 /* Additions */,
+				1CF7540C163892AE0027C602 /* Misc */,
+				1CF753ED163890730027C602 /* STKeychain.h */,
+				1CF753EE163890730027C602 /* STKeychain.m */,
+			);
+			name = STUtils;
+			path = Mozzie/External/STUtils/Security;
+			sourceTree = "<group>";
+		};
+		1CF753F0163892AE0027C602 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				1CF753F1163892AE0027C602 /* NSArray+STAdditions.h */,
+				1CF753F2163892AE0027C602 /* NSArray+STAdditions.m */,
+				1CF753F3163892AE0027C602 /* NSData+STAdditions.h */,
+				1CF753F4163892AE0027C602 /* NSData+STAdditions.m */,
+				1CF753F5163892AE0027C602 /* NSDate+STAdditions.h */,
+				1CF753F6163892AE0027C602 /* NSDate+STAdditions.m */,
+				1CF753F7163892AE0027C602 /* NSDictionary+STAdditions.h */,
+				1CF753F8163892AE0027C602 /* NSDictionary+STAdditions.m */,
+				1CF753F9163892AE0027C602 /* NSMutableString+STAdditions.h */,
+				1CF753FA163892AE0027C602 /* NSMutableString+STAdditions.m */,
+				1CF753FB163892AE0027C602 /* NSObject+STAdditions.h */,
+				1CF753FC163892AE0027C602 /* NSObject+STAdditions.m */,
+				1CF753FD163892AE0027C602 /* NSOutputStream+STAdditions.h */,
+				1CF753FE163892AE0027C602 /* NSOutputStream+STAdditions.m */,
+				1CF753FF163892AE0027C602 /* NSString+STAdditions.h */,
+				1CF75400163892AE0027C602 /* NSString+STAdditions.m */,
+				1CF75401163892AE0027C602 /* NSURL+STAdditions.h */,
+				1CF75402163892AE0027C602 /* NSURL+STAdditions.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		1CF7540C163892AE0027C602 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				1CF7540D163892AF0027C602 /* STRandomization.h */,
+				1CF7540E163892AF0027C602 /* STRandomization.m */,
+				1CF7540F163892AF0027C602 /* STTargetActionQueue.h */,
+				1CF75410163892AF0027C602 /* STTargetActionQueue.m */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		4CA73E621635E01D0091053E /* MozzieRestKitTests */ = {
@@ -998,6 +1085,18 @@
 				4CA73E711635EA4F0091053E /* KCRKInit.m in Sources */,
 				4C000C11163727BC00CA2132 /* KCRemoteSynching.m in Sources */,
 				4C891435163765BF00959C40 /* Person.m in Sources */,
+				1CF753EF163890730027C602 /* STKeychain.m in Sources */,
+				1CF75411163892AF0027C602 /* NSArray+STAdditions.m in Sources */,
+				1CF75412163892AF0027C602 /* NSData+STAdditions.m in Sources */,
+				1CF75413163892AF0027C602 /* NSDate+STAdditions.m in Sources */,
+				1CF75414163892AF0027C602 /* NSDictionary+STAdditions.m in Sources */,
+				1CF75415163892AF0027C602 /* NSMutableString+STAdditions.m in Sources */,
+				1CF75416163892AF0027C602 /* NSObject+STAdditions.m in Sources */,
+				1CF75417163892AF0027C602 /* NSOutputStream+STAdditions.m in Sources */,
+				1CF75418163892AF0027C602 /* NSString+STAdditions.m in Sources */,
+				1CF75419163892AF0027C602 /* NSURL+STAdditions.m in Sources */,
+				1CF7541D163892AF0027C602 /* STRandomization.m in Sources */,
+				1CF7541E163892AF0027C602 /* STTargetActionQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
