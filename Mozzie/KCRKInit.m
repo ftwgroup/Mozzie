@@ -40,7 +40,7 @@
     // Setup Person Mappping
     RKManagedObjectMapping *personMapping = [RKManagedObjectMapping mappingForClass:[Person class]
                                                                inManagedObjectStore:[RKObjectManager sharedManager].objectStore];
-    personMapping.primaryKeyAttribute = @"app_id";
+    //personMapping.primaryKeyAttribute = @"app_id";
     [personMapping mapKeyPath:@"app_id" toAttribute:@"mozzieIdentifier"];
     [personMapping mapKeyPath:@"fb_id" toAttribute:@"facebookID"];
     [personMapping mapKeyPath:@"first" toAttribute:@"firstName"];

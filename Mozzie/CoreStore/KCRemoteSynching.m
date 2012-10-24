@@ -43,11 +43,13 @@
 #pragma mark Synch Methods
 
 - (void)synchContactsFromMozzieServer {
-    // Load the object model via RestKit
+    // Load the object model via RestKit        
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    RKObjectMapping *personMapping = [objectManager.mappingProvider objectMappingForClass:[Person class]];
+
     NSDictionary *queryParams = [NSDictionary dictionaryWithObject:@"json" forKey:@"format"];
     NSString *resourcePath = [@"people/" stringByAppendingQueryParameters:queryParams];
-    [objectManager loadObjectsAtResourcePath:resourcePath delegate:self];
+    [objectManager loadObjectsAtResourcePath:resourcePath objectMapping:personMapping delegate:self];
     
 //    RKObjectManager *manager = [RKObjectManager sharedManager];
 //    RKObjectMapping *contactMapping = [manager.mappingProvider objectMappingForClass:[Person class]];
