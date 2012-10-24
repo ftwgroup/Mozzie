@@ -7,13 +7,17 @@
 //
 
 #import "FTWMLoginViewController.h"
+#import "UIColor+FTWColors.h"
 #import "FTWMAppDelegate.h"
 
 @interface FTWMLoginViewController ()
 
-@property (strong, nonatomic) IBOutlet UIButton *loginButton;
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
+- (IBAction)createButton:(UIButton *)sender;
 
 - (IBAction)performLogin:(id)sender;
 
@@ -24,7 +28,6 @@
 - (IBAction)cancelButton:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-@synthesize loginButton = _loginButton;
 @synthesize spinner = _spinner;
 
 
@@ -46,7 +49,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.view.backgroundColor = [UIColor backgroundColor];
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTableView)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,12 +61,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)performLogin:(id)sender {
-    [self.spinner startAnimating];
+- (IBAction)createButton:(UIButton *)sender {
     
-    // The user has initiated a login, so call the openSession method
-    FTWMAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    [appDelegate openSessionWithAllowLoginUI:YES];
 }
 
 -(void)loginFailed
@@ -69,6 +71,30 @@
     // getting back to this screen without having been successfull authorized
     // is to stop showing our activity indicator.
     [self.spinner stopAnimating];
+}
+
+#pragma mark - Gesture Recognizers
+
+- (void)didTapTableView {
+    [self.view endEditing:YES];
+}
+
+#pragma mark Text Field Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
+}
+
+- (IBAction)performLogin:(id)sender {
+    [self.spinner startAnimating];
+    
+    // The user has initiated a login, so call the openSession method
+    FTWMAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate openSessionWithAllowLoginUI:YES];
 }
 
 @end

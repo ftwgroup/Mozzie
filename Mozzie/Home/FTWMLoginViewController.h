@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FTWMLoginViewController : UIViewController
+@interface FTWMLoginViewController : UIViewController <UITextFieldDelegate>
 
 -(void)loginFailed;
 @end
