@@ -28,8 +28,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
 - (IBAction)createButton:(UIButton *)sender;
 
-- (IBAction)performLogin:(id)sender;
-
 @end
 
 @implementation FTWMLoginViewController
@@ -187,14 +185,6 @@
     [self.view setFrame:viewFrame];
     
     [UIView commitAnimations];
-}
-
-- (IBAction)performLogin:(id)sender {
-    [self.spinner startAnimating];
-    
-    // The user has initiated a login, so call the openSession method
-    FTWMAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    [appDelegate openSessionWithAllowLoginUI:YES];
 }
 
 @end

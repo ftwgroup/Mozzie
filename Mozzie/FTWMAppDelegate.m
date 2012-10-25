@@ -50,26 +50,22 @@
        
     //setup RestKit
     [KCRKInit setupRK];
-    //synch with server
-    self.synchHandler = [KCRemoteSynching new];
-    [self.synchHandler synchContactsFromMozzieServer];
     
     //temporarily just the first one
     // BUG WORKAROUND:
     // Nib files require the type to have been loaded before they can do the
     // wireup successfully.
     // http://stackoverflow.com/questions/1725881/unknown-class-myclass-in-interface-builder-file-error-at-runtime
-    [FBProfilePictureView class];
-    [self permissionsCalendar];
-    [self permissionsTwitter];
-    [self permissionAddressBook];
-    
+    [FBProfilePictureView class];    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor backgroundColor];
     // Our main view controller for now it is just a table view
     NSString* appUser = [[NSUserDefaults standardUserDefaults] objectForKey:kUserEmail];
     if (appUser) {
+        //synch with server
+        self.synchHandler = [KCRemoteSynching new];
+        [self.synchHandler synchContactsFromMozzieServer];
         self.mainViewController = [KCCalendarViewController new];
     } else {
         self.mainViewController = [FTWMLoginViewController new];

@@ -8,6 +8,7 @@
 
 #import "KCImportViewController.h"
 #import "KCCalendarViewController.h"
+#import "FTWMAppDelegate.h"
 #import "KCDataStore.h"
 
 @interface KCImportViewController ()
@@ -29,6 +30,15 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)initiatePermissions {
+    // The user has initiated a login, so ask for permissions
+    FTWMAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate openSessionWithAllowLoginUI:YES];
+    [appDelegate permissionsCalendar];
+    [appDelegate permissionsTwitter];
+    [appDelegate permissionAddressBook];
 }
 
 - (void)pullFB {
@@ -174,8 +184,7 @@
     self.title = @"Import";
     [self setupPeopleImportButtons];
     [self setupNavbar];
-
-	// Do any additional setup after loading the view.
+    [self initiatePermissions];
 }
 
 

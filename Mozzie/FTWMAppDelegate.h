@@ -18,4 +18,9 @@ extern NSString *const FBSessionStateChangedNotification;
 // requires the user to be logged in to Facebook in order to do anything interesting -- if
 // there is no valid FBSession, a login screen is displayed.
 -(BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI;
+- (void)permissionAddressBook;
+- (void)permissionsCalendar;
+- (void)permissionsReminders;
+- (void)permissionsTwitter;
+
 @end

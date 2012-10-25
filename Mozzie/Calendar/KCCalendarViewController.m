@@ -74,7 +74,7 @@
     calendarChooser.showsCancelButton = YES;
     calendarChooser.showsDoneButton = YES;
     calendarChooser.delegate = self;
-    calendarChooser.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    calendarChooser.modalTransitionStyle = kAppWideModalStyle;
     UINavigationController *cntrol = [[UINavigationController alloc] initWithRootViewController:calendarChooser];
     cntrol.navigationBar.tintColor =[UIColor headerColor];
     cntrol.delegate = self;

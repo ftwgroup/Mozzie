@@ -17,5 +17,5 @@ NSString* const kMozzieServerBaseURL = @"http://127.0.0.1:8000/";
 NSString* const kSynchingRequestComplete = @"synching request complete";
 NSString* const kUserEmail = @"the user's entered email";
 NSString* const kMozzieApp = @"Mozzie App";
-UIModalTransitionStyle const kAppWideModalStyle = UIModalTransitionStyleCoverVertical;
+UIModalTransitionStyle const kAppWideModalStyle = UIModalTransitionStyleFlipHorizontal;
 @end
