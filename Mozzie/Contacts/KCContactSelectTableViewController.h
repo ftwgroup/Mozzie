@@ -12,5 +12,6 @@
 #import <AddressBook/AddressBook.h>
 
 @interface KCContactSelectTableViewController : UITableViewController
-
+@property NSInteger typeToDisplay;
+- (void)refreshDisplay;
 @end

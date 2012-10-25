@@ -15,7 +15,8 @@
 + (NSManagedObjectModel *) model;
 
 + (NSArray* )userTwitterHandle;
-+ (NSArray* )fetchPeople;
++ (NSArray* )fetchEntity:(NSString *)entity;
+
 + (BOOL)saveEntityFromPersonRecordRef:(ABRecordRef) person;
 + (BOOL)isInDB:(NSNumber* )ID Entity:(NSString *)entity;
 + (BOOL)removeDuplicatesByIDsAndSave:(NSArray* )ids;

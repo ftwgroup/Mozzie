@@ -7,7 +7,7 @@
 
 #import "KCAddEventTableViewController.h"
 #import "UIColor+FTWColors.h"
-#import "KCContactSelectTableViewController.h"
+#import "KCContactsViewController.h"
 
 @interface KCAddEventTableViewController ()
 @property (nonatomic, strong) NIMutableTableViewModel* model;
@@ -120,7 +120,7 @@
                                           didChangeTarget:self
                                         didChangeSelector:@selector(datePickerDidChangeValue:)],
          @"People",
-         [self.actions attachNavigationAction:NIPushControllerAction([KCContactSelectTableViewController class])
+         [self.actions attachNavigationAction:NIPushControllerAction([KCContactsViewController class])
                                      toObject:[NITitleCellObject
                                                objectWithTitle:@"Add a contact or group"]],
          @"Status",
@@ -146,7 +146,7 @@
 
 #pragma mark Nav Methods
 - (void)navAddPersonOrGroup {
-    [self.navigationController pushViewController:[KCContactSelectTableViewController new] animated:YES];
+    [self.navigationController pushViewController:[KCContactsViewController new] animated:YES];
 }
 
 - (void)navCancel {

@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface KCConstants : NSObject
+
+typedef enum  {
+    kPersonTag,
+    kGroupTag
+} contactTab;
+
 extern NSString* const kCalendarPermissionsNotification;
 extern NSString* const kCalendarPermissionsBoolKey;
 extern NSString* const kCoreDataStoreName;

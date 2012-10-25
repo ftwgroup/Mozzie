@@ -49,9 +49,9 @@ NSManagedObjectModel *dataModel;
     }
 }
 
-+ (NSArray* )fetchPeople {
++ (NSArray* )fetchEntity:(NSString *)entity {
     NSFetchRequest* req = [NSFetchRequest new];
-    req.entity = [[KCDataStore model].entitiesByName objectForKey:@"Person"];
+    req.entity = [[KCDataStore model].entitiesByName objectForKey:entity];
     NSError* err;
     NSArray* result = [[KCDataStore context] executeFetchRequest:req error:&err];
     if (!result) {
@@ -76,8 +76,9 @@ NSManagedObjectModel *dataModel;
     }
 }
 
-//TODO, implemented apple recommended find or create:
+//TODO, implement apple recommended find or create:
 //http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/CoreData/Articles/cdImporting.html
+
 + (BOOL)removeDuplicatesAndSaveWithIncomingIds:(NSArray* )ids WithIDType:(NSString* )idType WithEntityType:(NSString* ) entityType {
     NSArray* sortedIDs = [ids sortedArrayUsingSelector: @selector(compare:)];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

@@ -10,6 +10,9 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import <AddressBook/AddressBook.h>
 
-@interface KCContactsViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate, UIAlertViewDelegate>
+#define TOOL_BAR_HEIGHT 40
+#define TOOL_BUTTON_WIDTH 40
+
+@interface KCContactsViewController : UIViewController <UIAlertViewDelegate, UITabBarDelegate>
 
 @end

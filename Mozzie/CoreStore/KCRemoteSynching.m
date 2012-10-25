@@ -21,8 +21,6 @@
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects
 {
-    //[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdatedAt"];
-    //[[NSUserDefaults standardUserDefaults] synchronize];
     // Get the names to parse in sorted order.
     NSMutableArray *personIncomingAppIDs = [NSMutableArray new];
     for (Person* personIncoming in objects) {

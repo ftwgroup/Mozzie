@@ -8,14 +8,16 @@
 
 #import "KCContactsViewController.h"
 #import "KCContactTableViewController.h"
+#import "KCContactSelectTableViewController.h"
 #import "KCDataStore.h"
 #import "UIColor+FTWColors.h"
+#import "KCConstants.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface KCContactsViewController ()
 @property (strong, nonatomic) NSArray *friends;
-
+@property (strong, nonatomic) KCContactSelectTableViewController* contactTable;
 -(void)setupPeoplePicker;
 -(void)setupSearchBar;
 -(void)postAction:(NSString *)actionPath tryReauthIfNeeded:(BOOL)tryReauthIfNeeded;
@@ -34,37 +36,18 @@
 
 @synthesize friends = _friends;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+#pragma mark Display alterations for contact tableview
+- (void)displayPersonSelect {
+    self.contactTable.typeToDisplay = kPersonTag;
+    [self.contactTable.tableView reloadData];
 }
 
-- (void)loadView
-{
-    [super loadView];
-
-    if (!self.friends) {
-        [self pullMyFriends];
-    }
+- (void)displayGroupSelect {
+    self.contactTable.typeToDisplay = kGroupTag;
+    [self.contactTable.tableView reloadData];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self setupPeoplePicker];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-# pragma mark - Temporary Methods for selecting contacts to view
+#pragma mark Facebook Methods
 
 - (void)pullMyFriends {
     // check before request
@@ -99,7 +82,7 @@
         NSArray* friends = [result objectForKey:@"data"];
         NSLog(@"Found: %i friends", friends.count);
         NSLog(@"friend is %@",newName);
-                
+        
         for (NSDictionary<FBGraphUser>* friend in friends) {
             NSString *testFirstName = [friend valueForKey:@"first_name"];
             NSString *testLastName = [friend valueForKey:@"last_name"];
@@ -110,47 +93,6 @@
             }
         }
     }];
-}
-
-- (void)pushToPerson:(ABRecordRef)person
-{
-    NSString *facebookID;
-    CFStringRef firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty);
-    CFStringRef lastName = ABRecordCopyValue(person, kABPersonLastNameProperty);
-    NSString *NSfirstName = (__bridge NSString*)(firstName);
-    NSString *NSlastName = (__bridge NSString*)(lastName);
-    for (NSDictionary<FBGraphUser>* friend in self.friends) {
-        NSString *testFirstName = [friend valueForKey:@"first_name"];
-        NSString *testLastName = [friend valueForKey:@"last_name"];
-        if ([NSfirstName isEqualToString:testFirstName] && [NSlastName isEqualToString:testLastName]) {
-            NSLog(@"we found %@",friend.first_name);
-            facebookID = friend.id;
-        }
-    }
-    [self postPerson:person facebookID:facebookID tryReauthIfNeeded:YES];
-
-}
-
-- (void)setupNavButtons {
-    
-}
-
-- (void)setupPeoplePicker
-{
-    ABPeoplePickerNavigationController *peoplePicker = [[ABPeoplePickerNavigationController alloc] init];
-    peoplePicker.navigationBar.tintColor = [UIColor headerColor];
-    peoplePicker.peoplePickerDelegate = self;
-    peoplePicker.navigationBar.hidden = YES;
-    [self.view addSubview:peoplePicker.view];
-    [self addChildViewController:peoplePicker];
-}
-
-// Not currently using this
-- (void)setupSearchBar
-{
-    CGRect searchFrame = CGRectMake(0, 0, self.view.bounds.size.width, 40);
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:searchFrame];
-    [self.view addSubview:searchBar];
 }
 
 - (void)postPerson:(ABRecordRef)person facebookID:(NSString *)facebookID tryReauthIfNeeded:(BOOL)tryReauthIfNeeded
@@ -167,7 +109,7 @@
                 }
             }];
         }
-
+        
         // post the action using a lightweight static start method
         [FBRequestConnection startWithGraphPath:[facebookID stringByAppendingString:@"/feed"] completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
             if (!error) {
@@ -188,6 +130,123 @@
         }];
     } else {
         
+    }
+}
+
+
+# pragma mark - Temporary Methods for selecting contacts to view
+- (void)pushToPerson:(ABRecordRef)person
+{
+    NSString *facebookID;
+    CFStringRef firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty);
+    CFStringRef lastName = ABRecordCopyValue(person, kABPersonLastNameProperty);
+    NSString *NSfirstName = (__bridge NSString*)(firstName);
+    NSString *NSlastName = (__bridge NSString*)(lastName);
+    for (NSDictionary<FBGraphUser>* friend in self.friends) {
+        NSString *testFirstName = [friend valueForKey:@"first_name"];
+        NSString *testLastName = [friend valueForKey:@"last_name"];
+        if ([NSfirstName isEqualToString:testFirstName] && [NSlastName isEqualToString:testLastName]) {
+            NSLog(@"we found %@",friend.first_name);
+            facebookID = friend.id;
+        }
+    }
+    [self postPerson:person facebookID:facebookID tryReauthIfNeeded:YES];
+    
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)loadView
+{
+    [super loadView];
+
+    if (!self.friends) {
+        [self pullMyFriends];
+    }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self setup];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark Setup
+
+- (void)setup {
+    [self setUpBackGroundToolBar];
+    [self setupContactSelectTableView];
+    [self setupTabbar];
+}
+
+- (void)setupNavButtons {
+    //currently unused
+}
+
+- (void)setUpBackGroundToolBar {
+    CGRect toolBarFrame = CGRectMake(0, 0, self.view.bounds.size.width, TOOL_BAR_HEIGHT);
+    UIToolbar* backgroundTool = [[UIToolbar alloc] initWithFrame:toolBarFrame];
+    backgroundTool.tintColor = [UIColor clearColor];
+    backgroundTool.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:backgroundTool];
+}
+
+- (void)setupTabbar {
+    CGRect tabBarFrame = CGRectMake(TOOL_BUTTON_WIDTH * 2, 0, self.view.bounds.size.width - (TOOL_BUTTON_WIDTH * 4), TOOL_BAR_HEIGHT);
+    UITabBar* calTab = [[UITabBar alloc] initWithFrame:tabBarFrame];
+    
+    UITabBarItem* people = [[UITabBarItem alloc] initWithTitle:@"People" image:nil tag:kPersonTag];
+    UITabBarItem* groups = [[UITabBarItem alloc] initWithTitle:@"Groups" image:nil tag:kGroupTag];
+    
+    calTab.backgroundColor = [UIColor clearColor];
+    calTab.tintColor = [UIColor clearColor];
+    calTab.items = @[people, groups];
+    calTab.selectedItem = people;
+    calTab.delegate = self;
+    
+    [self.view addSubview:calTab];
+}
+
+- (void)setupContactSelectTableView {
+    self.contactTable = [KCContactSelectTableViewController new];
+    self.contactTable.tableView.frame = CGRectMake(0, TOOL_BAR_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - TOOL_BAR_HEIGHT);
+    self.contactTable.typeToDisplay = kPersonTag;
+    [self.view addSubview:self.contactTable.view];
+    [self addChildViewController:self.contactTable];
+}
+
+// Not currently using this
+- (void)setupSearchBar
+{
+    CGRect searchFrame = CGRectMake(0, 0, self.view.bounds.size.width, 40);
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:searchFrame];
+    [self.view addSubview:searchBar];
+}
+
+#pragma mark - Tab Delegate
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    switch (item.tag) {
+        case kPersonTag:
+            [self displayPersonSelect];
+            break;
+        case kGroupTag:
+            [self displayGroupSelect];
+            break;
+        default:
+            break;
     }
 }
 
