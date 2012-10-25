@@ -18,7 +18,6 @@
 @interface KCContactsViewController ()
 @property (strong, nonatomic) NSArray *friends;
 @property (strong, nonatomic) KCContactSelectTableViewController* contactTable;
--(void)setupPeoplePicker;
 -(void)setupSearchBar;
 -(void)postAction:(NSString *)actionPath tryReauthIfNeeded:(BOOL)tryReauthIfNeeded;
 -(void)postPerson:(ABRecordRef)person facebookID:(NSString *)facebookID tryReauthIfNeeded:(BOOL)tryReauthIfNeeded;
@@ -176,12 +175,24 @@
 {
     [super viewDidLoad];
     [self setup];
+    if (self.manageContacts) {
+        [self setupNavButtons];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark Navigate to Manage Actions
+- (void)newGroup {
+    
+}
+
+- (void)deleteEntities {
+    
 }
 
 #pragma mark Setup
@@ -193,7 +204,17 @@
 }
 
 - (void)setupNavButtons {
-    //currently unused
+    UIBarButtonItem* contactsManageButton = [[UIBarButtonItem alloc] initWithTitle:@"Create Group"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(newGroup)];
+    
+    UIBarButtonItem* filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Remove"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(deleteEntities)];
+    
+    self.navigationItem.rightBarButtonItems = @[contactsManageButton, filterButton];
 }
 
 - (void)setUpBackGroundToolBar {
@@ -248,24 +269,6 @@
         default:
             break;
     }
-}
-
-# pragma marker - People picker delegate methods
-- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
-{
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
-{
-    [self pushToPerson:person];
-    return NO;
-}
-
-// This is called once a contact has been selected when we select a particular attribute
--(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
-{
-    return NO;
 }
 
 @end

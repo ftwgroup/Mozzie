@@ -14,5 +14,5 @@
 #define TOOL_BUTTON_WIDTH 40
 
 @interface KCContactsViewController : UIViewController <UIAlertViewDelegate, UITabBarDelegate>
-
+@property BOOL manageContacts;
 @end

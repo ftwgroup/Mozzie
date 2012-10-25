@@ -14,7 +14,7 @@
 
 @interface KCContactSelectTableViewController ()
 @property (nonatomic, strong) NSArray* personObjects;;
-@property (nonatomic, readwrite, retain) NSArray* groupObjects;
+@property (nonatomic, strong) NSArray* groupObjects;
 @end
 
 @implementation KCContactSelectTableViewController
@@ -124,7 +124,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO allow multiple selections with custom animation and store them
+    // TODO allow multiple selections with custom animation and store them for adding/editing
 }
 
 

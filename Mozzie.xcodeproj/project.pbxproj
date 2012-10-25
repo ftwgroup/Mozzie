@@ -98,6 +98,7 @@
 		4CA73E6A1635E01D0091053E /* MozzieRestKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA73E691635E01D0091053E /* MozzieRestKitTests.m */; };
 		4CA73E711635EA4F0091053E /* KCRKInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA73E701635EA4F0091053E /* KCRKInit.m */; };
 		4CA8D0A91639BE72004B7F60 /* STKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA8D0A81639BE72004B7F60 /* STKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4CA8D0AC163A0064004B7F60 /* KCAddGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA8D0AB163A0064004B7F60 /* KCAddGroupTableViewController.m */; };
 		B90B6976161B7F62000997AA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90B6975161B7F62000997AA /* Social.framework */; };
 		B90B6979161B7F6E000997AA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90B6977161B7F6E000997AA /* Accounts.framework */; };
 		B90B697A161B7F6E000997AA /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90B6978161B7F6E000997AA /* AdSupport.framework */; };
@@ -342,6 +343,8 @@
 		4CA73E701635EA4F0091053E /* KCRKInit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCRKInit.m; sourceTree = "<group>"; };
 		4CA8D0A71639BE72004B7F60 /* STKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKeychain.h; sourceTree = "<group>"; };
 		4CA8D0A81639BE72004B7F60 /* STKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKeychain.m; sourceTree = "<group>"; };
+		4CA8D0AA163A0064004B7F60 /* KCAddGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCAddGroupTableViewController.h; path = Contacts/KCAddGroupTableViewController.h; sourceTree = "<group>"; };
+		4CA8D0AB163A0064004B7F60 /* KCAddGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCAddGroupTableViewController.m; path = Contacts/KCAddGroupTableViewController.m; sourceTree = "<group>"; };
 		B90B6975161B7F62000997AA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B90B6977161B7F6E000997AA /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B90B6978161B7F6E000997AA /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -729,6 +732,8 @@
 				1C4BCE94162F61C3004B2210 /* KCContactSelectTableViewController.m */,
 				1C397AA516275B1F00CD34D1 /* KCContactsViewController.h */,
 				1C397AA616275B1F00CD34D1 /* KCContactsViewController.m */,
+				4CA8D0AA163A0064004B7F60 /* KCAddGroupTableViewController.h */,
+				4CA8D0AB163A0064004B7F60 /* KCAddGroupTableViewController.m */,
 				1C397AA716275B1F00CD34D1 /* KCContactTableViewController.h */,
 				1C397AA816275B1F00CD34D1 /* KCContactTableViewController.m */,
 				1C397AA916275B1F00CD34D1 /* KCFaceView.h */,
@@ -1019,6 +1024,7 @@
 				4C891435163765BF00959C40 /* Person.m in Sources */,
 				1CF754221638A1D40027C602 /* KCImportViewController.m in Sources */,
 				4CA8D0A91639BE72004B7F60 /* STKeychain.m in Sources */,
+				4CA8D0AC163A0064004B7F60 /* KCAddGroupTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,7 @@
 #import "KalDate.h"
 #import "KalLogic.h"
 #import "KCConstants.h"
+#import "KCContactsViewController.h"
 #import "KCAddEventTableViewController.h"
 
 @interface KCCalendarViewController ()
@@ -20,7 +21,7 @@
 
 @implementation KCCalendarViewController
 
-#pragma mark - Add and Alter Events
+#pragma mark - Add Events
 - (void)addEvent {
     KCAddEventTableViewController* addEvent = [[KCAddEventTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     addEvent.eventStore = [KCCalendarStore sharedStore].EKEvents;
@@ -68,6 +69,7 @@
     [self.calendarTable.tableView reloadData];
 }
 
+#pragma mark Configurations
 - (void)calendarSelect {
     EKCalendarChooser* calendarChooser = [[EKCalendarChooser alloc] initWithSelectionStyle:EKCalendarChooserSelectionStyleMultiple
                                                                               displayStyle:EKCalendarChooserDisplayAllCalendars
@@ -84,6 +86,12 @@
     [self presentViewController:cntrol animated:YES completion:nil];
     //[self presentViewController:calendarChooser animated:YES completion:nil];
     //[self.navigationController pushViewController:calendarChooser animated:YES];
+}
+
+- (void)contactsManage {
+    KCContactsViewController* contactsManage = [KCContactsViewController new];
+    contactsManage.manageContacts = YES;
+    [self.navigationController pushViewController:contactsManage animated:YES];
 }
 
 #pragma mark - Fill in
@@ -213,6 +221,11 @@
 }
 
 - (void)setupNavbar {
+    UIBarButtonItem* contactsManageButton = [[UIBarButtonItem alloc] initWithTitle:@"Peeps"
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(contactsManage)];
+    
     UIBarButtonItem* filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Cals"
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
@@ -221,7 +234,7 @@
     UIBarButtonItem* addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                target:self
                                                                                action:@selector(addEvent)];
-    self.navigationItem.rightBarButtonItems = @[addButton, filterButton];
+    self.navigationItem.rightBarButtonItems = @[addButton, filterButton, contactsManageButton];
 }
 
 - (void)setupNotifications {

@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Mozzie/Contacts/KCContactsViewController.m"
-         timestampString = "372897001.310454"
+         timestampString = "372900444.474933"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "47"
-         endingLineNumber = "47"
+         startingLineNumber = "46"
+         endingLineNumber = "46"
          landmarkName = "-displayGroupSelect"
          landmarkType = "5">
       </FileBreakpoint>
