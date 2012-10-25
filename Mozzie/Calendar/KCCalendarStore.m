@@ -16,21 +16,15 @@ static dispatch_once_t pred;
 
 @implementation KCCalendarStore
 
-- (NSArray *) calendars
-{
-    if (!_calendars) {
-        _calendars = [NSArray new];
-    }
-    return _calendars;
-}
-
-
 + (KCCalendarStore* )sharedStore
 {
+    //from the apple docs: "An EKEventStore object requires a relatively large amount of time to initialize and release. Consequently, you should not initialize and release a separate event store for each event-related task. Instead, initialize a single event store when your app loads, and use it repeatedly to ensure that your connection is long-lived."
+    
     dispatch_once(&pred, ^{
         sharedStore = [[KCCalendarStore alloc] init];
         sharedStore.EKEvents = [[EKEventStore alloc] init];
     });
+    
     return sharedStore;
 }
 
@@ -78,11 +72,11 @@ static dispatch_once_t pred;
         default:
             break;
     }
-
+    NSArray* calendars = [[NSUserDefaults standardUserDefaults] valueForKey:kUserSelectedCalendars];
     
     NSPredicate *eventPredicate = [sharedStore.EKEvents predicateForEventsWithStartDate:startOfUnit
                                                                            endDate:endOfUnit
-                                                                         calendars:sharedStore.calendars];
+                                                                         calendars:calendars];
     //NSPredicate * reminderPredicate =[sharedStore.EKEvents predicateForIncompleteRemindersWithDueDateStarting:startOfUnit
                                                                       //ending:endOfUnit
                                                                    //calendars:sharedStore.calendars];

@@ -18,5 +18,4 @@
 @property (nonatomic, strong) EKEventStore* EKEvents;
 @property NSUInteger calendarUnit;
 @property NSInteger calendarIndex;
-@property (nonatomic, strong) NSArray* calendars;
 @end

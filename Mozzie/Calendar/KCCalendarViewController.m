@@ -41,12 +41,15 @@
 }
 
 - (void)calendarChooserDidFinish:(EKCalendarChooser *)calendarChooser {
-    [calendarChooser dismissViewControllerAnimated:YES completion:nil];
+    NSArray* selectedCalendars = [NSArray arrayWithArray:[calendarChooser.selectedCalendars allObjects]];
+    [[NSUserDefaults standardUserDefaults] setObject:selectedCalendars forKey:kUserSelectedCalendars];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self.calendarTable.tableView reloadData];
+    [calendarChooser dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)calendarChooserSelectionDidChange:(EKCalendarChooser *)calendarChooser {
-    [KCCalendarStore sharedStore].calendars = [NSArray arrayWithArray:[calendarChooser.selectedCalendars allObjects]];
+    //ok..
 }
 
 #pragma mark - Calendar methods

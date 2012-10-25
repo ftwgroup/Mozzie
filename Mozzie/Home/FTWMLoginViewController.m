@@ -111,7 +111,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:self.emailField.text forKey:kUserEmail];
         [STKeychain storeUsername:self.emailField.text
                       andPassword:self.passwordField.text
-                   forServiceName:kMozzieApp
+                   forServiceName:kServiceMozzieApp
                    updateExisting:NO
                             error:&error];
         dispatch_sync(dispatch_get_main_queue(), ^{
