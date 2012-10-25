@@ -13,6 +13,7 @@
 #import "UIColor+FTWColors.h"
 #import "KCConstants.h"
 #import "KCRKInit.h"
+#import "KCCalendarViewController.h"
 #import <Accounts/Accounts.h>
 #import <AddressBook/AddressBook.h>
 #import <Social/Social.h>
@@ -25,7 +26,7 @@
 @interface FTWMAppDelegate ()
 
 @property (strong, nonatomic) UINavigationController *navController;
-@property (strong, nonatomic) FTWMHomeViewController *mainViewController;
+@property (strong, nonatomic) UIViewController *mainViewController;
 @property (strong, nonatomic) FTWMLoginViewController *loginViewController;
 @property (strong, nonatomic) KCRemoteSynching* synchHandler;
 
@@ -67,7 +68,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor backgroundColor];
     // Our main view controller for now it is just a table view
-    self.mainViewController = [[FTWMHomeViewController alloc] init];
+    NSString* appUser = [[NSUserDefaults standardUserDefaults] objectForKey:kUserEmail];
+    if (appUser) {
+        self.mainViewController = [KCCalendarViewController new];
+    } else {
+        self.mainViewController = [FTWMLoginViewController new];
+    }
+    
     self.navController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
     self.navController.navigationBar.tintColor = [UIColor headerColor];
     
@@ -77,9 +84,9 @@
     [self.window makeKeyAndVisible];
     
     // See if we have a valid token for the current state.
-    if (![self openSessionWithAllowLoginUI:NO]) {
-        [self showLoginView];
-    }
+//    if (![self openSessionWithAllowLoginUI:NO]) {
+//        [self showLoginView];
+//    }
     return YES;
 }
 
@@ -230,6 +237,7 @@
     }
 }
 
+//unused
 -(void)createAndPresentLoginView
 {
     self.loginViewController = [[FTWMLoginViewController alloc] init];
