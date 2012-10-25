@@ -58,8 +58,6 @@
     [super tearDown];
 }
 
-
-
 - (void)testKCRemoteSynching {
     [self setUpRMSynch];
     [self tearDownRMSynch];

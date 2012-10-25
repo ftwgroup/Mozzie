@@ -38,8 +38,8 @@
     NSMutableArray* nameArr = [[NSMutableArray alloc] init];
     for (Person *contact in [KCDataStore fetchPeople]) {
         if (contact.firstName) {
-            NSLog(@"contact, %@", contact.firstName);
-            [nameArr addObject:contact.firstName];
+            NSString* fullName = [[contact.firstName stringByAppendingString:@" "] stringByAppendingString:contact.lastName];
+            [nameArr addObject:[NISubtitleCellObject objectWithTitle:fullName subtitle:contact.nickName]];
         }
     }
     _model = [[NITableViewModel alloc] initWithListArray:nameArr delegate:(id)[NICellFactory class]];

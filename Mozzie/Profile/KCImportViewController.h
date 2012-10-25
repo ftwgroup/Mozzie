@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <EventKit/EventKit.h>
+#import <EventKitUI/EventKitUI.h>
 
-@interface KCImportViewController : UIViewController
+@interface KCImportViewController : UIViewController <EKCalendarChooserDelegate, UINavigationControllerDelegate>
 
 @end

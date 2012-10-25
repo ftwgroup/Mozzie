@@ -9,13 +9,59 @@
 #import "KCImportViewController.h"
 #import "KCCalendarViewController.h"
 #import "FTWMAppDelegate.h"
+#import "KCConstants.h"
+#import "UIColor+FTWColors.h"
 #import "KCDataStore.h"
+#import "KCCalendarStore.h"
 
 @interface KCImportViewController ()
 @property (strong, nonatomic) UIActivityIndicatorView* spinner;
+@property (strong, nonatomic) FTWMAppDelegate* appDelegate;
 @end
 
 @implementation KCImportViewController
+
+- (void)cloneContacts {
+    [self.appDelegate permissionAddressBook];
+    self.spinner.hidden = NO;
+    [self.spinner startAnimating];
+    [self synchAppDBWithAddressBook];
+}
+
+#pragma mark - Calendar chooser methods
+
+- (void)calendarChooserDidCancel:(EKCalendarChooser *)calendarChooser {
+    [calendarChooser dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)calendarChooserDidFinish:(EKCalendarChooser *)calendarChooser {
+    [calendarChooser dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)calendarChooserSelectionDidChange:(EKCalendarChooser *)calendarChooser {
+    [KCCalendarStore sharedStore].calendars = [NSArray arrayWithArray:[calendarChooser.selectedCalendars allObjects]];
+}
+
+- (void)calendarSelect {
+    [self.appDelegate permissionsCalendar];
+    
+    //clone of method in Calendar View
+    EKCalendarChooser* calendarChooser = [[EKCalendarChooser alloc] initWithSelectionStyle:EKCalendarChooserSelectionStyleMultiple
+                                                                              displayStyle:EKCalendarChooserDisplayAllCalendars
+                                                                                entityType:EKEntityTypeEvent
+                                                                                eventStore:[KCCalendarStore sharedStore].EKEvents];
+    //calendarChooser.selectedCalendars = [NSSet setWithArray:[KCCalendarStore sharedStore].calendars];
+    calendarChooser.showsCancelButton = YES;
+    calendarChooser.showsDoneButton = YES;
+    calendarChooser.delegate = self;
+    calendarChooser.modalTransitionStyle = kAppWideModalStyle;
+    UINavigationController *cntrol = [[UINavigationController alloc] initWithRootViewController:calendarChooser];
+    cntrol.navigationBar.tintColor =[UIColor headerColor];
+    cntrol.delegate = self;
+    [self presentViewController:cntrol animated:YES completion:nil];
+    //[self presentViewController:calendarChooser animated:YES completion:nil];
+    //[self.navigationController pushViewController:calendarChooser animated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -32,17 +78,8 @@
     return self;
 }
 
-- (void)initiatePermissions {
-    // The user has initiated a login, so ask for permissions
-    FTWMAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    [appDelegate openSessionWithAllowLoginUI:YES];
-    [appDelegate permissionsCalendar];
-    [appDelegate permissionsTwitter];
-    [appDelegate permissionAddressBook];
-}
-
 - (void)pullFB {
-    //
+    [self.appDelegate openSessionWithAllowLoginUI:YES];
 }
 
 - (void)pushToCalendar {
@@ -50,14 +87,10 @@
 }
 
 - (void)pullTwitter {
-    //
+    [self.appDelegate permissionsTwitter];
 }
 
-- (void)cloneContacts {
-    self.spinner.hidden = NO;
-    [self.spinner startAnimating];
-    [self synchAppDBWithAddressBook];
-}
+
 
 - (void)setupNavbar {
     UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStylePlain
@@ -96,14 +129,28 @@
     CGRect calFrame = CGRectMake(20, 150, 280, 40);
     UIButton* calButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     calButton.frame = calFrame;
-    [calButton setTitle:@"AddressBook"
+    [calButton setTitle:@"Calendar"
                     forState:UIControlStateNormal];
     [calButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal]; ;
     [self.view addSubview:calButton];
     
     [calButton addTarget:self
-                       action:@selector(cloneContacts)
+                       action:@selector(calendarSelect)
              forControlEvents:UIControlEventTouchUpInside];
+    
+    CGRect abFrame = CGRectMake(20, 200, 280, 40);
+    UIButton* abButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    abButton.frame = abFrame;
+    [abButton setTitle:@"AddressBook"
+               forState:UIControlStateNormal];
+    [abButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal]; ;
+    [self.view addSubview:abButton];
+    
+    [abButton addTarget:self
+                  action:@selector(cloneContacts)
+        forControlEvents:UIControlEventTouchUpInside];
+    
+    
 }
 
 - (void)setupSpinner {
@@ -184,7 +231,7 @@
     self.title = @"Import";
     [self setupPeopleImportButtons];
     [self setupNavbar];
-    [self initiatePermissions];
+    self.appDelegate = [UIApplication sharedApplication].delegate;
 }
 
 

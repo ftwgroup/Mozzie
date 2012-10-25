@@ -37,6 +37,16 @@
 }
 @synthesize spinner = _spinner;
 
+#pragma mark Alerts
+- (void)throwAlertForMessage:(NSString* )message {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Invalid Information"
+                                                    message:message
+                                                   delegate:self
+                                          cancelButtonTitle:@"Ok"
+                                          otherButtonTitles:nil, nil];
+    [alert show];
+    
+}
 
 #pragma mark Check for validity
 - (BOOL)checkThatFieldsAreValid {
@@ -46,14 +56,17 @@
     if ([emailTest evaluateWithObject:self.emailField.text]) {
         return YES;
     } else {
-        self.emailField.text = @"PLEASE ENTER A VALID EMAIL ADDRESS";
+        [self throwAlertForMessage:@"Unrecognized email address format."];
         return NO;
     }
     
     if ([self.passwordField.text isEqualToString:self.confirmPasswordField.text]) {
+        if (self.passwordField.text.length < 6) {
+            [self throwAlertForMessage:@"Password should be at least 6 characters in length."];
+        }
         return YES;
     } else {
-        self.passwordField.text = @"PASSWORDS DO NOT MATCH";
+        [self throwAlertForMessage:@"Passwords do not match."];
         return NO;
     }
 }
@@ -101,7 +114,9 @@
                    forServiceName:kMozzieApp
                    updateExisting:NO
                             error:&error];
-        [self.navigationController pushViewController:[KCImportViewController new] animated:YES];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.navigationController pushViewController:[KCImportViewController new] animated:YES];
+        });
     }
     if (!error) {
         [[NSUserDefaults standardUserDefaults] synchronize];

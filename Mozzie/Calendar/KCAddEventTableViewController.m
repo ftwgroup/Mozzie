@@ -120,7 +120,9 @@
                                           didChangeTarget:self
                                         didChangeSelector:@selector(datePickerDidChangeValue:)],
          @"People",
-         [NITitleCellObject objectWithTitle:@"Add a contact or group"],
+         [self.actions attachNavigationAction:NIPushControllerAction([KCContactSelectTableViewController class])
+                                     toObject:[NITitleCellObject
+                                               objectWithTitle:@"Add a contact or group"]],
          @"Status",
          [NISegmentedControlFormElement segmentedControlElementWithID:0
                                                             labelText:@"Status"
@@ -163,10 +165,10 @@
 
 #pragma mark Setup
 - (void)setupNavBar {
-    UIBarButtonItem* addPerson = [[UIBarButtonItem alloc] initWithTitle:@"Peeps"
-                                                                  style:UIBarButtonItemStylePlain
-                                                                 target:self
-                                                                 action:@selector(navAddPersonOrGroup)];
+//    UIBarButtonItem* addPerson = [[UIBarButtonItem alloc] initWithTitle:@"Peeps"
+//                                                                  style:UIBarButtonItemStylePlain
+//                                                                 target:self
+//                                                                 action:@selector(navAddPersonOrGroup)];
     
     UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                target:self
@@ -176,7 +178,7 @@
                                                                                target:self
                                                                                action:@selector(navCancel)];
     self.navigationItem.leftBarButtonItem = cancelButton;
-    self.navigationItem.rightBarButtonItems = @[doneButton, addPerson];
+    self.navigationItem.rightBarButtonItem = doneButton;
 }
 
 

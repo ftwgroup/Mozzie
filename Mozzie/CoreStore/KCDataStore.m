@@ -78,17 +78,27 @@ NSManagedObjectModel *dataModel;
 
 //TODO, implemented apple recommended find or create:
 //http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/CoreData/Articles/cdImporting.html
-+ (BOOL)removeDuplicatesByIDsAndSave:(NSArray* )ids {
++ (BOOL)removeDuplicatesAndSaveWithIncomingIds:(NSArray* )ids WithIDType:(NSString* )idType WithEntityType:(NSString* ) entityType {
     NSArray* sortedIDs = [ids sortedArrayUsingSelector: @selector(compare:)];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:
-     [NSEntityDescription entityForName:@"Person" inManagedObjectContext:[KCDataStore context]]];
-    [fetchRequest setPredicate: [NSPredicate predicateWithFormat: @"(mozzieIdentifier IN %@)", ids]];
+     [NSEntityDescription entityForName:entityType inManagedObjectContext:[KCDataStore context]]];
+    [fetchRequest setPredicate: [NSPredicate predicateWithFormat: @"(%@ IN %@)", idType, ids]];
     [fetchRequest setSortDescriptors:
-     @[ [[NSSortDescriptor alloc] initWithKey: @"mozzieIdentifier" ascending:YES] ]];
+     @[ [[NSSortDescriptor alloc] initWithKey:idType ascending:YES] ]];
     // Execute the fetch.
     NSError *error;
     NSArray *objectsWithMatchingIDs = [[KCDataStore context] executeFetchRequest:fetchRequest error:&error];
+    
+    for (int i = 0; i < ids.count; i++) {
+        NSInteger incomingID = [[ids objectAtIndex:i] integerValue];
+        NSInteger matchingObjectId = [[((NSManagedObject* )[objectsWithMatchingIDs objectAtIndex:i]) valueForKey:idType] integerValue];
+        if (incomingID == matchingObjectId) {
+            continue;
+        } else {
+            
+        }
+    }
 }
 
 + (BOOL)saveEntityFromPersonRecordRef:(ABRecordRef)person {
