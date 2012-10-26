@@ -17,6 +17,7 @@
 //location is only a string for now
 @property (strong, nonatomic) NSString* location;
 @property (strong, nonatomic) NSString* eventName;
+@property (strong, nonatomic) NSArray* people;
 @property (strong, nonatomic) NSNumber* status1confirmed0pending;
 @end
 
@@ -119,10 +120,6 @@
                                            datePickerMode:UIDatePickerModeDateAndTime
                                           didChangeTarget:self
                                         didChangeSelector:@selector(datePickerDidChangeValue:)],
-         @"People",
-         [self.actions attachNavigationAction:NIPushControllerAction([KCContactsViewController class])
-                                     toObject:[NITitleCellObject
-                                               objectWithTitle:@"Add a contact or group"]],
          @"Status",
          [NISegmentedControlFormElement segmentedControlElementWithID:0
                                                             labelText:@"Status"
@@ -136,6 +133,10 @@
                                         placeholderText:@"TBD"
                                                   value:nil
                                                delegate:self],
+         @"People",
+         [self.actions attachNavigationAction:NIPushControllerAction([KCContactsViewController class])
+                                     toObject:[NITitleCellObject
+                                               objectWithTitle:@"Add a contact or group"]],
          nil];
         
         self.model = [[NIMutableTableViewModel alloc] initWithSectionedArray:tableElements
@@ -204,39 +205,29 @@
 //    }
 }
 
+
 #pragma mark - NIMutableTableViewModelDelegate
 
-//remove people/groups
+//example code
+
 - (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
          canEditObject:(id)object
            atIndexPath:(NSIndexPath *)indexPath
            inTableView:(UITableView *)tableView {
-    if (indexPath.section == 1 && indexPath.row > 0) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-//example code
-- (BOOL)tableViewModel:(NIMutableTableViewModel *)tableViewModel
-    shouldDeleteObject:(id)object
-           atIndexPath:(NSIndexPath *)indexPath
-           inTableView:(UITableView *)tableView {
-    // We're going to store the index path that wants to be deleted so that we can delete the correct
-    // cell after the alert view has been dismissed.
-    self.indexPathForDeletion = indexPath;
-    
-    // Rather than allow the model to simply delete the object, we're going to present a prompt that
-    // confirms with the user that they want to delete this object.
-    UIAlertView *confirmationAlertView = [[UIAlertView alloc] initWithTitle:@"Confirm"
-                                                                    message:@"Are you that sure you want to delete this cell?"
-                                                                   delegate:self
-                                                          cancelButtonTitle:@"No"
-                                                          otherButtonTitles:@"Yes", nil];
-    [confirmationAlertView show];
     return NO;
 }
+
+
+- (UITableViewCell *)tableViewModel:(NITableViewModel *)tableViewModel
+                   cellForTableView:(UITableView *)tableView
+                        atIndexPath:(NSIndexPath *)indexPath
+                         withObject:(id)object {
+    return [NICellFactory tableViewModel:tableViewModel
+                        cellForTableView:tableView
+                             atIndexPath:indexPath
+                              withObject:object];
+}
+
 
 #pragma mark - TextFieldDelegate
 

@@ -35,6 +35,11 @@
 
 @synthesize friends = _friends;
 
+#pragma mark Add Selected People to Event
+- (void)addSelectedPeopleToEvent {
+    
+}
+
 #pragma mark Display alterations for contact tableview
 - (void)displayPersonSelect {
     self.contactTable.typeToDisplay = kPersonTag;
@@ -175,9 +180,6 @@
 {
     [super viewDidLoad];
     [self setup];
-    if (self.manageContacts) {
-        [self setupNavButtons];
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -201,20 +203,27 @@
     [self setUpBackGroundToolBar];
     [self setupContactSelectTableView];
     [self setupTabbar];
+    [self setupNavButtons];
 }
 
 - (void)setupNavButtons {
-    UIBarButtonItem* contactsManageButton = [[UIBarButtonItem alloc] initWithTitle:@"Create Group"
-                                                                             style:UIBarButtonItemStylePlain
-                                                                            target:self
-                                                                            action:@selector(newGroup)];
-    
-    UIBarButtonItem* filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Remove"
-                                                                     style:UIBarButtonItemStylePlain
-                                                                    target:self
-                                                                    action:@selector(deleteEntities)];
-    
-    self.navigationItem.rightBarButtonItems = @[contactsManageButton, filterButton];
+    if (self.manageContacts) {
+        UIBarButtonItem* contactsManageButton = [[UIBarButtonItem alloc] initWithTitle:@"Create Group"
+                                                                                 style:UIBarButtonItemStylePlain
+                                                                                target:self
+                                                                                action:@selector(newGroup)];
+        
+        UIBarButtonItem* filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Remove"
+                                                                         style:UIBarButtonItemStylePlain
+                                                                        target:self
+                                                                        action:@selector(deleteEntities)];
+        
+        self.navigationItem.rightBarButtonItems = @[contactsManageButton, filterButton];
+    } else {
+        UIBarButtonItem* doneSelecting = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain
+                                                                         target:self
+                                                                         action:@selector(addSelectedPeopleToEvent)];
+    }
 }
 
 - (void)setUpBackGroundToolBar {
