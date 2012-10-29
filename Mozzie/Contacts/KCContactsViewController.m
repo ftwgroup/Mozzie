@@ -190,11 +190,29 @@
 
 #pragma mark Navigate to Manage Actions
 - (void)newGroup {
-    
+    for (NSManagedObjectID* objectID in self.contactTable.selectedObjects) {
+        NSManagedObject* objectToDelete = [[KCDataStore context] objectRegisteredForID:objectID];
+        [[KCDataStore context] deleteObject:objectToDelete];
+    }
 }
 
 - (void)deleteEntities {
+    for (NSManagedObjectID* objectID in self.contactTable.selectedObjects) {
+        NSManagedObject* objectToDelete = [[KCDataStore context] objectRegisteredForID:objectID];
+        [[KCDataStore context] deleteObject:objectToDelete];
+    }
     
+    NSError* error;
+    [[KCDataStore context] save:&error];
+    if (!error ) {
+        [self.contactTable.tableView reloadData];
+    } else {
+        NSLog(@"Failed to save deletions with error: %@", [error localizedDescription]);
+    }
+    
+    //not quite working yet TODO: debug deleting cells along with core data objects
+    NSArray* entitiesToDelete = [self.contactTable.tableView indexPathsForSelectedRows];
+    [self.contactTable.tableView deleteRowsAtIndexPaths:entitiesToDelete withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark Setup
@@ -223,6 +241,7 @@
         UIBarButtonItem* doneSelecting = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain
                                                                          target:self
                                                                          action:@selector(addSelectedPeopleToEvent)];
+        self.navigationItem.rightBarButtonItem = doneSelecting;
     }
 }
 

@@ -36,6 +36,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //multiple selection!
+    self.tableView.allowsMultipleSelection = YES;
+    self.selectedObjects = [NSMutableDictionary new];
     [self queryDataStore];
 }
 
@@ -89,7 +92,8 @@
             break;
         default:
             break;
-    }    
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (NSInteger)tableView:(UITableView* )tableView numberOfRowsInSection:(NSInteger)section
@@ -124,14 +128,45 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO allow multiple selections with custom animation and store them for adding/editing
+    Person* selectedPerson;
+    Group* selectedGroup;
+    // TODO allow multiple selections with custom animation
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
         cell.accessoryType = UITableViewCellAccessoryNone;
+        switch (self.typeToDisplay) {
+            case kPersonTag:
+                selectedPerson = [self.personObjects objectAtIndex:indexPath.row];
+                [self.selectedObjects removeObjectForKey:[selectedPerson
+                                                 objectID]];
+                break;
+            case kGroupTag:
+                selectedGroup = [self.groupObjects objectAtIndex:indexPath.row];
+                [self.selectedObjects removeObjectForKey:[selectedGroup
+                                                 objectID]];
+                break;
+            default:
+                break;
+        }
     } else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        switch (self.typeToDisplay) {
+            case kPersonTag:
+                selectedPerson = [self.personObjects objectAtIndex:indexPath.row];
+                [self.selectedObjects setObject:selectedPerson
+                                         forKey:[selectedPerson
+                                                 objectID]];
+                break;
+            case kGroupTag:
+                selectedGroup = [self.groupObjects objectAtIndex:indexPath.row];
+                [self.selectedObjects setObject:selectedGroup
+                                         forKey:[selectedGroup
+                                                 objectID]];
+                break;
+            default:
+                break;
+        }
+    }    
 }
 
 

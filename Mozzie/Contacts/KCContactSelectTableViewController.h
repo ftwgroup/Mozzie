@@ -13,4 +13,5 @@
 
 @interface KCContactSelectTableViewController : UITableViewController
 @property NSInteger typeToDisplay;
+@property NSMutableDictionary* selectedObjects;
 @end
