@@ -52,6 +52,21 @@
 #pragma mark - Display Selected People
 
 - (void)displaySelectedPeople {
+    //cleanup
+//    NSMutableArray* toRemove = [NSMutableArray new];
+//    NSMutableArray* indexPaths = [NSMutableArray new];
+//    for (NSManagedObjectID* objectID in self.displayedPeople) {
+//        NSArray *index = [self.model removeObjectAtIndexPath:[self.displayedPeople objectForKey:objectID]];
+//        [indexPaths addObject:[self.displayedPeople objectForKey:objectID]];
+//        [toRemove addObject:objectID];
+//    }
+//    
+//    for (NSManagedObjectID* removeID in toRemove) {
+//        [self.displayedPeople removeObjectForKey:removeID];
+//    }
+//    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+    
+    //refresh
     for (NSManagedObjectID* objectID in self.selectedObjects) {
         if (![self.displayedPeople objectForKey:objectID]) {
             //add
@@ -65,15 +80,6 @@
 
             NSIndexPath* addedCellLocation = [[self.model addObject:titleCell toSection:1] objectAtIndex:0];
             [self.displayedPeople setObject:addedCellLocation forKey:objectID];
-        }
-    }
-    
-    //cleanup unselected people:
-    for (NSManagedObjectID* objectID in self.displayedPeople) {
-        if (![self.selectedObjects objectForKey:objectID]) {
-            //remove
-            [self.model removeObjectAtIndexPath:[self.displayedPeople objectForKey:objectID]];
-            [self.displayedPeople removeObjectForKey:objectID];
         }
     }
     
@@ -108,7 +114,6 @@
                                           didChangeTarget:self
                                         didChangeSelector:@selector(datePickerDidChangeValue:)],
          @"People",
-         [NITitleCellObject objectWithTitle:@"Edit attendee list"],
          @"Status",
          [NISegmentedControlFormElement segmentedControlElementWithID:0
                                                             labelText:@"Status"
@@ -157,10 +162,10 @@
                                            datePickerMode:UIDatePickerModeDateAndTime
                                           didChangeTarget:self
                                         didChangeSelector:@selector(datePickerDidChangeValue:)],
-         @"People",
+         @"Attendees",
          [self.actions attachNavigationAction:NIPushControllerAction([KCContactsViewController class])
                                      toObject:[NITitleCellObject
-                                               objectWithTitle:@"Add a contact or group"]],
+                                               objectWithTitle:@"Edit attendee list"]],
          @"Status",
          [NISegmentedControlFormElement segmentedControlElementWithID:0
                                                             labelText:@"Status"
@@ -183,6 +188,8 @@
 }
 
 #pragma mark Nav Methods
+
+//unused
 - (void)navAddPersonOrGroup {
     KCContactsViewController* contactSelect = [KCContactsViewController new];
     contactSelect.contactTable.selectedObjects = self.selectedObjects;
@@ -352,10 +359,6 @@
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTableView)];
     tap.cancelsTouchesInView = NO;
     [self.tableView addGestureRecognizer:tap];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [self displaySelectedPeople];
 }
 
 @end

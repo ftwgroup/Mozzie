@@ -13,9 +13,10 @@
 
 #define TOOL_BAR_HEIGHT 40
 
-@interface KCAddEventTableViewController : UITableViewController <UITextFieldDelegate, NIMutableTableViewModelDelegate>
+@interface KCAddEventTableViewController : UITableViewController <UITextFieldDelegate, NIMutableTableViewModelDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) EKEventStore* eventStore;
 -(id)initWithEvent:(EKEvent*)event;
 //keep track of the people added selection controller
 @property (strong, nonatomic) NSMutableDictionary* selectedObjects;
+- (void)displaySelectedPeople;
 @end

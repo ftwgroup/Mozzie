@@ -9,6 +9,7 @@
 #import "KCContactSelectTableViewController.h"
 #import "KCConstants.h"
 #import "KCDataStore.h"
+#import "KCAddEventTableViewController.h"
 #import "Person.h"
 #import "Group.h"
 
@@ -33,43 +34,14 @@
     [super loadView];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    //multiple selection!
-    self.tableView.allowsMultipleSelection = YES;
-    self.selectedObjects = [NSMutableDictionary new];
-    [self queryDataStore];
-}
 
-- (void)queryDataStore {
-    
-//    if (self.typeToDisplay == kPersonTag) {
-//        for (Person *contact in [KCDataStore fetchEntity:@"Person"]) {
-//            if (contact.firstName) {
-//                NSString* fullName = [[contact.firstName stringByAppendingString:@" "] stringByAppendingString:contact.lastName];
-//                [nameArr addObject:[NISubtitleCellObject objectWithTitle:fullName subtitle:contact.nickName]];
-//            }
-//        }
-//    } else {
-//        for (Group *group in [KCDataStore fetchEntity:@"Group"]) {
-//            if (group.name) {
-//                [nameArr addObject:[NITitleCellObject objectWithTitle:group.name]];
-//            }
-//        }
-//    }
-    self.personObjects = [KCDataStore fetchEntity:@"Person"];
-    self.groupObjects = [KCDataStore fetchEntity:@"Group"];
-    
-    
-    [self.tableView reloadData];
-}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return NIIsSupportedOrientation(toInterfaceOrientation);
@@ -179,6 +151,35 @@
     }    
 }
 
+- (void)queryDataStore {
+    
+    //    if (self.typeToDisplay == kPersonTag) {
+    //        for (Person *contact in [KCDataStore fetchEntity:@"Person"]) {
+    //            if (contact.firstName) {
+    //                NSString* fullName = [[contact.firstName stringByAppendingString:@" "] stringByAppendingString:contact.lastName];
+    //                [nameArr addObject:[NISubtitleCellObject objectWithTitle:fullName subtitle:contact.nickName]];
+    //            }
+    //        }
+    //    } else {
+    //        for (Group *group in [KCDataStore fetchEntity:@"Group"]) {
+    //            if (group.name) {
+    //                [nameArr addObject:[NITitleCellObject objectWithTitle:group.name]];
+    //            }
+    //        }
+    //    }
+    self.personObjects = [KCDataStore fetchEntity:@"Person"];
+    self.groupObjects = [KCDataStore fetchEntity:@"Group"];
+    
+    
+    [self.tableView reloadData];
+}
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    //multiple selection!
+    self.tableView.allowsMultipleSelection = YES;
+    [self queryDataStore];
+}
 
 @end

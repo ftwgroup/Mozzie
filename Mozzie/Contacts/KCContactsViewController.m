@@ -57,6 +57,7 @@
     for (UIViewController* vc in viewControllersToInform) {
         if ([vc class] == [KCAddEventTableViewController class]) {
             ((KCAddEventTableViewController *)vc).selectedObjects = self.contactTable.selectedObjects;
+            [((KCAddEventTableViewController *)vc) displaySelectedPeople];
         }
     }
     
@@ -245,6 +246,7 @@
     [self setupContactSelectTableView];
     [self setupTabbar];
     [self setupNavButtons];
+    [self setupSelectedObjects];
 }
 
 - (void)setupNavButtons {
@@ -299,6 +301,20 @@
     [self.view addSubview:self.contactTable.view];
     [self addChildViewController:self.contactTable];
 }
+
+- (void)setupSelectedObjects {
+    NSArray* navigationControllerStack = self.navigationController.viewControllers;
+    for (UIViewController* vc in navigationControllerStack) {
+        if ([vc class] == [KCAddEventTableViewController class]) {
+            ((KCAddEventTableViewController* )vc).selectedObjects = self.contactTable.selectedObjects;
+        }
+    }
+    
+    if (!self.contactTable.selectedObjects) {
+        self.contactTable.selectedObjects = [NSMutableDictionary new];
+    }
+}
+
 
 // Not currently using this
 - (void)setupSearchBar
