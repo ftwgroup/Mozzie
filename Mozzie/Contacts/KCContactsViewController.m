@@ -9,6 +9,7 @@
 #import "KCContactsViewController.h"
 #import "KCContactTableViewController.h"
 #import "KCContactSelectTableViewController.h"
+#import "KCNewGroupTableViewController.h"
 #import "KCDataStore.h"
 #import "UIColor+FTWColors.h"
 #import "KCConstants.h"
@@ -190,10 +191,21 @@
 
 #pragma mark Navigate to Manage Actions
 - (void)newGroup {
-    for (NSManagedObjectID* objectID in self.contactTable.selectedObjects) {
-        NSManagedObject* objectToDelete = [[KCDataStore context] objectRegisteredForID:objectID];
-        [[KCDataStore context] deleteObject:objectToDelete];
+    KCNewGroupTableViewController* newGroup = [KCNewGroupTableViewController new];
+    newGroup.selectedObjects = self.contactTable.selectedObjects;
+    UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:newGroup];
+    nav.navigationBar.tintColor = [UIColor headerColor];
+    [self presentViewController:nav animated:YES completion:nil];
+    
+    //clear selection and update data source
+    self.contactTable.selectedObjects = [NSMutableDictionary new];
+    NSArray* selectionsToClear = [self.contactTable.tableView indexPathsForSelectedRows];
+    for (NSIndexPath* indexPathToClear in selectionsToClear) {
+        UITableViewCell* cell = [self.contactTable.tableView cellForRowAtIndexPath:indexPathToClear];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        [self.contactTable.tableView deselectRowAtIndexPath:indexPathToClear animated:NO];
     }
+    [self.contactTable.tableView reloadData];
 }
 
 - (void)deleteEntities {

@@ -90,6 +90,7 @@
 		1CACC11C1630FF0F009EA821 /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CACC11B1630FF0F009EA821 /* PhoneNumber.m */; };
 		1CF754221638A1D40027C602 /* KCImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF754211638A1D40027C602 /* KCImportViewController.m */; };
 		4C000C11163727BC00CA2132 /* KCRemoteSynching.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C000C10163727BC00CA2132 /* KCRemoteSynching.m */; };
+		4C54D451163F0A1700D0DF6F /* KCNewGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C54D450163F0A1600D0DF6F /* KCNewGroupTableViewController.m */; };
 		4C891435163765BF00959C40 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C891434163765BF00959C40 /* Person.m */; };
 		4CA73E5F1635E01D0091053E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8942CD1630994300315E24 /* SenTestingKit.framework */; };
 		4CA73E601635E01D0091053E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160E161612658800CA206E /* UIKit.framework */; };
@@ -330,6 +331,8 @@
 		1CF754211638A1D40027C602 /* KCImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCImportViewController.m; path = Profile/KCImportViewController.m; sourceTree = "<group>"; };
 		4C000C0F163727BC00CA2132 /* KCRemoteSynching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCRemoteSynching.h; path = Mozzie/CoreStore/KCRemoteSynching.h; sourceTree = "<group>"; };
 		4C000C10163727BC00CA2132 /* KCRemoteSynching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCRemoteSynching.m; path = Mozzie/CoreStore/KCRemoteSynching.m; sourceTree = "<group>"; };
+		4C54D44F163F0A1600D0DF6F /* KCNewGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KCNewGroupTableViewController.h; path = Contacts/KCNewGroupTableViewController.h; sourceTree = "<group>"; };
+		4C54D450163F0A1600D0DF6F /* KCNewGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCNewGroupTableViewController.m; path = Contacts/KCNewGroupTableViewController.m; sourceTree = "<group>"; };
 		4C891433163765BF00959C40 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = Mozzie/CoreStore/Person.h; sourceTree = "<group>"; };
 		4C891434163765BF00959C40 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = Mozzie/CoreStore/Person.m; sourceTree = "<group>"; };
 		4CA73E5E1635E01D0091053E /* MozzieRestKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MozzieRestKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -725,6 +728,8 @@
 		B9160E961612700B00CA206E /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				4C54D44F163F0A1600D0DF6F /* KCNewGroupTableViewController.h */,
+				4C54D450163F0A1600D0DF6F /* KCNewGroupTableViewController.m */,
 				1C4BCE93162F61C3004B2210 /* KCContactSelectTableViewController.h */,
 				1C4BCE94162F61C3004B2210 /* KCContactSelectTableViewController.m */,
 				1C397AA516275B1F00CD34D1 /* KCContactsViewController.h */,
@@ -1019,6 +1024,7 @@
 				4C891435163765BF00959C40 /* Person.m in Sources */,
 				1CF754221638A1D40027C602 /* KCImportViewController.m in Sources */,
 				4CA8D0A91639BE72004B7F60 /* STKeychain.m in Sources */,
+				4C54D451163F0A1700D0DF6F /* KCNewGroupTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
