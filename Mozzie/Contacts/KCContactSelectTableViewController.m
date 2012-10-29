@@ -83,12 +83,22 @@
 
 - (void)tableViewCellConfiguration:(UITableViewCell*)cell ForIndex:(NSInteger )index {
     
+    Person* personAtIndex;
+    Group* groupAtIndex;
     switch (self.typeToDisplay) {
         case kPersonTag:
-            cell.textLabel.text = [[self.personObjects objectAtIndex:index] valueForKey:@"firstName"];
+            personAtIndex = [self.personObjects objectAtIndex:index];
+            cell.textLabel.text = [personAtIndex valueForKey:@"firstName"];
+            if ([self.selectedObjects objectForKey:[personAtIndex objectID]]) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             break;
         case kGroupTag:
-            cell.textLabel.text = [[self.groupObjects objectAtIndex:index] valueForKey:@"name"];
+            groupAtIndex = [self.groupObjects objectAtIndex:index];
+            cell.textLabel.text = [groupAtIndex valueForKey:@"name"];
+            if ([self.selectedObjects objectForKey:[groupAtIndex objectID]]) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             break;
         default:
             break;

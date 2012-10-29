@@ -16,4 +16,6 @@
 @interface KCAddEventTableViewController : UITableViewController <UITextFieldDelegate, NIMutableTableViewModelDelegate>
 @property (strong, nonatomic) EKEventStore* eventStore;
 -(id)initWithEvent:(EKEvent*)event;
+//keep track of the people added selection controller
+@property (strong, nonatomic) NSMutableDictionary* selectedObjects;
 @end

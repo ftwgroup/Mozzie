@@ -7,7 +7,10 @@
 
 #import "KCAddEventTableViewController.h"
 #import "UIColor+FTWColors.h"
+#import "KCDataStore.h"
 #import "KCContactsViewController.h"
+#import "Person.h"
+#import "Group.h"
 
 @interface KCAddEventTableViewController ()
 @property (nonatomic, strong) NIMutableTableViewModel* model;
@@ -19,6 +22,8 @@
 @property (strong, nonatomic) NSString* eventName;
 @property (strong, nonatomic) NSArray* people;
 @property (strong, nonatomic) NSNumber* status1confirmed0pending;
+//for comparision with latest instance of selected people
+@property (strong, nonatomic) NSMutableDictionary* displayedPeople;
 @end
 
 @implementation KCAddEventTableViewController
@@ -42,6 +47,38 @@
 
 - (void)didTapTableView {
     [self.view endEditing:YES];
+}
+
+#pragma mark - Display Selected People
+
+- (void)displaySelectedPeople {
+    for (NSManagedObjectID* objectID in self.selectedObjects) {
+        if (![self.displayedPeople objectForKey:objectID]) {
+            //add
+            NSManagedObject* objectToAdd = [[KCDataStore context] objectWithID:objectID];
+            NITitleCellObject* titleCell;
+            if ([objectToAdd class] == [Person class]) {
+                titleCell = [NITitleCellObject objectWithTitle:[objectToAdd valueForKey:@"firstName"]];
+            } else {
+                titleCell = [NITitleCellObject objectWithTitle:[objectToAdd valueForKey:@"name"]];
+            }
+
+            NSIndexPath* addedCellLocation = [[self.model addObject:titleCell toSection:1] objectAtIndex:0];
+            [self.displayedPeople setObject:addedCellLocation forKey:objectID];
+        }
+    }
+    
+    //cleanup unselected people:
+    for (NSManagedObjectID* objectID in self.displayedPeople) {
+        if (![self.selectedObjects objectForKey:objectID]) {
+            //remove
+            [self.model removeObjectAtIndexPath:[self.displayedPeople objectForKey:objectID]];
+            [self.displayedPeople removeObjectForKey:objectID];
+        }
+    }
+    
+    [self.model updateSectionIndex];
+    [self.tableView reloadData];
 }
 
 -(id)initWithEvent:(EKEvent*)event
@@ -71,7 +108,7 @@
                                           didChangeTarget:self
                                         didChangeSelector:@selector(datePickerDidChangeValue:)],
          @"People",
-         [NITitleCellObject objectWithTitle:@"Add a contact or group"],
+         [NITitleCellObject objectWithTitle:@"Edit attendee list"],
          @"Status",
          [NISegmentedControlFormElement segmentedControlElementWithID:0
                                                             labelText:@"Status"
@@ -120,6 +157,10 @@
                                            datePickerMode:UIDatePickerModeDateAndTime
                                           didChangeTarget:self
                                         didChangeSelector:@selector(datePickerDidChangeValue:)],
+         @"People",
+         [self.actions attachNavigationAction:NIPushControllerAction([KCContactsViewController class])
+                                     toObject:[NITitleCellObject
+                                               objectWithTitle:@"Add a contact or group"]],
          @"Status",
          [NISegmentedControlFormElement segmentedControlElementWithID:0
                                                             labelText:@"Status"
@@ -133,10 +174,6 @@
                                         placeholderText:@"TBD"
                                                   value:nil
                                                delegate:self],
-         @"People",
-         [self.actions attachNavigationAction:NIPushControllerAction([KCContactsViewController class])
-                                     toObject:[NITitleCellObject
-                                               objectWithTitle:@"Add a contact or group"]],
          nil];
         
         self.model = [[NIMutableTableViewModel alloc] initWithSectionedArray:tableElements
@@ -147,7 +184,10 @@
 
 #pragma mark Nav Methods
 - (void)navAddPersonOrGroup {
-    [self.navigationController pushViewController:[KCContactsViewController new] animated:YES];
+    KCContactsViewController* contactSelect = [KCContactsViewController new];
+    contactSelect.contactTable.selectedObjects = self.selectedObjects;
+    
+    [self.navigationController pushViewController:contactSelect animated:YES];
 }
 
 - (void)navCancel {
@@ -305,12 +345,17 @@
     self.tableView.delegate = [self.actions forwardingTo:self];
     self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
     self.tableView.backgroundView.backgroundColor = [UIColor backgroundColor];
+    self.displayedPeople = [NSMutableDictionary new];
     [self setupNavBar];
     
     //cancel editing gesture
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTableView)];
     tap.cancelsTouchesInView = NO;
     [self.tableView addGestureRecognizer:tap];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self displaySelectedPeople];
 }
 
 @end

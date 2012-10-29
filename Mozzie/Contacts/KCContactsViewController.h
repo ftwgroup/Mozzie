@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
+#import "KCContactSelectTableViewController.h"
 #import <AddressBookUI/AddressBookUI.h>
 #import <AddressBook/AddressBook.h>
 
@@ -16,5 +17,6 @@
 
 @interface KCContactsViewController : UIViewController <UIAlertViewDelegate, UITabBarDelegate>
 @property BOOL manageContacts;
+@property (strong, nonatomic) KCContactSelectTableViewController* contactTable;
 @property (strong, nonatomic) Event* event;
 @end

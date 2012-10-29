@@ -8,8 +8,8 @@
 
 #import "KCContactsViewController.h"
 #import "KCContactTableViewController.h"
-#import "KCContactSelectTableViewController.h"
 #import "KCNewGroupTableViewController.h"
+#import "KCAddEventTableViewController.h"
 #import "KCDataStore.h"
 #import "UIColor+FTWColors.h"
 #import "KCConstants.h"
@@ -18,7 +18,6 @@
 
 @interface KCContactsViewController ()
 @property (strong, nonatomic) NSArray *friends;
-@property (strong, nonatomic) KCContactSelectTableViewController* contactTable;
 -(void)setupSearchBar;
 -(void)postAction:(NSString *)actionPath tryReauthIfNeeded:(BOOL)tryReauthIfNeeded;
 -(void)postPerson:(ABRecordRef)person facebookID:(NSString *)facebookID tryReauthIfNeeded:(BOOL)tryReauthIfNeeded;
@@ -50,6 +49,18 @@
 - (void)displayGroupSelect {
     self.contactTable.typeToDisplay = kGroupTag;
     [self.contactTable.tableView reloadData];
+}
+
+#pragma mark Done Selecting
+- (void)doneSelecting {
+    NSArray* viewControllersToInform = self.navigationController.viewControllers;
+    for (UIViewController* vc in viewControllersToInform) {
+        if ([vc class] == [KCAddEventTableViewController class]) {
+            ((KCAddEventTableViewController *)vc).selectedObjects = self.contactTable.selectedObjects;
+        }
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark Facebook Methods
@@ -252,7 +263,7 @@
     } else {
         UIBarButtonItem* doneSelecting = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain
                                                                          target:self
-                                                                         action:@selector(addSelectedPeopleToEvent)];
+                                                                         action:@selector(doneSelecting)];
         self.navigationItem.rightBarButtonItem = doneSelecting;
     }
 }
