@@ -179,6 +179,9 @@
     [super viewDidLoad];
     //multiple selection!
     self.tableView.allowsMultipleSelection = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     [self queryDataStore];
 }
 

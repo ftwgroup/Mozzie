@@ -17,6 +17,8 @@
 + (NSArray* )userTwitterHandle;
 + (NSArray* )fetchEntity:(NSString *)entity;
 
++ (BOOL)groupHasUniqueName:(NSString* )name;
++ (BOOL)saveGroupWithName:(NSString* )name AndPeople:(NSArray* )people;
 + (BOOL)saveEntityFromPersonRecordRef:(ABRecordRef) person;
 + (BOOL)isInDB:(NSNumber* )ID Entity:(NSString *)entity;
 + (BOOL)removeDuplicatesByIDsAndSave:(NSArray* )ids;

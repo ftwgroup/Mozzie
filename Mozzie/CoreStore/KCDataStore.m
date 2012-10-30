@@ -8,6 +8,7 @@
 
 #import "KCDataStore.h"
 #import "Person.h"
+#import "Group.h"
 #import "PhoneNumber.h"
 #import "EmailAddress.h"
 #import <RestKit/RestKit.h>
@@ -30,6 +31,20 @@ NSManagedObjectModel *dataModel;
     return dataContext;
 }
 
++ (BOOL)groupHasUniqueName:(NSString* )name {
+    NSFetchRequest* req = [NSFetchRequest new];
+    req.entity = [[KCDataStore model].entitiesByName objectForKey:@"Group"];
+    NSString *attributeName = @"name";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K MATCHES %@", attributeName, name];
+    req.predicate = predicate;
+    NSError* error;
+    NSArray* result = [[KCDataStore context] executeFetchRequest:req error:&error];
+    if (result.count == 0) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
 
 + (NSManagedObjectModel *) model {
     if (!dataModel) {
@@ -55,7 +70,7 @@ NSManagedObjectModel *dataModel;
     NSError* err;
     NSArray* result = [[KCDataStore context] executeFetchRequest:req error:&err];
     if (!result) {
-        [NSException raise:@"Fetch people request failure!" format:@"Reason: %@", [err localizedDescription]];
+        [NSException raise:@"Fetch request failure!" format:@"Reason: %@", [err localizedDescription]];
     }
     return result;
 }
@@ -70,9 +85,9 @@ NSManagedObjectModel *dataModel;
     NSError* error;
     NSArray* result = [[KCDataStore context] executeFetchRequest:req error:&error];
     if (result.count == 0) {
-        return false;
+        return NO;
     } else {
-        return true;
+        return YES;
     }
 }
 
@@ -100,6 +115,37 @@ NSManagedObjectModel *dataModel;
             
         }
     }
+}
+
++ (BOOL) saveGroupWithName:(NSString *)name AndPeople:(NSArray *)people {
+    Group *group = [NSEntityDescription insertNewObjectForEntityForName:@"Group" inManagedObjectContext:[KCDataStore context]];
+    group.name = name;
+    
+    NSMutableSet* peopleToAdd = [NSMutableSet new];
+    NSMutableArray* groupsToParse = [NSMutableArray new];
+    
+    for (NSManagedObject* personable in people) {
+        if ([personable class] == [Person class]) {
+            [peopleToAdd addObject:personable];
+        } else {
+            [groupsToParse addObject:personable];
+        }
+    }
+    for (Group* group in groupsToParse) {
+        for (Person* person in group.manyPeople) {
+            [peopleToAdd addObject:person];
+        }
+    }
+    [group addManyPeople:peopleToAdd];
+    
+    NSError* error;
+    [[KCDataStore context] save:&error];
+    if (!error) {
+        return YES;
+    } else {
+        return NO;
+    }
+    
 }
 
 + (BOOL)saveEntityFromPersonRecordRef:(ABRecordRef)person {

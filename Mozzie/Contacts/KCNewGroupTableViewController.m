@@ -49,8 +49,16 @@
 }
 
 - (void)navDone {
-    //save
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if (!self.groupName) {
+        //throw an alert
+    } else {
+        if (![KCDataStore groupHasUniqueName:self.groupName]) {
+            //throw an alert
+        } else {
+            [KCDataStore saveGroupWithName:self.groupName AndPeople:[NSArray arrayWithArray:self.addedObjects]];
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 #pragma mark Setup
