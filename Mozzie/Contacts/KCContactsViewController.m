@@ -303,13 +303,13 @@
 }
 
 - (void)setupSelectedObjects {
-    NSArray* navigationControllerStack = self.navigationController.viewControllers;
-    for (UIViewController* vc in navigationControllerStack) {
+    NSArray* viewControllersHearFrom = self.navigationController.viewControllers;
+    for (UIViewController* vc in viewControllersHearFrom) {
         if ([vc class] == [KCAddEventTableViewController class]) {
-            ((KCAddEventTableViewController* )vc).selectedObjects = self.contactTable.selectedObjects;
+            self.contactTable.selectedObjects = ((KCAddEventTableViewController *)vc).selectedObjects;
+            [self.contactTable.tableView reloadData];
         }
     }
-    
     if (!self.contactTable.selectedObjects) {
         self.contactTable.selectedObjects = [NSMutableDictionary new];
     }
@@ -325,7 +325,7 @@
 }
 
 #pragma mark - Tab Delegate
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     switch (item.tag) {
         case kPersonTag:
             [self displayPersonSelect];

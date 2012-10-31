@@ -50,23 +50,32 @@
 }
 
 #pragma mark - Display Selected People
-
-- (void)displaySelectedPeople {
-    //cleanup
-//    NSMutableArray* toRemove = [NSMutableArray new];
-//    NSMutableArray* indexPaths = [NSMutableArray new];
-//    for (NSManagedObjectID* objectID in self.displayedPeople) {
-//        NSArray *index = [self.model removeObjectAtIndexPath:[self.displayedPeople objectForKey:objectID]];
-//        [indexPaths addObject:[self.displayedPeople objectForKey:objectID]];
-//        [toRemove addObject:objectID];
-//    }
-//    
-//    for (NSManagedObjectID* removeID in toRemove) {
-//        [self.displayedPeople removeObjectForKey:removeID];
-//    }
-//    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+- (void)displayCleanup {
+    NSMutableArray* displayedIDstoRemove = [NSMutableArray new];
+    NSMutableDictionary* iteratedCopy = [self.displayedPeople copy];
     
-    //refresh
+    for (NSManagedObjectID* objectID in iteratedCopy) {
+        if ([self.selectedObjects objectForKey:objectID]) {
+            continue;
+        }
+        //remove
+        NSIndexPath* pathToRemove = [self.displayedPeople objectForKey:objectID];
+        NSArray* indexPathsToRemove = [self.model removeObjectAtIndexPath:pathToRemove];
+            [self.tableView deleteRowsAtIndexPaths:indexPathsToRemove withRowAnimation:UITableViewRowAnimationNone];
+        [self.displayedPeople removeObjectForKey:objectID];
+        [displayedIDstoRemove addObject:objectID];
+        
+        for (NSManagedObjectID* objectID in self.displayedPeople) {
+            NSIndexPath* indexPathToUpdate = [self.displayedPeople objectForKey:objectID];
+            if ([indexPathToUpdate compare:pathToRemove] == NSOrderedDescending) {
+                indexPathToUpdate = [NSIndexPath indexPathForRow:indexPathToUpdate.row - 1 inSection:indexPathToUpdate.section];
+                [self.displayedPeople setObject:indexPathToUpdate forKey:objectID];
+            }
+        }
+    }
+}
+
+- (void)displayRefresh {
     for (NSManagedObjectID* objectID in self.selectedObjects) {
         if (![self.displayedPeople objectForKey:objectID]) {
             //add
@@ -77,7 +86,7 @@
             } else {
                 titleCell = [NITitleCellObject objectWithTitle:[objectToAdd valueForKey:@"name"]];
             }
-
+            
             NSIndexPath* addedCellLocation = [[self.model addObject:titleCell toSection:1] objectAtIndex:0];
             [self.displayedPeople setObject:addedCellLocation forKey:objectID];
         }
@@ -85,6 +94,11 @@
     
     [self.model updateSectionIndex];
     [self.tableView reloadData];
+}
+
+- (void)displaySelectedPeople {
+    [self displayCleanup];
+    [self displayRefresh];
 }
 
 -(id)initWithEvent:(EKEvent*)event
@@ -356,7 +370,8 @@
     [self setupNavBar];
     
     //cancel editing gesture
-    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTableView)];
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(didTapTableView)];
     tap.cancelsTouchesInView = NO;
     [self.tableView addGestureRecognizer:tap];
 }

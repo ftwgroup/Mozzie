@@ -61,6 +61,7 @@
         case kPersonTag:
             personAtIndex = [self.personObjects objectAtIndex:index];
             cell.textLabel.text = [personAtIndex valueForKey:@"firstName"];
+            //check to see if this item is selected:
             if ([self.selectedObjects objectForKey:[personAtIndex objectID]]) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
@@ -68,6 +69,7 @@
         case kGroupTag:
             groupAtIndex = [self.groupObjects objectAtIndex:index];
             cell.textLabel.text = [groupAtIndex valueForKey:@"name"];
+
             if ([self.selectedObjects objectForKey:[groupAtIndex objectID]]) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
@@ -152,25 +154,8 @@
 }
 
 - (void)queryDataStore {
-    
-    //    if (self.typeToDisplay == kPersonTag) {
-    //        for (Person *contact in [KCDataStore fetchEntity:@"Person"]) {
-    //            if (contact.firstName) {
-    //                NSString* fullName = [[contact.firstName stringByAppendingString:@" "] stringByAppendingString:contact.lastName];
-    //                [nameArr addObject:[NISubtitleCellObject objectWithTitle:fullName subtitle:contact.nickName]];
-    //            }
-    //        }
-    //    } else {
-    //        for (Group *group in [KCDataStore fetchEntity:@"Group"]) {
-    //            if (group.name) {
-    //                [nameArr addObject:[NITitleCellObject objectWithTitle:group.name]];
-    //            }
-    //        }
-    //    }
     self.personObjects = [KCDataStore fetchEntity:@"Person"];
     self.groupObjects = [KCDataStore fetchEntity:@"Group"];
-    
-    
     [self.tableView reloadData];
 }
 
