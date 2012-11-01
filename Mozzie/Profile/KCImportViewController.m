@@ -24,8 +24,12 @@
 - (void)cloneContacts {
     [self.appDelegate permissionAddressBook];
     self.spinner.hidden = NO;
+    [self.view bringSubviewToFront:self.spinner];
     [self.spinner startAnimating];
-    [self synchAppDBWithAddressBook];
+    [self.view setUserInteractionEnabled:NO];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self synchAppDBWithAddressBook];
+    });
 }
 
 #pragma mark - Calendar chooser methods
@@ -196,10 +200,12 @@
 }
 
 - (void)setupSpinner {
-    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    CGRect spinnerFrame = CGRectMake((self.view.bounds.size.width / 2) - 25, (self.view.bounds.size.height / 2) - 25, 50, 50);
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    NSInteger spinnerHeight = self.view.bounds.size.height - (self.view.bounds.size.height / 4);
+    CGRect spinnerFrame = CGRectMake((self.view.bounds.size.width / 2) - 25, spinnerHeight, 50, 50);
     self.spinner.frame = spinnerFrame;
     self.spinner.hidesWhenStopped = YES;
+    [self.view addSubview:self.spinner];
 }
 
 # pragma mark - Synch
@@ -250,19 +256,24 @@
     CFArrayRef personArr;
     ABAddressBookRef myAB = ABAddressBookCreateWithOptions(nil, abError);
     if (abError) {
-        NSLog(@"AddressBook failed to init with error %@", CFErrorCopyDescription(*abError));
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"AddressBook failed to init with error %@", CFErrorCopyDescription(*abError));
+        });
     } else {
         personArr = ABAddressBookCopyArrayOfAllPeople(myAB);
         for (int i = 0; i < CFArrayGetCount(personArr); i++) {
             [KCDataStore saveEntityFromPersonRecordRef:CFArrayGetValueAtIndex(personArr, i)];
         }
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Done synching Addressbook!"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Done importing AddressBook!"
                                                         message:nil
                                                        delegate:self
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil, nil];
-        [self.spinner stopAnimating];
-        [alert show];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.spinner stopAnimating];
+            [alert show];
+            [self.view setUserInteractionEnabled:YES];
+        });
     }
 }
 
@@ -271,6 +282,7 @@
 {
     [super viewDidLoad];
     self.title = @"Import";
+    [self setupSpinner];
     [self setupPeopleImportButtons];
     [self setupNavbar];
     self.navigationController.delegate = self; 
