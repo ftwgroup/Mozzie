@@ -11,6 +11,8 @@
 #import "KCNewGroupTableViewController.h"
 #import "KCAddEventTableViewController.h"
 #import "KCDataStore.h"
+#import "Group.h"
+#import "Person.h"
 #import "UIColor+FTWColors.h"
 #import "KCConstants.h"
 
@@ -223,18 +225,28 @@
 - (void)deleteEntities {
     [self.contactTable.tableView beginUpdates];
     NSMutableArray* rowsToDelete = [NSMutableArray new];
+    NSMutableArray* deletedObjects = [NSMutableArray new];
     for (NSManagedObjectID* objectID in self.contactTable.selectedObjects) {
-        NSManagedObject* objectToDelete = [[KCDataStore context] objectRegisteredForID:objectID];
-        [[KCDataStore context] deleteObject:objectToDelete];
+        NSManagedObject* objectToDelete;
         NSIndexPath* rowToDelete;
         switch (self.contactTable.typeToDisplay) {
             case kPersonTag:
-                rowToDelete = [NSIndexPath indexPathForRow:[self.contactTable.personObjects indexOfObject:objectToDelete]inSection:0];
-                [rowsToDelete addObject:rowToDelete];
+                objectToDelete = [[KCDataStore context] objectRegisteredForID:objectID];
+                if ([objectToDelete class] == [Person class]) {
+                    [[KCDataStore context] deleteObject:objectToDelete];
+                    [deletedObjects addObject:objectID];
+                    rowToDelete = [NSIndexPath indexPathForRow:[self.contactTable.personObjects indexOfObject:objectToDelete]inSection:0];
+                    [rowsToDelete addObject:rowToDelete];
+                }
                 break;
             case kGroupTag:
-                rowToDelete = [NSIndexPath indexPathForRow:[self.contactTable.groupObjects indexOfObject:objectToDelete]inSection:0];
-                [rowsToDelete addObject:rowToDelete];
+                objectToDelete = [[KCDataStore context] objectRegisteredForID:objectID];
+                if ([objectToDelete class] == [Group class]) {
+                    [[KCDataStore context] deleteObject:objectToDelete];
+                    [deletedObjects addObject:objectID];
+                    rowToDelete = [NSIndexPath indexPathForRow:[self.contactTable.groupObjects indexOfObject:objectToDelete]inSection:0];
+                    [rowsToDelete addObject:rowToDelete];
+                }
                 break;
             default:
                 break;
@@ -249,6 +261,9 @@
         [self.contactTable queryDataStore];
     } else {
         NSLog(@"Failed to save deletions with error: %@", [error localizedDescription]);
+    }
+    for (NSManagedObjectID* deleted in deletedObjects) {
+        [self.contactTable.selectedObjects removeObjectForKey:deleted];
     }
     self.contactTable.selectedObjects = [NSMutableDictionary new];
     [self.contactTable.tableView endUpdates];
