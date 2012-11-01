@@ -81,7 +81,7 @@
         default:
             break;
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 }
 
 - (NSInteger)tableView:(UITableView* )tableView numberOfRowsInSection:(NSInteger)section
@@ -154,7 +154,8 @@
             default:
                 break;
         }
-    }    
+    }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)queryDataStore {

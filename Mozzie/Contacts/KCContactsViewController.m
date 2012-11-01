@@ -226,17 +226,23 @@
         [[KCDataStore context] deleteObject:objectToDelete];
     }
     
+    NSMutableArray* rowsToDelete = [NSMutableArray new];
+    for (UITableViewCell* visibleCell in [self.contactTable.tableView visibleCells]) {
+        if (visibleCell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            [rowsToDelete addObject:[self.contactTable.tableView indexPathForCell:visibleCell]];
+        }
+    }
+    
     NSError* error;
     [[KCDataStore context] save:&error];
     if (!error ) {
-        [self.contactTable.tableView reloadData];
+        //[self.contactTable.tableView reloadRowsAtIndexPaths:rowsToDelete
+                                           //withRowAnimation:UITableViewRowAnimationFade];
+        [self.contactTable.tableView deleteRowsAtIndexPaths:rowsToDelete
+                                           withRowAnimation:UITableViewRowAnimationFade];
     } else {
         NSLog(@"Failed to save deletions with error: %@", [error localizedDescription]);
     }
-    
-    //not quite working yet TODO: debug deleting cells along with core data objects
-    NSArray* entitiesToDelete = [self.contactTable.tableView indexPathsForSelectedRows];
-    [self.contactTable.tableView deleteRowsAtIndexPaths:entitiesToDelete withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark Setup
