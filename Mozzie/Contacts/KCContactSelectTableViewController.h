@@ -12,6 +12,9 @@
 #import <AddressBook/AddressBook.h>
 
 @interface KCContactSelectTableViewController : UITableViewController
+- (void)queryDataStore;
+@property (nonatomic, strong) NSArray* personObjects;;
+@property (nonatomic, strong) NSArray* groupObjects;
 @property NSInteger typeToDisplay;
 @property NSMutableDictionary* selectedObjects;
 @end

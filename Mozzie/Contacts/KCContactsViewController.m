@@ -221,28 +221,37 @@
 }
 
 - (void)deleteEntities {
+    [self.contactTable.tableView beginUpdates];
+    NSMutableArray* rowsToDelete = [NSMutableArray new];
     for (NSManagedObjectID* objectID in self.contactTable.selectedObjects) {
         NSManagedObject* objectToDelete = [[KCDataStore context] objectRegisteredForID:objectID];
         [[KCDataStore context] deleteObject:objectToDelete];
-    }
-    
-    NSMutableArray* rowsToDelete = [NSMutableArray new];
-    for (UITableViewCell* visibleCell in [self.contactTable.tableView visibleCells]) {
-        if (visibleCell.accessoryType == UITableViewCellAccessoryCheckmark) {
-            [rowsToDelete addObject:[self.contactTable.tableView indexPathForCell:visibleCell]];
+        NSIndexPath* rowToDelete;
+        switch (self.contactTable.typeToDisplay) {
+            case kPersonTag:
+                rowToDelete = [NSIndexPath indexPathForRow:[self.contactTable.personObjects indexOfObject:objectToDelete]inSection:0];
+                [rowsToDelete addObject:rowToDelete];
+                break;
+            case kGroupTag:
+                rowToDelete = [NSIndexPath indexPathForRow:[self.contactTable.groupObjects indexOfObject:objectToDelete]inSection:0];
+                [rowsToDelete addObject:rowToDelete];
+                break;
+            default:
+                break;
         }
     }
-    
+
     NSError* error;
     [[KCDataStore context] save:&error];
-    if (!error ) {
-        //[self.contactTable.tableView reloadRowsAtIndexPaths:rowsToDelete
-                                           //withRowAnimation:UITableViewRowAnimationFade];
+    if (!error) {
         [self.contactTable.tableView deleteRowsAtIndexPaths:rowsToDelete
                                            withRowAnimation:UITableViewRowAnimationFade];
+        [self.contactTable queryDataStore];
     } else {
         NSLog(@"Failed to save deletions with error: %@", [error localizedDescription]);
     }
+    self.contactTable.selectedObjects = [NSMutableDictionary new];
+    [self.contactTable.tableView endUpdates];
 }
 
 #pragma mark Setup

@@ -14,8 +14,7 @@
 #import "Group.h"
 
 @interface KCContactSelectTableViewController ()
-@property (nonatomic, strong) NSArray* personObjects;;
-@property (nonatomic, strong) NSArray* groupObjects;
+
 @end
 
 @implementation KCContactSelectTableViewController
