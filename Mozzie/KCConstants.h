@@ -22,7 +22,7 @@ extern NSString* const FBSessionStateChangedNotification;
 extern NSString* const kMozzieServerBaseURL;
 extern NSString* const kSynchingRequestComplete;
 extern NSString* const kUserEmail;
-extern NSString* const kUserSelectedCalendars;
+extern NSString* const kUserSelectedCalendarIndentifiers;
 extern NSString* const kServiceMozzieApp;
 extern UIModalTransitionStyle const kAppWideModalStyle;
 @end

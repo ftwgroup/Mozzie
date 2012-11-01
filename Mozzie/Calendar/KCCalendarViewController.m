@@ -43,7 +43,11 @@
 
 - (void)calendarChooserDidFinish:(EKCalendarChooser *)calendarChooser {
     NSArray* selectedCalendars = [NSArray arrayWithArray:[calendarChooser.selectedCalendars allObjects]];
-    [[NSUserDefaults standardUserDefaults] setObject:selectedCalendars forKey:kUserSelectedCalendars];
+    NSMutableArray* selectedCalendarIndentifiers = [NSMutableArray new];
+    for (EKCalendar* calendar in selectedCalendars) {
+        [selectedCalendarIndentifiers addObject:calendar.calendarIdentifier];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:selectedCalendarIndentifiers forKey:kUserSelectedCalendarIndentifiers];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self.calendarTable.tableView reloadData];
     [calendarChooser dismissViewControllerAnimated:YES completion:nil];
@@ -75,8 +79,12 @@
                                                                               displayStyle:EKCalendarChooserDisplayAllCalendars
                                                                                 entityType:EKEntityTypeEvent
                                                                                 eventStore:[KCCalendarStore sharedStore].EKEvents];
-    NSArray* selectedCals = [[NSUserDefaults standardUserDefaults] objectForKey:kUserSelectedCalendars];
-    calendarChooser.selectedCalendars = [NSSet setWithArray:selectedCals];
+    NSArray* selectedCalendarIndentifiers = [[NSUserDefaults standardUserDefaults] objectForKey:kUserSelectedCalendarIndentifiers];
+    NSMutableArray* selectedCalendars = [NSMutableArray new];
+    for (NSString* calendarIndentifier in selectedCalendarIndentifiers) {
+        [selectedCalendars addObject:[[KCCalendarStore sharedStore].EKEvents calendarWithIdentifier:calendarIndentifier]];
+    }
+    calendarChooser.selectedCalendars = [NSSet setWithArray:selectedCalendars];
     calendarChooser.showsCancelButton = YES;
     calendarChooser.showsDoneButton = YES;
     calendarChooser.delegate = self;

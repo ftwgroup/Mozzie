@@ -16,7 +16,7 @@ NSString* const FBSessionStateChangedNotification = @"FTW-Group.Mozzie:FBSession
 NSString* const kMozzieServerBaseURL = @"http://127.0.0.1:8000/";
 NSString* const kSynchingRequestComplete = @"synching request complete";
 NSString* const kUserEmail = @"the user's entered email";
-NSString* const kUserSelectedCalendars = @"the user's selected calendars";
+NSString* const kUserSelectedCalendarIndentifiers = @"the user's selected calendars";
 NSString* const kServiceMozzieApp = @"Mozzie App";
 UIModalTransitionStyle const kAppWideModalStyle = UIModalTransitionStyleFlipHorizontal;
 @end

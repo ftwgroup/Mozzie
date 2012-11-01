@@ -29,32 +29,6 @@
          landmarkName = "-displayGroupSelect"
          landmarkType = "5">
       </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mozzie/Calendar/KCCalendarViewController.m"
-         timestampString = "373420152.526572"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45"
-         landmarkName = "-calendarChooserDidFinish:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mozzie/Calendar/KCCalendarViewController.m"
-         timestampString = "373421715.768854"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "79"
-         endingLineNumber = "79"
-         landmarkName = "-calendarSelect"
-         landmarkType = "5">
-      </FileBreakpoint>
    </FileBreakpoints>
    <ExceptionBreakpoints>
       <ExceptionBreakpoint

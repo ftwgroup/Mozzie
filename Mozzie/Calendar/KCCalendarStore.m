@@ -72,7 +72,11 @@ static dispatch_once_t pred;
         default:
             break;
     }
-    NSArray* calendars = [[NSUserDefaults standardUserDefaults] valueForKey:kUserSelectedCalendars];
+    NSArray* calendarIndentifiers = [[NSUserDefaults standardUserDefaults] valueForKey:kUserSelectedCalendarIndentifiers];
+    NSMutableArray* calendars = [[NSMutableArray alloc] init];
+    for (NSString* calendarIndentifier in calendarIndentifiers) {
+        [calendars addObject:[[KCCalendarStore sharedStore].EKEvents calendarWithIdentifier:calendarIndentifier]];
+    }
     
     NSPredicate *eventPredicate = [sharedStore.EKEvents predicateForEventsWithStartDate:startOfUnit
                                                                            endDate:endOfUnit

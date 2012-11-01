@@ -36,7 +36,11 @@
 
 - (void)calendarChooserDidFinish:(EKCalendarChooser *)calendarChooser {
     NSArray* selectedCalendars = [NSArray arrayWithArray:[calendarChooser.selectedCalendars allObjects]];
-    [[NSUserDefaults standardUserDefaults] setObject:selectedCalendars forKey:kUserSelectedCalendars];
+    NSMutableArray* selectedCalendarIndentifiers = [NSMutableArray new];
+    for (EKCalendar* calendar in selectedCalendars) {
+        [selectedCalendarIndentifiers addObject:calendar.calendarIdentifier];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:selectedCalendarIndentifiers forKey:kUserSelectedCalendarIndentifiers];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [calendarChooser dismissViewControllerAnimated:YES completion:nil];
 }
@@ -53,13 +57,12 @@
                                                                               displayStyle:EKCalendarChooserDisplayAllCalendars
                                                                                 entityType:EKEntityTypeEvent
                                                                                 eventStore:[KCCalendarStore sharedStore].EKEvents];
-    NSSet* selectedCalendars;
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:kUserSelectedCalendars]) {
-        selectedCalendars = [NSSet new];
-    } else {
-        selectedCalendars = [NSSet setWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:kUserSelectedCalendars]];
+    NSArray* selectedCalendarIndentifiers = [[NSUserDefaults standardUserDefaults] objectForKey:kUserSelectedCalendarIndentifiers];
+    NSMutableArray* selectedCalendars = [NSMutableArray new];
+    for (NSString* calendarIndentifier in selectedCalendarIndentifiers) {
+        [selectedCalendars addObject:[[KCCalendarStore sharedStore].EKEvents calendarWithIdentifier:calendarIndentifier]];
     }
-    calendarChooser.selectedCalendars = selectedCalendars;
+    calendarChooser.selectedCalendars = [NSSet setWithArray:selectedCalendars];
     calendarChooser.showsCancelButton = YES;
     calendarChooser.showsDoneButton = YES;
     calendarChooser.view.backgroundColor = [UIColor backgroundColor];
