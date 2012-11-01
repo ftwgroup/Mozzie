@@ -46,17 +46,15 @@
 
 - (NSInteger)getIndex:(NSIndexPath *)indexPath
 {
-            
-        NSInteger addPrevious = 0;
-        NSInteger untilNow = indexPath.section;
-        for (NSInteger i = 0; i < untilNow; i++) {
-            //NSLog(@"%d", [[self.sectionSizes objectAtIndex:i] integerValue]);
-            addPrevious = addPrevious + [[self.sectionSizes objectAtIndex:i] integerValue];
-        }
-        
-        NSInteger index = indexPath.row + addPrevious;
-        return index;
+    NSInteger addPrevious = 0;
+    NSInteger untilNow = indexPath.section;
+    for (NSInteger i = 0; i < untilNow; i++) {
+        //NSLog(@"%d", [[self.sectionSizes objectAtIndex:i] integerValue]);
+        addPrevious = addPrevious + [[self.sectionSizes objectAtIndex:i] integerValue];
+    }
     
+    NSInteger index = indexPath.row + addPrevious;
+    return index;
 }
 
 #pragma mark - Table view data source
@@ -69,32 +67,51 @@
     for (int i = 0; i < self.sectionArray.count; i++) {
         [self.sectionSizes addObject:[NSNumber numberWithInt:0]];
     }
-    return self.sectionArray.count;
+    NSUInteger scheduledSections = self.sectionArray.count;
+    if (!self.freeTimeView) {
+        return scheduledSections;
+    } else {
+        NSUInteger freeSections = scheduledSections * 2;
+        return freeSections + 1;
+    }
 }
 
 - (void)tableViewCellConfiguration:(UITableViewCell*)cell ForIndex:(NSInteger )index {
-
-    EKEvent* eventAtIndex = [self.compositeCalendar objectAtIndex:index];
+    EKEvent* eventAtIndex;
+    
+    if (!self.freeTimeView) {
+        eventAtIndex = [self.compositeCalendar objectAtIndex:index];
+    } else {
+        if ((index % 2) == 0) {
+            eventAtIndex = nil;
+        } else {
+            NSUInteger adjustedIndex = (index - 1) / 2;
+            eventAtIndex = [self.compositeCalendar objectAtIndex:adjustedIndex];
+        }
+    }
     cell.backgroundColor = [UIColor colorWithCGColor:eventAtIndex.calendar.CGColor];
 
     NSString* displayDate;
     KalLogic* displayLogic = [[KalLogic alloc] initForDate:[NSDate date]];
     //set basedate explcicitly, otherwise it is the beginning of the month
-    displayLogic.baseDate = eventAtIndex.startDate;
-    switch ([KCCalendarStore sharedStore].calendarUnit) {
-        case NSDayCalendarUnit:
-            displayDate = [displayLogic selectedHourName];
-            break;
-        case NSWeekCalendarUnit:
-            displayDate = [displayLogic selectedDayName];
-            break;
-        case NSMonthCalendarUnit:
-            displayDate = [displayLogic selectedDayName];
-            break;
-        default:
-            break;
+    if (!eventAtIndex) {
+        displayDate = @"Freedom";
+    } else {
+        displayLogic.baseDate = eventAtIndex.startDate;
+        switch ([KCCalendarStore sharedStore].calendarUnit) {
+            case NSDayCalendarUnit:
+                displayDate = [displayLogic selectedHourName];
+                break;
+            case NSWeekCalendarUnit:
+                displayDate = [displayLogic selectedDayName];
+                break;
+            case NSMonthCalendarUnit:
+                displayDate = [displayLogic selectedDayName];
+                break;
+            default:
+                break;
+        }
     }
-    
     cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", displayDate ,eventAtIndex.title];
 }
 
@@ -105,7 +122,9 @@
     NSInteger sectionSize = [KCCalendarStore getEventsCountForSection:calSection InCompositeCalendar:self.compositeCalendar];
 
     [self.sectionSizes insertObject:[NSNumber numberWithInt:sectionSize] atIndex:section];
-    return sectionSize;
+    if (!self.freeTimeView) {
+        return sectionSize;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

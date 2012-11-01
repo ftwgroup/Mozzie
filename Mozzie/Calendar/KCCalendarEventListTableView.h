@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface KCCalendarEventListTableView : UITableViewController
-
+@property BOOL freeTimeView;
 @end
