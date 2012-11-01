@@ -231,27 +231,6 @@
 }
 
 - (void)synchAppDBWithAddressBook {
-    //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-    //        CFErrorRef *abError = NULL;
-    //        CFArrayRef personArr;
-    //        ABAddressBookRef myAB = ABAddressBookCreateWithOptions(nil, abError);
-    //        if (abError) {
-    //            NSLog(@"AddressBook failed to init with error %@", CFErrorCopyDescription(*abError));
-    //        } else {
-    //            personArr = ABAddressBookCopyArrayOfAllPeople(myAB);
-    //            for (int i = 0; i < CFArrayGetCount(personArr); i++) {
-    //                [KCDataStore saveEntityFromPersonRecordRef:CFArrayGetValueAtIndex(personArr, i)];
-    //            }
-    //            dispatch_async(dispatch_get_main_queue(), ^{
-    //                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Done Synching!"
-    //                                                                message:nil delegate:self
-    //                                                      cancelButtonTitle:@"Ok"
-    //                                                      otherButtonTitles:nil, nil];
-    //                [alert show];
-    //            });
-    //        }
-    //    });
-    //non-asynch
     CFErrorRef *abError = NULL;
     CFArrayRef personArr;
     ABAddressBookRef myAB = ABAddressBookCreateWithOptions(nil, abError);

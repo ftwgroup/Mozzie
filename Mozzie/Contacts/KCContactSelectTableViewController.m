@@ -64,6 +64,8 @@
             //check to see if this item is selected:
             if ([self.selectedObjects objectForKey:[personAtIndex objectID]]) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
             }
             break;
         case kGroupTag:
@@ -72,6 +74,8 @@
 
             if ([self.selectedObjects objectForKey:[groupAtIndex objectID]]) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
             }
             break;
         default:

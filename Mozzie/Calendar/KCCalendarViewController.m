@@ -220,9 +220,7 @@
     [self.view addSubview:self.calendarTable.tableView];
     [self addChildViewController:self.calendarTable];
     
-    //iOS 6 requires permissions, not sure how this plays out?
-    //why is this commented out?
-    
+    //iOS 6 requires permissions, not sure how this plays out?    
 }
 
 - (void)setupNavbar {
@@ -254,9 +252,15 @@
     CGRect tabBarFrame = CGRectMake(TOOL_BUTTON_WIDTH * 2, 0, self.view.bounds.size.width - (TOOL_BUTTON_WIDTH * 4), TOOL_BAR_HEIGHT);
     UITabBar* calTab = [[UITabBar alloc] initWithFrame:tabBarFrame];
     
-    UITabBarItem* day = [[UITabBarItem alloc] initWithTitle:@"Day" image:nil tag:NSDayCalendarUnit];
-    UITabBarItem* week = [[UITabBarItem alloc] initWithTitle:@"Week" image:nil tag:NSWeekCalendarUnit];
-    UITabBarItem* month = [[UITabBarItem alloc] initWithTitle:@"Month" image:nil tag:NSMonthCalendarUnit];
+    UITabBarItem* day = [[UITabBarItem alloc] initWithTitle:@"Day"
+                                                      image:nil
+                                                        tag:NSDayCalendarUnit];
+    UITabBarItem* week = [[UITabBarItem alloc] initWithTitle:@"Week"
+                                                       image:nil
+                                                         tag:NSWeekCalendarUnit];
+    UITabBarItem* month = [[UITabBarItem alloc] initWithTitle:@"Month"
+                                                        image:nil
+                                                          tag:NSMonthCalendarUnit];
     
     calTab.backgroundColor = [UIColor clearColor];
     calTab.tintColor = [UIColor clearColor];
