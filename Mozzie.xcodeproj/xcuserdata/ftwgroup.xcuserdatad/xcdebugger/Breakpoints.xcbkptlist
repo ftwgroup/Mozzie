@@ -30,29 +30,29 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Mozzie/Calendar/KCAddEventTableViewController.m"
-         timestampString = "373402426.980472"
+         filePath = "Mozzie/Calendar/KCCalendarViewController.m"
+         timestampString = "373420152.526572"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "71"
-         endingLineNumber = "71"
-         landmarkName = "-displayCleanup"
+         startingLineNumber = "45"
+         endingLineNumber = "45"
+         landmarkName = "-calendarChooserDidFinish:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Mozzie/Calendar/KCAddEventTableViewController.m"
-         timestampString = "373402426.980472"
+         filePath = "Mozzie/Calendar/KCCalendarViewController.m"
+         timestampString = "373421715.768854"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "65"
-         endingLineNumber = "65"
-         landmarkName = "-displayCleanup"
+         startingLineNumber = "79"
+         endingLineNumber = "79"
+         landmarkName = "-calendarSelect"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

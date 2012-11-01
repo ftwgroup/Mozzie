@@ -2,7 +2,7 @@
 //  Event.h
 //  Mozzie
 //
-//  Created by JJ Weber on 10/11/12.
+//  Created by FTWGroup on 10/31/12.
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
@@ -13,24 +13,26 @@
 
 @interface Event : NSManagedObject
 
-@property (nonatomic, retain) NSString * attendees;
-@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSDate * startDate;
 @property (nonatomic, retain) NSString * ekEventsID;
-@property (nonatomic, retain) NSString * endTime;
-@property (nonatomic, retain) NSSet *manyPeople;
+@property (nonatomic, retain) NSDate * endDate;
+@property (nonatomic, retain) NSNumber * status;
+@property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSSet *manyGroups;
+@property (nonatomic, retain) NSSet *manyPeople;
 @end
 
 @interface Event (CoreDataGeneratedAccessors)
-
-- (void)addManyPeopleObject:(Person *)value;
-- (void)removeManyPeopleObject:(Person *)value;
-- (void)addManyPeople:(NSSet *)values;
-- (void)removeManyPeople:(NSSet *)values;
 
 - (void)addManyGroupsObject:(Group *)value;
 - (void)removeManyGroupsObject:(Group *)value;
 - (void)addManyGroups:(NSSet *)values;
 - (void)removeManyGroups:(NSSet *)values;
+
+- (void)addManyPeopleObject:(Person *)value;
+- (void)removeManyPeopleObject:(Person *)value;
+- (void)addManyPeople:(NSSet *)values;
+- (void)removeManyPeople:(NSSet *)values;
 
 @end

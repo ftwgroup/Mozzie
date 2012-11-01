@@ -26,7 +26,6 @@
 		1C397AB216275B4A00CD34D1 /* KCDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397AB116275B4A00CD34D1 /* KCDataStore.m */; };
 		1C397AB716275B7B00CD34D1 /* CoreDataStore.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1C397AB616275B7B00CD34D1 /* CoreDataStore.xcdatamodel */; };
 		1C397AC516277AAF00CD34D1 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397AC416277AAE00CD34D1 /* Group.m */; };
-		1C397AC816277ADF00CD34D1 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C397AC716277ADE00CD34D1 /* Event.m */; };
 		1C397AFC1627A48400CD34D1 /* kal_left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C397AEA1627A48400CD34D1 /* kal_left_arrow.png */; };
 		1C397AFD1627A48400CD34D1 /* kal_right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C397AEB1627A48400CD34D1 /* kal_right_arrow.png */; };
 		1C397B1D1627B09D00CD34D1 /* 320x480v2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C397B081627B09D00CD34D1 /* 320x480v2.png */; };
@@ -92,6 +91,7 @@
 		4C000C11163727BC00CA2132 /* KCRemoteSynching.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C000C10163727BC00CA2132 /* KCRemoteSynching.m */; };
 		4C54D451163F0A1700D0DF6F /* KCNewGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C54D450163F0A1600D0DF6F /* KCNewGroupTableViewController.m */; };
 		4C891435163765BF00959C40 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C891434163765BF00959C40 /* Person.m */; };
+		4C8BFB3A1641C5C7000E09C0 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BFB391641C5C7000E09C0 /* Event.m */; };
 		4CA73E5F1635E01D0091053E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8942CD1630994300315E24 /* SenTestingKit.framework */; };
 		4CA73E601635E01D0091053E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160E161612658800CA206E /* UIKit.framework */; };
 		4CA73E611635E01D0091053E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9160E181612658800CA206E /* Foundation.framework */; };
@@ -212,8 +212,6 @@
 		1C397AB616275B7B00CD34D1 /* CoreDataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = CoreDataStore.xcdatamodel; path = Mozzie/CoreStore/CoreDataStore.xcdatamodel; sourceTree = "<group>"; };
 		1C397AC316277AAE00CD34D1 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Group.h; path = Mozzie/CoreStore/Group.h; sourceTree = "<group>"; };
 		1C397AC416277AAE00CD34D1 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Group.m; path = Mozzie/CoreStore/Group.m; sourceTree = "<group>"; };
-		1C397AC616277ADE00CD34D1 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = Mozzie/CoreStore/Event.h; sourceTree = "<group>"; };
-		1C397AC716277ADE00CD34D1 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = Mozzie/CoreStore/Event.m; sourceTree = "<group>"; };
 		1C397AEA1627A48400CD34D1 /* kal_left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kal_left_arrow.png; path = Mozzie/Resources/kal_left_arrow.png; sourceTree = SOURCE_ROOT; };
 		1C397AEB1627A48400CD34D1 /* kal_right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kal_right_arrow.png; path = Mozzie/Resources/kal_right_arrow.png; sourceTree = SOURCE_ROOT; };
 		1C397B081627B09D00CD34D1 /* 320x480v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 320x480v2.png; path = Mozzie/Resources/Assets/320x480v2.png; sourceTree = SOURCE_ROOT; };
@@ -335,6 +333,8 @@
 		4C54D450163F0A1600D0DF6F /* KCNewGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KCNewGroupTableViewController.m; path = Contacts/KCNewGroupTableViewController.m; sourceTree = "<group>"; };
 		4C891433163765BF00959C40 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = Mozzie/CoreStore/Person.h; sourceTree = "<group>"; };
 		4C891434163765BF00959C40 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = Mozzie/CoreStore/Person.m; sourceTree = "<group>"; };
+		4C8BFB381641C5C7000E09C0 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = Mozzie/CoreStore/Event.h; sourceTree = "<group>"; };
+		4C8BFB391641C5C7000E09C0 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = Mozzie/CoreStore/Event.m; sourceTree = "<group>"; };
 		4CA73E5E1635E01D0091053E /* MozzieRestKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MozzieRestKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CA73E641635E01D0091053E /* MozzieRestKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MozzieRestKitTests-Info.plist"; sourceTree = "<group>"; };
 		4CA73E661635E01D0091053E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -423,6 +423,8 @@
 		1C397A491627443D00CD34D1 /* CoreStore */ = {
 			isa = PBXGroup;
 			children = (
+				4C8BFB381641C5C7000E09C0 /* Event.h */,
+				4C8BFB391641C5C7000E09C0 /* Event.m */,
 				4C000C0F163727BC00CA2132 /* KCRemoteSynching.h */,
 				4C000C10163727BC00CA2132 /* KCRemoteSynching.m */,
 				4C891433163765BF00959C40 /* Person.h */,
@@ -432,8 +434,6 @@
 				1CACC1151630FEC7009EA821 /* EmailAddress.m */,
 				1CACC11A1630FF0F009EA821 /* PhoneNumber.h */,
 				1CACC11B1630FF0F009EA821 /* PhoneNumber.m */,
-				1C397AC616277ADE00CD34D1 /* Event.h */,
-				1C397AC716277ADE00CD34D1 /* Event.m */,
 				1C397AC316277AAE00CD34D1 /* Group.h */,
 				1C397AC416277AAE00CD34D1 /* Group.m */,
 				1C397AB016275B4A00CD34D1 /* KCDataStore.h */,
@@ -979,7 +979,6 @@
 				1C397AB216275B4A00CD34D1 /* KCDataStore.m in Sources */,
 				1C397AB716275B7B00CD34D1 /* CoreDataStore.xcdatamodel in Sources */,
 				1C397AC516277AAF00CD34D1 /* Group.m in Sources */,
-				1C397AC816277ADF00CD34D1 /* Event.m in Sources */,
 				1C0D8399162DEAE5003E9759 /* KCConstants.m in Sources */,
 				1C0D83A4162E3236003E9759 /* KCAddEventTableViewController.m in Sources */,
 				1C4BCE95162F61C4004B2210 /* KCContactSelectTableViewController.m in Sources */,
@@ -1025,6 +1024,7 @@
 				1CF754221638A1D40027C602 /* KCImportViewController.m in Sources */,
 				4CA8D0A91639BE72004B7F60 /* STKeychain.m in Sources */,
 				4C54D451163F0A1700D0DF6F /* KCNewGroupTableViewController.m in Sources */,
+				4C8BFB3A1641C5C7000E09C0 /* Event.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

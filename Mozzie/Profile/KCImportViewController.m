@@ -53,9 +53,16 @@
                                                                               displayStyle:EKCalendarChooserDisplayAllCalendars
                                                                                 entityType:EKEntityTypeEvent
                                                                                 eventStore:[KCCalendarStore sharedStore].EKEvents];
-    //calendarChooser.selectedCalendars = [NSSet setWithArray:[KCCalendarStore sharedStore].calendars];
+    NSSet* selectedCalendars;
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:kUserSelectedCalendars]) {
+        selectedCalendars = [NSSet new];
+    } else {
+        selectedCalendars = [NSSet setWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:kUserSelectedCalendars]];
+    }
+    calendarChooser.selectedCalendars = selectedCalendars;
     calendarChooser.showsCancelButton = YES;
     calendarChooser.showsDoneButton = YES;
+    calendarChooser.view.backgroundColor = [UIColor backgroundColor];
     calendarChooser.delegate = self;
     calendarChooser.modalTransitionStyle = kAppWideModalStyle;
     UINavigationController *cntrol = [[UINavigationController alloc] initWithRootViewController:calendarChooser];
@@ -64,6 +71,35 @@
     [self presentViewController:cntrol animated:YES completion:nil];
     //[self presentViewController:calendarChooser animated:YES completion:nil];
     //[self.navigationController pushViewController:calendarChooser animated:YES];
+}
+
+#pragma mark - Nav Delegate
+
+- (void)navConfigTableView:(UITableView* )tv {
+    tv.backgroundColor = [UIColor backgroundColor];
+    tv.backgroundView = [UIView new];
+    tv.backgroundView.backgroundColor = [UIColor backgroundColor];
+}
+
+//this is to access the tableview inside the EventKit's UI
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    
+    if ([viewController.view isKindOfClass:[UITableView class]]) {
+        [self navConfigTableView:((UITableView *)viewController.view)];
+    }
+    
+    for (UIViewController* childView in [viewController childViewControllers]) {
+        if ([childView isKindOfClass:[UITableView class]]) {
+            [self navConfigTableView:((UITableViewController*)childView).tableView];
+        }
+    }
+    
+    for (UIView* subView in [viewController view].subviews) {
+        if ([subView isKindOfClass:[UITableView class]]) {
+            [self navConfigTableView:((UITableView *)subView)];
+        }
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -234,6 +270,7 @@
     self.title = @"Import";
     [self setupPeopleImportButtons];
     [self setupNavbar];
+    self.navigationController.delegate = self; 
     self.appDelegate = [UIApplication sharedApplication].delegate;
 }
 

@@ -8,6 +8,7 @@
 #import "KCAddEventTableViewController.h"
 #import "UIColor+FTWColors.h"
 #import "KCDataStore.h"
+#import "KCCalendarStore.h"
 #import "KCContactsViewController.h"
 #import "Person.h"
 #import "Group.h"
@@ -17,10 +18,10 @@
 @property (nonatomic, readwrite, retain) NITableViewActions* actions;
 @property (nonatomic, strong) NSIndexPath* indexPathForDeletion;
 @property (strong, nonatomic) NSDate* startDate;
+@property (strong, nonatomic) NSDate* endDate;
 //location is only a string for now
 @property (strong, nonatomic) NSString* location;
 @property (strong, nonatomic) NSString* eventName;
-@property (strong, nonatomic) NSArray* people;
 @property (strong, nonatomic) NSNumber* status1confirmed0pending;
 //for comparision with latest instance of selected people
 @property (strong, nonatomic) NSMutableDictionary* displayedPeople;
@@ -31,10 +32,14 @@
 
 #pragma mark DatePicker
 - (void)datePickerDidChangeValue:(UIDatePicker *)picker {
-    self.startDate = picker.date;
-    NSLog(@"selected date: %@, ", [NSDateFormatter localizedStringFromDate:picker.date
-                                            dateStyle:NSDateFormatterNoStyle
-                                            timeStyle:NSDateFormatterShortStyle]);
+    if (picker.tag == 0) {
+        self.startDate = picker.date;
+        if ([self.endDate earlierDate:self.startDate] == self.endDate) {
+            self.endDate = self.startDate;
+        }
+    } else {
+        self.endDate = picker.date;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,7 +57,7 @@
 #pragma mark - Display Selected People
 - (void)displayCleanup {
     NSMutableArray* displayedIDstoRemove = [NSMutableArray new];
-    NSMutableDictionary* iteratedCopy = [self.displayedPeople copy];
+    NSArray* iteratedCopy = [self.displayedPeople allKeys];
     
     for (NSManagedObjectID* objectID in iteratedCopy) {
         if ([self.selectedObjects objectForKey:objectID]) {
@@ -121,7 +126,7 @@
                                            datePickerMode:UIDatePickerModeDateAndTime
                                           didChangeTarget:self
                                         didChangeSelector:@selector(datePickerDidChangeValue:)],
-         [NIDatePickerFormElement datePickerElementWithID:0
+         [NIDatePickerFormElement datePickerElementWithID:1
                                                 labelText:@"End Time"
                                                      date:event.endDate
                                            datePickerMode:UIDatePickerModeDateAndTime
@@ -216,7 +221,16 @@
 }
 
 - (void)navDone {
-    //save
+    NSString* eventID = [KCCalendarStore newEventWithName:_eventName
+                                                StartDate:_startDate
+                                                  EndDate:_endDate];
+    [KCDataStore saveEventWithName:_eventName
+                         StartDate:_startDate
+                           EndDate:_endDate
+                          location:_location
+                            status:_status1confirmed0pending
+                            people:_selectedObjects
+                        ekEventsID:eventID];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

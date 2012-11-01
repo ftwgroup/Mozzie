@@ -50,7 +50,7 @@
 }
 
 - (void)calendarChooserSelectionDidChange:(EKCalendarChooser *)calendarChooser {
-    //ok..
+    //NSArray* selectedCalendars = [calendarChooser.selectedCalendars allObjects];
 }
 
 #pragma mark - Calendar methods
@@ -75,7 +75,8 @@
                                                                               displayStyle:EKCalendarChooserDisplayAllCalendars
                                                                                 entityType:EKEntityTypeEvent
                                                                                 eventStore:[KCCalendarStore sharedStore].EKEvents];
-    //calendarChooser.selectedCalendars = [NSSet setWithArray:[KCCalendarStore sharedStore].calendars];
+    NSArray* selectedCals = [[NSUserDefaults standardUserDefaults] objectForKey:kUserSelectedCalendars];
+    calendarChooser.selectedCalendars = [NSSet setWithArray:selectedCals];
     calendarChooser.showsCancelButton = YES;
     calendarChooser.showsDoneButton = YES;
     calendarChooser.delegate = self;
@@ -84,8 +85,6 @@
     cntrol.navigationBar.tintColor =[UIColor headerColor];
     cntrol.delegate = self;
     [self presentViewController:cntrol animated:YES completion:nil];
-    //[self presentViewController:calendarChooser animated:YES completion:nil];
-    //[self.navigationController pushViewController:calendarChooser animated:YES];
 }
 
 - (void)contactsManage {
@@ -123,7 +122,6 @@
 
 //this is to access the tableview inside the EventKit's UI
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    
     if ([viewController.view isKindOfClass:[UITableView class]]) {
         [self navConfigTableView:((UITableView *)viewController.view)];
     }
@@ -139,7 +137,6 @@
             [self navConfigTableView:((UITableView *)subView)];
         }
     }
-    
 }
 
 #pragma mark - Setup methods
@@ -234,7 +231,8 @@
     UIBarButtonItem* addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                target:self
                                                                                action:@selector(addEvent)];
-    self.navigationItem.rightBarButtonItems = @[addButton, filterButton, contactsManageButton];
+    self.navigationItem.rightBarButtonItems = @[addButton, filterButton];
+    self.navigationItem.leftBarButtonItem = contactsManageButton;
 }
 
 - (void)setupNotifications {

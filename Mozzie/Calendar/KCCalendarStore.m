@@ -138,12 +138,27 @@ static dispatch_once_t pred;
                     calendarSectionCount++;
                 }
                 break;
-                
             default:
                 break;
         }
     }
     return calendarSectionCount;
+}
+
++ (NSString* )newEventWithName:(NSString *)eventName StartDate:(NSDate *)startDate EndDate:(NSDate *)endDate {
+    EKEvent* newEvent = [EKEvent eventWithEventStore:sharedStore.EKEvents];
+    newEvent.title = eventName;
+    newEvent.startDate = startDate;
+    newEvent.endDate = endDate;
+    newEvent.calendar = [NSCalendar currentCalendar];
+    NSError* error;
+    
+    [sharedStore.EKEvents saveEvent:newEvent span:EKSpanThisEvent error:&error];
+    if (!error) {
+        return [[NSString alloc] initWithFormat:@"%@", newEvent.eventIdentifier];
+    } else {
+        return @"";
+    }
 }
 
 @end

@@ -2,7 +2,7 @@
 //  Event.m
 //  Mozzie
 //
-//  Created by JJ Weber on 10/11/12.
+//  Created by FTWGroup on 10/31/12.
 //  Copyright (c) 2012 Julian Threatt. All rights reserved.
 //
 
@@ -13,11 +13,13 @@
 
 @implementation Event
 
-@dynamic attendees;
-@dynamic date;
+@dynamic name;
+@dynamic startDate;
 @dynamic ekEventsID;
-@dynamic endTime;
-@dynamic manyPeople;
+@dynamic endDate;
+@dynamic status;
+@dynamic location;
 @dynamic manyGroups;
+@dynamic manyPeople;
 
 @end

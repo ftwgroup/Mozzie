@@ -6,10 +6,12 @@
     </entity>
     <entity name="Entity" syncable="YES"/>
     <entity name="Event" representedClassName="Event" syncable="YES">
-        <attribute name="attendees" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="ekEventsID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="endTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="manyGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="manyEvents" inverseEntity="Group" syncable="YES"/>
         <relationship name="manyPeople" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="manyEvents" inverseEntity="Person" syncable="YES"/>
     </entity>
@@ -43,7 +45,7 @@
     <elements>
         <element name="EmailAddress" positionX="0" positionY="0" width="128" height="75"/>
         <element name="Entity" positionX="0" positionY="0" width="128" height="45"/>
-        <element name="Event" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Event" positionX="0" positionY="0" width="128" height="165"/>
         <element name="Group" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Person" positionX="0" positionY="0" width="128" height="270"/>
         <element name="PhoneNumber" positionX="0" positionY="0" width="128" height="90"/>

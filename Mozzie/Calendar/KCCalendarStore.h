@@ -15,6 +15,7 @@
 + (NSDate* )indexedDate;
 + (NSArray* )getSectionArrayForCompositeCalendar:(NSArray* )compCal;
 + (NSInteger )getEventsCountForSection:(NSInteger)section InCompositeCalendar:(NSArray *)compCal;
++ (NSString* )newEventWithName:(NSString* )eventName StartDate:(NSDate* )startDate EndDate:(NSDate* )endDate;
 @property (nonatomic, strong) EKEventStore* EKEvents;
 @property NSUInteger calendarUnit;
 @property NSInteger calendarIndex;

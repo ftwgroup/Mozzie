@@ -17,6 +17,7 @@
 + (NSArray* )userTwitterHandle;
 + (NSArray* )fetchEntity:(NSString *)entity;
 
++ (BOOL)saveEventWithName:(NSString* )eventName StartDate:(NSDate* )startDate EndDate:(NSDate* )endDate location:(NSString* )location status:(NSNumber* )statusSwitch people:(NSDictionary* )selectedObjects ekEventsID:(NSString* )ekEventsID;
 + (BOOL)groupHasUniqueName:(NSString* )name;
 + (BOOL)saveGroupWithName:(NSString* )name AndPeople:(NSArray* )people;
 + (BOOL)saveEntityFromPersonRecordRef:(ABRecordRef) person;

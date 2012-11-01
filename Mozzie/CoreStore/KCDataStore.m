@@ -9,6 +9,7 @@
 #import "KCDataStore.h"
 #import "Person.h"
 #import "Group.h"
+#import "Event.h"
 #import "PhoneNumber.h"
 #import "EmailAddress.h"
 #import <RestKit/RestKit.h>
@@ -31,6 +32,17 @@ NSManagedObjectModel *dataModel;
     return dataContext;
 }
 
++ (NSArray* )fetchEntity:(NSString *)entity {
+    NSFetchRequest* req = [NSFetchRequest new];
+    req.entity = [[KCDataStore model].entitiesByName objectForKey:entity];
+    NSError* err;
+    NSArray* result = [[KCDataStore context] executeFetchRequest:req error:&err];
+    if (!result) {
+        [NSException raise:@"Fetch request failure!" format:@"Reason: %@", [err localizedDescription]];
+    }
+    return result;
+}
+
 + (BOOL)groupHasUniqueName:(NSString* )name {
     NSFetchRequest* req = [NSFetchRequest new];
     req.entity = [[KCDataStore model].entitiesByName objectForKey:@"Group"];
@@ -46,36 +58,7 @@ NSManagedObjectModel *dataModel;
     }
 }
 
-+ (NSManagedObjectModel *) model {
-    if (!dataModel) {
-        dataModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-    }
-    
-    return dataModel;
-}
-
-+ (BOOL)save {
-    NSError *err;
-    if (![[KCDataStore context] save:&err]) {
-        [NSException raise:@"Save Failed!!" format:@"Reason: %@", [err localizedDescription]];
-        return NO;
-    } else {
-        return YES;
-    }
-}
-
-+ (NSArray* )fetchEntity:(NSString *)entity {
-    NSFetchRequest* req = [NSFetchRequest new];
-    req.entity = [[KCDataStore model].entitiesByName objectForKey:entity];
-    NSError* err;
-    NSArray* result = [[KCDataStore context] executeFetchRequest:req error:&err];
-    if (!result) {
-        [NSException raise:@"Fetch request failure!" format:@"Reason: %@", [err localizedDescription]];
-    }
-    return result;
-}
-
-+ (BOOL)isInDB:(NSNumber *)ID Entity:(NSString *)entity  {
++ (BOOL)isInDB:(NSNumber* )ID Entity:(NSString *)entity  {
     NSFetchRequest* req = [NSFetchRequest new];
     req.entity = [[KCDataStore model].entitiesByName objectForKey:entity];
     NSString *attributeName = @"abRecordID";
@@ -91,31 +74,75 @@ NSManagedObjectModel *dataModel;
     }
 }
 
++ (NSManagedObjectModel *) model {
+    if (!dataModel) {
+        dataModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    }
+    
+    return dataModel;
+}
+
 //TODO, implement apple recommended find or create:
 //http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/CoreData/Articles/cdImporting.html
-
-+ (BOOL)removeDuplicatesAndSaveWithIncomingIds:(NSArray* )ids WithIDType:(NSString* )idType WithEntityType:(NSString* ) entityType {
-    NSArray* sortedIDs = [ids sortedArrayUsingSelector: @selector(compare:)];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [fetchRequest setEntity:
-     [NSEntityDescription entityForName:entityType inManagedObjectContext:[KCDataStore context]]];
-    [fetchRequest setPredicate: [NSPredicate predicateWithFormat: @"(%@ IN %@)", idType, ids]];
-    [fetchRequest setSortDescriptors:
-     @[ [[NSSortDescriptor alloc] initWithKey:idType ascending:YES] ]];
-    // Execute the fetch.
-    NSError *error;
-    NSArray *objectsWithMatchingIDs = [[KCDataStore context] executeFetchRequest:fetchRequest error:&error];
+//+ (BOOL)removeDuplicatesAndSaveWithIncomingIds:(NSArray* )ids WithIDType:(NSString* )idType WithEntityType:(NSString* ) entityType {
+//    NSArray* sortedIDs = [ids sortedArrayUsingSelector: @selector(compare:)];
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    [fetchRequest setEntity:
+//     [NSEntityDescription entityForName:entityType inManagedObjectContext:[KCDataStore context]]];
+//    [fetchRequest setPredicate: [NSPredicate predicateWithFormat: @"(%@ IN %@)", idType, ids]];
+//    [fetchRequest setSortDescriptors:
+//     @[ [[NSSortDescriptor alloc] initWithKey:idType ascending:YES] ]];
+//    // Execute the fetch.
+//    NSError *error;
+//    NSArray *objectsWithMatchingIDs = [[KCDataStore context] executeFetchRequest:fetchRequest error:&error];
+//    
+//    for (int i = 0; i < ids.count; i++) {
+//        NSInteger incomingID = [[ids objectAtIndex:i] integerValue];
+//        NSInteger matchingObjectId = [[((NSManagedObject* )[objectsWithMatchingIDs objectAtIndex:i]) valueForKey:idType] integerValue];
+//        if (incomingID == matchingObjectId) {
+//            continue;
+//        } else {
+//            
+//        }
+//    }
+//}
++ (BOOL)saveEventWithName:(NSString *)eventName StartDate:(NSDate *)startDate EndDate:(NSDate *)endDate location:(NSString *)location status:(NSNumber *)statusSwitch people:(NSDictionary *)selectedObjects ekEventsID:(NSString *)ekEventsID {
+    Event* event = [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:[KCDataStore context]];
+    event.name = eventName;
+    event.startDate = startDate;
+    event.endDate = endDate;
+    event.location = location;
+    event.status = statusSwitch;
+    event.ekEventsID = ekEventsID;
     
-    for (int i = 0; i < ids.count; i++) {
-        NSInteger incomingID = [[ids objectAtIndex:i] integerValue];
-        NSInteger matchingObjectId = [[((NSManagedObject* )[objectsWithMatchingIDs objectAtIndex:i]) valueForKey:idType] integerValue];
-        if (incomingID == matchingObjectId) {
-            continue;
+    NSMutableSet* peopleToAdd = [NSMutableSet new];
+    NSMutableArray* groupsToParse = [NSMutableArray new];
+
+    for (NSManagedObjectID* objectID in selectedObjects) {
+        NSManagedObject* personable = [[KCDataStore context] objectWithID:objectID];
+        if ([personable class] == [Person class]) {
+            [peopleToAdd addObject:personable];
         } else {
-            
+            [groupsToParse addObject:personable];
         }
     }
+    for (Group* group in groupsToParse) {
+        for (Person* person in group.manyPeople) {
+            [peopleToAdd addObject:person];
+        }
+    }
+    [event addManyPeople:peopleToAdd];
+    
+    NSError* error;
+    [[KCDataStore context] save:&error];
+    if (!error) {
+        return YES;
+    } else {
+        return NO; 
+    }
 }
+
+
 
 + (BOOL) saveGroupWithName:(NSString *)name AndPeople:(NSArray *)people {
     Group *group = [NSEntityDescription insertNewObjectForEntityForName:@"Group" inManagedObjectContext:[KCDataStore context]];
@@ -145,7 +172,16 @@ NSManagedObjectModel *dataModel;
     } else {
         return NO;
     }
-    
+}
+
++ (BOOL)save {
+    NSError *err;
+    if (![[KCDataStore context] save:&err]) {
+        [NSException raise:@"Save Failed!!" format:@"Reason: %@", [err localizedDescription]];
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 + (BOOL)saveEntityFromPersonRecordRef:(ABRecordRef)person {

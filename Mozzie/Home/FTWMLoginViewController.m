@@ -54,7 +54,7 @@
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     if ([emailTest evaluateWithObject:self.emailField.text]) {
-        return YES;
+        //
     } else {
         [self throwAlertForMessage:@"Unrecognized email address format."];
         return NO;
@@ -63,12 +63,13 @@
     if ([self.passwordField.text isEqualToString:self.confirmPasswordField.text]) {
         if (self.passwordField.text.length < 6) {
             [self throwAlertForMessage:@"Password should be at least 6 characters in length."];
+            return NO;
         }
-        return YES;
     } else {
         [self throwAlertForMessage:@"Passwords do not match."];
         return NO;
     }
+    return YES;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -107,6 +108,7 @@
 
 - (IBAction)createButton:(UIButton *)sender {
     NSError* error;
+    [sender becomeFirstResponder];
     if ([self checkThatFieldsAreValid]) {
         [[NSUserDefaults standardUserDefaults] setObject:self.emailField.text forKey:kUserEmail];
         [STKeychain storeUsername:self.emailField.text
@@ -114,9 +116,7 @@
                    forServiceName:kServiceMozzieApp
                    updateExisting:NO
                             error:&error];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [self.navigationController pushViewController:[KCImportViewController new] animated:YES];
-        });
+        [self.navigationController pushViewController:[KCImportViewController new] animated:YES];
     }
     if (!error) {
         [[NSUserDefaults standardUserDefaults] synchronize];
