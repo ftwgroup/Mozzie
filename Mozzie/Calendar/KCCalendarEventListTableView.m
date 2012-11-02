@@ -11,6 +11,7 @@
 #import "KCAddEventTableViewController.h"
 #import <EventKit/EventKit.h>
 #import "UIColor+FTWColors.h"
+#import "KCConstants.h"
 #import "KalLogic.h"
 
 @interface KCCalendarEventListTableView ()
@@ -88,7 +89,7 @@
             cell.backgroundColor = [UIColor grayColor];
         } else {
             //continue from here
-            NSUInteger adjustedIndex = (index - 1) / 2;
+            NSUInteger adjustedIndex = (indexPath.row - 1) / 2;
             eventAtIndex = [self.compositeCalendar objectAtIndex:adjustedIndex];
             cell.backgroundColor = [UIColor colorWithCGColor:eventAtIndex.calendar.CGColor];
         }
@@ -172,7 +173,16 @@
     EKEvent* eventAtIndex = [self.compositeCalendar objectAtIndex:[self getIndex:indexPath]];
 
     KCAddEventTableViewController *eventForm = [[KCAddEventTableViewController alloc] initWithEvent:eventAtIndex];
-    [self.navigationController pushViewController:eventForm animated:YES];
+    eventForm.eventStore = [KCCalendarStore sharedStore].EKEvents;
+    eventForm.tableView.backgroundColor = [UIColor backgroundColor];
+    UINavigationController* modalNav = [[UINavigationController alloc] initWithRootViewController:eventForm];
+    modalNav.navigationBar.tintColor = [UIColor headerColor];
+    modalNav.modalTransitionStyle = kAppWideModalStyle;
+    
+    //there is something that causes the table view to lose knowlegde of its parent after presenting and dismissing a another view controller, have not yet figured out the solution:
+    [self.parentViewController presentViewController:modalNav
+                                                animated:YES
+                                              completion:nil];
 }
 
 #pragma mark - View Did 

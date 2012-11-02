@@ -112,7 +112,7 @@
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        self.title = @"New Event";
+        self.title = event.title;
         
         self.actions = [[NITableViewActions alloc] initWithController:self];
         // TODO (julian) needs to be able to handle the case of an all day event

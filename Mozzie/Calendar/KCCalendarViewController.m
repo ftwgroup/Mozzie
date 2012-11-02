@@ -112,7 +112,7 @@
 #pragma mark - Gesture Recognizer Delegates
 - (void)handleTap:(UITapGestureRecognizer* )sender {
     // insert free sections between all unfilled time spaces.
-    self.calendarTable.freeTimeView = YES;
+    self.calendarTable.freeTimeView = !self.calendarTable.freeTimeView;
     [self.calendarTable.tableView reloadData];
 }
 

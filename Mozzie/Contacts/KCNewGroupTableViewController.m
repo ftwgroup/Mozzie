@@ -135,7 +135,4 @@
     [self setupNavBar];
     [self setupMembersArray];
 }
-
-
-
 @end
