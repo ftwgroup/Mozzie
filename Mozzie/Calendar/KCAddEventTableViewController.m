@@ -72,7 +72,7 @@
         [self.displayedPeople removeObjectForKey:objectID];
         [displayedIDstoRemove addObject:objectID];
         
-        for (NSManagedObjectID* objectID in self.displayedPeople) {
+        for (NSManagedObjectID* objectID in [self.displayedPeople allKeys]) {
             NSIndexPath* indexPathToUpdate = [self.displayedPeople objectForKey:objectID];
             if ([indexPathToUpdate compare:pathToRemove] == NSOrderedDescending) {
                 indexPathToUpdate = [NSIndexPath indexPathForRow:indexPathToUpdate.row - 1 inSection:indexPathToUpdate.section];

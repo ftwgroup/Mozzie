@@ -350,7 +350,10 @@
     self.contactTable = [KCContactSelectTableViewController new];
     self.contactTable.tableView.frame = CGRectMake(0, TOOL_BAR_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - TOOL_BAR_HEIGHT);
     self.contactTable.typeToDisplay = kPersonTag;
-    self.contactTable.buttonDelegate = self;
+    //hmm, so much control logic to give objects "states", must be a better way..
+    if (self.manageContacts) {
+        self.contactTable.buttonDelegate = self;
+    }
     [self.view addSubview:self.contactTable.view];
     [self addChildViewController:self.contactTable];
 }
