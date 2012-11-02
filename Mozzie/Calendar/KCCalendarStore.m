@@ -154,7 +154,7 @@ static dispatch_once_t pred;
     newEvent.title = eventName;
     newEvent.startDate = startDate;
     newEvent.endDate = endDate;
-    newEvent.calendar = [NSCalendar currentCalendar];
+    //newEvent.calendar = [NSCalendar currentCalendar];
     NSError* error;
     
     [sharedStore.EKEvents saveEvent:newEvent span:EKSpanThisEvent error:&error];
