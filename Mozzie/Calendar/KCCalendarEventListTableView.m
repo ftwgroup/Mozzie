@@ -180,9 +180,10 @@
     modalNav.modalTransitionStyle = kAppWideModalStyle;
     
     //there is something that causes the table view to lose knowlegde of its parent after presenting and dismissing a another view controller, have not yet figured out the solution:
-    [self.parentViewController presentViewController:modalNav
-                                                animated:YES
-                                              completion:nil];
+//    [self.parentViewController.navigationController presentViewController:modalNav
+//                                                animated:YES
+//                                              completion:nil];
+    [self.parentViewController.navigationController pushViewController:eventForm animated:YES];
 }
 
 #pragma mark - View Did 
