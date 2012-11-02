@@ -15,6 +15,7 @@
 #import "Person.h"
 #import "UIColor+FTWColors.h"
 #import "KCConstants.h"
+#import "KCContactSelectTableViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
@@ -36,6 +37,37 @@
 @implementation KCContactsViewController
 
 @synthesize friends = _friends;
+
+#pragma mark Animate in and out Create Group Button
+- (void)animateInCreateGroupButton {
+    if (self.navigationItem.rightBarButtonItems.count == 1) {
+        UIBarButtonItem* contactsManageButton = [[UIBarButtonItem alloc] initWithTitle:@"Create Group"
+                                                                                 style:UIBarButtonItemStylePlain
+                                                                                target:self
+                                                                                action:@selector(newGroup)];
+        
+        UIBarButtonItem* filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Remove"
+                                                                         style:UIBarButtonItemStylePlain
+                                                                        target:self
+                                                                        action:@selector(deleteEntities)];
+        
+        //self.navigationItem.rightBarButtonItems = @[contactsManageButton, filterButton];
+        [self.navigationItem setRightBarButtonItems:@[contactsManageButton, filterButton] animated:YES];
+    }
+}
+
+- (void)animateInRemoveButton {
+    self.navigationItem.rightBarButtonItems = nil;
+    UIBarButtonItem* filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Remove"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(deleteEntities)];
+    [self.navigationItem setRightBarButtonItem:filterButton animated:YES];
+}
+
+- (void)animateOutRemoveButton {
+    self.navigationItem.rightBarButtonItems = nil;
+}
 
 #pragma mark Add Selected People to Event
 - (void)addSelectedPeopleToEvent {
@@ -281,17 +313,7 @@
 
 - (void)setupNavButtons {
     if (self.manageContacts) {
-        UIBarButtonItem* contactsManageButton = [[UIBarButtonItem alloc] initWithTitle:@"Create Group"
-                                                                                 style:UIBarButtonItemStylePlain
-                                                                                target:self
-                                                                                action:@selector(newGroup)];
-        
-        UIBarButtonItem* filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Remove"
-                                                                         style:UIBarButtonItemStylePlain
-                                                                        target:self
-                                                                        action:@selector(deleteEntities)];
-        
-        self.navigationItem.rightBarButtonItems = @[contactsManageButton, filterButton];
+        //dynamically show these buttons
     } else {
         UIBarButtonItem* doneSelecting = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain
                                                                          target:self
@@ -328,6 +350,7 @@
     self.contactTable = [KCContactSelectTableViewController new];
     self.contactTable.tableView.frame = CGRectMake(0, TOOL_BAR_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - TOOL_BAR_HEIGHT);
     self.contactTable.typeToDisplay = kPersonTag;
+    self.contactTable.buttonDelegate = self;
     [self.view addSubview:self.contactTable.view];
     [self addChildViewController:self.contactTable];
 }
