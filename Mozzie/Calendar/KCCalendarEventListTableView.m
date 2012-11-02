@@ -117,16 +117,28 @@
 
 - (NSInteger)tableView:(UITableView* )tableView numberOfRowsInSection:(NSInteger)section
 {
-    //section is the group
-    NSInteger calSection = [[self.sectionArray objectAtIndex:section] integerValue];
-    NSInteger sectionSize = [KCCalendarStore getEventsCountForSection:calSection InCompositeCalendar:self.compositeCalendar];
-
-    [self.sectionSizes insertObject:[NSNumber numberWithInt:sectionSize] atIndex:section];
     if (!self.freeTimeView) {
+        //section is the group
+        NSInteger calSection = [[self.sectionArray objectAtIndex:section] integerValue];
+        NSInteger sectionSize = [KCCalendarStore getEventsCountForSection:calSection InCompositeCalendar:self.compositeCalendar];
+        
+        [self.sectionSizes insertObject:[NSNumber numberWithInt:sectionSize] atIndex:section];
         return sectionSize;
+    } else {
+        if ((section % 2) == 0) {
+            return 1;
+        } else {
+            NSUInteger adjustedSection = (section - 1) / 2;
+            NSInteger calSection = [[self.sectionArray objectAtIndex:adjustedSection] integerValue];
+            NSInteger sectionSize = [KCCalendarStore getEventsCountForSection:calSection InCompositeCalendar:self.compositeCalendar];
+            
+            [self.sectionSizes insertObject:[NSNumber numberWithInt:sectionSize] atIndex:section];
+            return sectionSize;
+        }
     }
 }
 
+//continue from here:
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"EventCell";
