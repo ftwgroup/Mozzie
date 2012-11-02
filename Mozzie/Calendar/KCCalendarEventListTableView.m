@@ -76,20 +76,23 @@
     }
 }
 
-- (void)tableViewCellConfiguration:(UITableViewCell*)cell ForIndex:(NSInteger )index {
+- (void)tableViewCellConfiguration:(UITableViewCell*)cell ForIndex:(NSIndexPath* )indexPath {
     EKEvent* eventAtIndex;
     
     if (!self.freeTimeView) {
-        eventAtIndex = [self.compositeCalendar objectAtIndex:index];
+        eventAtIndex = [self.compositeCalendar objectAtIndex:indexPath.row];
+        cell.backgroundColor = [UIColor colorWithCGColor:eventAtIndex.calendar.CGColor];
     } else {
-        if ((index % 2) == 0) {
+        if ((indexPath.section % 2) == 0) {
             eventAtIndex = nil;
+            cell.backgroundColor = [UIColor grayColor];
         } else {
+            //continue from here
             NSUInteger adjustedIndex = (index - 1) / 2;
             eventAtIndex = [self.compositeCalendar objectAtIndex:adjustedIndex];
+            cell.backgroundColor = [UIColor colorWithCGColor:eventAtIndex.calendar.CGColor];
         }
     }
-    cell.backgroundColor = [UIColor colorWithCGColor:eventAtIndex.calendar.CGColor];
 
     NSString* displayDate;
     KalLogic* displayLogic = [[KalLogic alloc] initForDate:[NSDate date]];
@@ -112,7 +115,14 @@
                 break;
         }
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", displayDate ,eventAtIndex.title];
+    
+    NSString* title;
+    if (!eventAtIndex.title) {
+        title = @"";
+    } else {
+        title = eventAtIndex.title;
+    }
+    cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", displayDate ,title];
 }
 
 - (NSInteger)tableView:(UITableView* )tableView numberOfRowsInSection:(NSInteger)section
@@ -147,8 +157,10 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-
-    [self tableViewCellConfiguration:cell ForIndex:[self getIndex:indexPath]];
+    
+    NSIndexPath* fullPath = [NSIndexPath indexPathForRow:[self getIndex:indexPath]
+                                               inSection:indexPath.section];
+    [self tableViewCellConfiguration:cell ForIndex:fullPath];
     return cell;
 }
 

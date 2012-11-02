@@ -22,6 +22,8 @@
 //location is only a string for now
 @property (strong, nonatomic) NSString* location;
 @property (strong, nonatomic) NSString* eventName;
+//todo, add calendar selector to this view
+@property (strong, nonatomic) NSCalendar* selectedCalendar; 
 @property (strong, nonatomic) NSNumber* status1confirmed0pending;
 //for comparision with latest instance of selected people
 @property (strong, nonatomic) NSMutableDictionary* displayedPeople;
@@ -223,7 +225,8 @@
 - (void)navDone {
     NSString* eventID = [KCCalendarStore newEventWithName:_eventName
                                                 StartDate:_startDate
-                                                  EndDate:_endDate];
+                                                  EndDate:_endDate
+                                                 calendar:_selectedCalendar];
     [KCDataStore saveEventWithName:_eventName
                          StartDate:_startDate
                            EndDate:_endDate
