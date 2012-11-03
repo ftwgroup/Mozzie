@@ -11,11 +11,12 @@
 #import "KCContactSelectTableViewController.h"
 #import <AddressBookUI/AddressBookUI.h>
 #import <AddressBook/AddressBook.h>
+#import "KCPeopleManageButtonsDelegate.h"
 
 #define TOOL_BAR_HEIGHT 40
 #define TOOL_BUTTON_WIDTH 40
 
-@interface KCContactsViewController : UIViewController <UIAlertViewDelegate, UITabBarDelegate>
+@interface KCContactsViewController : UIViewController <UIAlertViewDelegate, UITabBarDelegate, KCPeopleManageButtonsDelegate>
 @property BOOL manageContacts;
 @property (strong, nonatomic) KCContactSelectTableViewController* contactTable;
 @property (strong, nonatomic) Event* event;

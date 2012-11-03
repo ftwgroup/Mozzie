@@ -22,6 +22,8 @@
 //location is only a string for now
 @property (strong, nonatomic) NSString* location;
 @property (strong, nonatomic) NSString* eventName;
+//todo, add calendar selector to this view
+@property (strong, nonatomic) NSCalendar* selectedCalendar; 
 @property (strong, nonatomic) NSNumber* status1confirmed0pending;
 //for comparision with latest instance of selected people
 @property (strong, nonatomic) NSMutableDictionary* displayedPeople;
@@ -70,7 +72,7 @@
         [self.displayedPeople removeObjectForKey:objectID];
         [displayedIDstoRemove addObject:objectID];
         
-        for (NSManagedObjectID* objectID in self.displayedPeople) {
+        for (NSManagedObjectID* objectID in [self.displayedPeople allKeys]) {
             NSIndexPath* indexPathToUpdate = [self.displayedPeople objectForKey:objectID];
             if ([indexPathToUpdate compare:pathToRemove] == NSOrderedDescending) {
                 indexPathToUpdate = [NSIndexPath indexPathForRow:indexPathToUpdate.row - 1 inSection:indexPathToUpdate.section];
@@ -110,7 +112,7 @@
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        self.title = @"New Event";
+        self.title = event.title;
         
         self.actions = [[NITableViewActions alloc] initWithController:self];
         // TODO (julian) needs to be able to handle the case of an all day event
@@ -223,7 +225,8 @@
 - (void)navDone {
     NSString* eventID = [KCCalendarStore newEventWithName:_eventName
                                                 StartDate:_startDate
-                                                  EndDate:_endDate];
+                                                  EndDate:_endDate
+                                                 calendar:_selectedCalendar];
     [KCDataStore saveEventWithName:_eventName
                          StartDate:_startDate
                            EndDate:_endDate

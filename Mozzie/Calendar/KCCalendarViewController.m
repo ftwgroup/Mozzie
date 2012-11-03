@@ -16,7 +16,7 @@
 #import "KCAddEventTableViewController.h"
 
 @interface KCCalendarViewController ()
-
+@property UITapGestureRecognizer* tapRec;
 @end
 
 @implementation KCCalendarViewController
@@ -107,6 +107,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Gesture Recognizer Delegates
+- (void)handleTap:(UITapGestureRecognizer* )sender {
+    // insert free sections between all unfilled time spaces.
+    self.calendarTable.freeTimeView = !self.calendarTable.freeTimeView;
+    [self.calendarTable.tableView reloadData];
 }
 
 #pragma mark - Event edit delegate
@@ -248,6 +255,14 @@
                                                object:nil];
 }
 
+- (void)setupGestureRecognizers {
+    self.tapRec = [UITapGestureRecognizer new];
+    self.tapRec.delegate = self;
+    self.tapRec.numberOfTapsRequired = 2;
+    [self.tapRec addTarget:self action:@selector(handleTap:)];
+    [self.view addGestureRecognizer:self.tapRec];
+}
+
 - (void)setupTabbar {
     CGRect tabBarFrame = CGRectMake(TOOL_BUTTON_WIDTH * 2, 0, self.view.bounds.size.width - (TOOL_BUTTON_WIDTH * 4), TOOL_BAR_HEIGHT);
     UITabBar* calTab = [[UITabBar alloc] initWithFrame:tabBarFrame];
@@ -362,8 +377,8 @@
 {
     [super viewDidLoad];
     [self setupView];
+    [self setupGestureRecognizers];
     [self setupNotifications];
-
 }
 
 //show calendar options

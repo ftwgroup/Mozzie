@@ -14,6 +14,6 @@
 #define TOOL_BAR_HEIGHT 40
 #define TOOL_BUTTON_WIDTH 40
 
-@interface KCCalendarViewController : UIViewController <UITabBarDelegate, EKCalendarChooserDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, EKEventEditViewDelegate>
+@interface KCCalendarViewController : UIViewController <UITabBarDelegate, EKCalendarChooserDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, EKEventEditViewDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic,strong) KCCalendarEventListTableView* calendarTable;
 @end
