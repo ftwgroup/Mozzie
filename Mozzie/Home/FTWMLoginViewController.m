@@ -107,6 +107,7 @@
 }
 
 - (IBAction)createButton:(UIButton *)sender {
+    // TODO This is a bug waiting to happen
     NSError* error;
     [sender becomeFirstResponder];
     if ([self checkThatFieldsAreValid]) {

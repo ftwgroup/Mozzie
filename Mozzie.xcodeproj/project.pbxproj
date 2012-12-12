@@ -1165,7 +1165,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JJ Weber (Z7F6ED46X7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Julian Threatt (35N77MRA7G)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Mozzie/External/FacebookBundle\"",
@@ -1187,7 +1187,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "73168B1C-6AEB-46E4-9824-6D6F1F97F5C3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B14E119F-4004-43E2-B52E-D8754BAD1F45";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

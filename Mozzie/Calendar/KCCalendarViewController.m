@@ -26,12 +26,13 @@
     KCAddEventTableViewController* addEvent = [[KCAddEventTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     addEvent.eventStore = [KCCalendarStore sharedStore].EKEvents;
     addEvent.tableView.backgroundColor = [UIColor backgroundColor];
-    UINavigationController* modalNav = [[UINavigationController alloc] initWithRootViewController:addEvent];
-    modalNav.navigationBar.tintColor = [UIColor headerColor];
-    modalNav.modalTransitionStyle = kAppWideModalStyle;
-    [self presentViewController:modalNav
-                       animated:YES
-                     completion:nil];
+    [self.navigationController pushViewController:addEvent animated:YES];
+    //UINavigationController* modalNav = [[UINavigationController alloc] initWithRootViewController:addEvent];
+    //modalNav.navigationBar.tintColor = [UIColor headerColor];
+    //modalNav.modalTransitionStyle = kAppWideModalStyle;
+    //[self presentViewController:modalNav
+    //                   animated:YES
+    //                 completion:nil];
 }
 
 #pragma mark - Calendar chooser methods
@@ -374,10 +375,11 @@
 //hide calendar options
 - (void)viewWillDisappear:(BOOL)animated {
     //unset some key properties
-    [self.calendarTable removeFromParentViewController];
+    //[self.calendarTable removeFromParentViewController];
+    NSLog(@"viewWillDisappear");
     //especially this delegate, which will try to call some methods after dealloc if we are not careful. 
-    self.navigationController.delegate = nil;
-    [self.navigationController setToolbarHidden:YES];
+    //self.navigationController.delegate = nil;
+    //[self.navigationController setToolbarHidden:YES];
 }
 
 @end

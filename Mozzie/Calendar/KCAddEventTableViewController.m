@@ -217,7 +217,9 @@
 }
 
 - (void)navCancel {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"Cancel edit");
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)navDone {
@@ -231,7 +233,8 @@
                             status:_status1confirmed0pending
                             people:_selectedObjects
                         ekEventsID:eventID];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark Segmented Control
@@ -245,7 +248,7 @@
 //                                                                  style:UIBarButtonItemStylePlain
 //                                                                 target:self
 //                                                                 action:@selector(navAddPersonOrGroup)];
-    
+    NSLog(@"Setup Nav Bar");
     UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                target:self
                                                                                action:@selector(navDone)];

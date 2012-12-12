@@ -130,6 +130,7 @@
 
     KCAddEventTableViewController *eventForm = [[KCAddEventTableViewController alloc] initWithEvent:eventAtIndex];
     [self.navigationController pushViewController:eventForm animated:YES];
+    NSLog(@"selected");
 }
 
 #pragma mark - View Did 
