@@ -149,12 +149,12 @@ static dispatch_once_t pred;
     return calendarSectionCount;
 }
 
-+ (NSString* )newEventWithName:(NSString *)eventName StartDate:(NSDate *)startDate EndDate:(NSDate *)endDate {
++ (NSString* )newEventWithName:(NSString *)eventName StartDate:(NSDate *)startDate EndDate:(NSDate *)endDate calendar:(NSCalendar *)selectedCalendar {
     EKEvent* newEvent = [EKEvent eventWithEventStore:sharedStore.EKEvents];
     newEvent.title = eventName;
     newEvent.startDate = startDate;
     newEvent.endDate = endDate;
-    //newEvent.calendar = [NSCalendar currentCalendar];
+    newEvent.calendar = selectedCalendar;
     NSError* error;
     
     [sharedStore.EKEvents saveEvent:newEvent span:EKSpanThisEvent error:&error];

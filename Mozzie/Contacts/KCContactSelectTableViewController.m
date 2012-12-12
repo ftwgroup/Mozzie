@@ -154,6 +154,14 @@
                 break;
         }
     }
+    
+    if ([self.selectedObjects allKeys].count == 0) {
+        [self.buttonDelegate animateOutRemoveButton];
+    } else if ([self.selectedObjects allKeys].count == 1) {
+        [self.buttonDelegate animateInRemoveButton];
+    } else {
+        [self.buttonDelegate animateInCreateGroupButton];
+    }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
